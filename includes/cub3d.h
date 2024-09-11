@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/11 17:43:30 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/11 18:49:38 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ typedef struct s_map
 /************ WINDOW INIT ************/
 
 /************ PARSING ************/
+//Debug Display - To Be Deleted
+void	ft_display_map(t_map *map);
+
+
 // Utils
 int			ft_open_file(char *filename);
 int			ft_find_map_height(int fd);
