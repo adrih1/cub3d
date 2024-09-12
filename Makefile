@@ -5,26 +5,42 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = srcs
 OBJ_DIR = obj
+MLX_DIR = ./mlx_lib/
 
 SRCS = 	main.c \
 		$(SRC_DIR)/ft_parsing/ft_parsing.c \
 		$(SRC_DIR)/ft_parsing/ft_parsing_utils.c \
 		$(SRC_DIR)/ft_parsing/ft_map_info.c \
+		$(SRC_DIR)/ft_execution/ft_executor.c \
+		$(SRC_DIR)/ft_execution/outils/outils.c \
 
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
+MAKE_MLX = make -C $(MLX_DIR)
 INC = -Iincludes -Ilibft
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-all: $(LIBFT) $(NAME)
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Darwin) 
+   MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+else
+   MLX_FLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
+endif
+
+all: $(LIBFT) $(MLX_DIR)/libmlx.a $(NAME)
 
 $(LIBFT):
 	@echo "Building libft..."
 	@$(MAKE) -C $(LIBFT_DIR)
 
+$(MLX_DIR)/libmlx.a:
+	@echo "Building mlx..."
+	@$(MAKE_MLX)
+
 $(NAME): $(OBJS) $(LIBFT)
 	@echo "Building project $(NAME)..."
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(LDFLAGS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_FLAGS) 
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
