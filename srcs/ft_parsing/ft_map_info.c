@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:20:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/12 17:10:18 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/12 17:28:21 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int ft_map_find_info(t_map *map)
     // Find Colors
     if (ft_find_colors(map))
     {
-        printf("Issue while searching for colors\n"); 
+        printf("There was an issue while searching for colors\n"); 
         return (1); 
     }
     // Find Textures

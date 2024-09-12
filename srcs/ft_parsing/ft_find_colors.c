@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:58:31 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/12 17:25:03 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/12 17:27:51 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int ft_find_colors(t_map *map)
             if (!map->c_color)
             {
                 printf("There was an issue during malloc for map->c_color\n"); 
-                return (1); 
+                return (1);
             }
             found_c = 1; 
         }
@@ -72,9 +72,11 @@ int ft_find_colors(t_map *map)
             found_f = 1; 
         }
         if (found_c && found_f)
-            break;
+        {
+            // ft_display_colors(map); 
+            return (0); 
+        }
         i++;
     }
-    ft_display_colors(map); 
-    return (0);
+    return (1);
 }
