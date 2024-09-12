@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/12 17:02:46 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/12 17:16:08 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,17 @@ int			ft_find_file_height(int fd);
 int			ft_map_copy_lines(int fd, t_map *map);
 char		*ft_str_trim(char *str, char c);
 
-// First Step
+// First Step - Retrieving Data From File
 void		ft_clean_dirty_map(t_map *map); 
 int			ft_generate_dirty_map_file(int fd, t_map *map, char *filename);
-// Second Step
+// Second Step - Storing map info in our map structure
 int			ft_find_f_color(char *str); 
 int			ft_find_c_color(char *str); 
 int 		ft_find_colors(t_map *map); 
+int			ft_find_textures(t_map *map); 
 int			ft_map_find_info(t_map *map); 
 
-// Third Step
+// Third Step - Building the actual map grid
 int			ft_generate_map_file(t_map *map);
 // Fourth Step
 
