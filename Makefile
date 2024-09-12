@@ -7,9 +7,10 @@ SRC_DIR = srcs
 OBJ_DIR = obj
 
 SRCS = 	main.c \
-		$(SRC_DIR)/ft_parsing/ft_parsing.c \
-		$(SRC_DIR)/ft_parsing/ft_parsing_utils.c \
+		$(SRC_DIR)/ft_parsing/ft_find_colors.c \
 		$(SRC_DIR)/ft_parsing/ft_map_info.c \
+		$(SRC_DIR)/ft_parsing/ft_parsing_utils.c \
+		$(SRC_DIR)/ft_parsing/ft_parsing.c \
 
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 INC = -Iincludes -Ilibft

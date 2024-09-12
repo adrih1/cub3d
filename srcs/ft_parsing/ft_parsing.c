@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/12 14:56:27 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/12 16:40:51 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 	}
 	ft_map_copy_lines(fd, map);
 	ft_clean_dirty_map(map); 
+	ft_map_find_info(map);
 	// ft_display_grid(map, "dirty");
 	return (0);
 }
@@ -81,7 +82,6 @@ int ft_generate_map_file(t_map *map)
 		map->grid[i] = ft_strdup(map->dirty_grid[i]);
 		i++;
 	}
-	ft_display_grid(map, "clean"); 
 	return (0);
 }
 

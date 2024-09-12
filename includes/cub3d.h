@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/12 14:40:27 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/12 17:02:46 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_map
 /************ PARSING ************/
 //Debug Display - To Be Deleted
 void    ft_display_grid(t_map *map, char *grid_name); 
+void    ft_display_colors(t_map *map); 
 
 
 // Utils
@@ -72,8 +73,14 @@ char		*ft_str_trim(char *str, char c);
 void		ft_clean_dirty_map(t_map *map); 
 int			ft_generate_dirty_map_file(int fd, t_map *map, char *filename);
 // Second Step
-int			ft_generate_map_file(t_map *map);
+int			ft_find_f_color(char *str); 
+int			ft_find_c_color(char *str); 
+int 		ft_find_colors(t_map *map); 
+int			ft_map_find_info(t_map *map); 
+
 // Third Step
+int			ft_generate_map_file(t_map *map);
+// Fourth Step
 
 int			ft_parsing(char *filename);
 
