@@ -6,7 +6,7 @@
 /*   By: edouard <edouard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/12 18:08:55 by edouard          ###   ########.fr       */
+/*   Updated: 2024/09/12 19:38:05 by edouard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ int ft_parsing(t_map *map, char *filename);
 
 int ft_message_error(char *error);
 int ft_executor(t_map *map);
-
+void *load_texture(void *mlx_ptr, char *path);
 #endif
