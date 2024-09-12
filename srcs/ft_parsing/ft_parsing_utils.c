@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:46:23 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/11 17:56:42 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/12 14:40:43 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ int	ft_open_file(char *filename)
 	return (fd);
 }
 
-int	ft_find_map_height(int fd)
+int	ft_find_file_height(int fd)
 {
-	int		i;
 	int		height;
 	char	*line;
 	char	*temp;
 
-	i = 0;
 	height = 0;
 	line = get_next_line(fd);
 	while (line && line[0] != '\0')
@@ -42,10 +40,8 @@ int	ft_find_map_height(int fd)
 		temp = line;
 		line = get_next_line(fd);
 		free(temp);
-		i++;
 		height++;
 	}
-	printf("Height: %d\n", height);
 	free(line);
 	close(fd);
 	return (height);
@@ -63,7 +59,6 @@ int	ft_map_copy_lines(int fd, t_map *map)
 	{
 		temp = line;
 		map->dirty_grid[i] = ft_strdup(line);
-		// printf("%s", map->dirty_grid[i]);
 		line = get_next_line(fd);
 		free(temp);
 		i++;
@@ -85,11 +80,11 @@ int	ft_check_trimmed_has_char(char *str)
 		if(ft_isalnum(str[i]))
 		{
 			has_chars = 1;
-			return (1);			
+			return (has_chars);			
 		}
 		i++;
 	}
-	return(0);
+	return(has_chars);
 }
 
 

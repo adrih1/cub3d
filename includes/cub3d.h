@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/11 18:49:38 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/12 14:40:27 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,17 @@ typedef struct s_map
 
 /************ PARSING ************/
 //Debug Display - To Be Deleted
-void	ft_display_map(t_map *map);
+void    ft_display_grid(t_map *map, char *grid_name); 
 
 
 // Utils
 int			ft_open_file(char *filename);
-int			ft_find_map_height(int fd);
+int			ft_find_file_height(int fd);
 int			ft_map_copy_lines(int fd, t_map *map);
 char		*ft_str_trim(char *str, char c);
 
 // First Step
+void		ft_clean_dirty_map(t_map *map); 
 int			ft_generate_dirty_map_file(int fd, t_map *map, char *filename);
 // Second Step
 int			ft_generate_map_file(t_map *map);
