@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edouard <edouard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/12 17:45:45 by edouard          ###   ########.fr       */
+/*   Updated: 2024/09/13 15:47:20 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,16 @@ int ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 		return (1);
 	}
 	ft_map_copy_lines(fd, map);
-	ft_clean_dirty_map(map);
+	// ft_clean_dirty_map(map);
 	// ft_display_grid(map, "dirty");
+	// ft_map_find_info(map);
 	return (0);
 }
 
 int ft_find_map_height(t_map *map)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -62,10 +63,10 @@ int ft_find_map_height(t_map *map)
 	return (count);
 }
 
-int ft_generate_map_file(t_map *map)
+int	ft_generate_map_file(t_map *map)
 {
-	int i;
-	int height;
+	int	i;
+	int	height;
 
 	i = 0;
 	height = ft_find_map_height(map);
@@ -80,7 +81,6 @@ int ft_generate_map_file(t_map *map)
 		map->grid[i] = ft_strdup(map->dirty_grid[i]);
 		i++;
 	}
-	ft_display_grid(map, "clean");
 	return (0);
 }
 
@@ -93,10 +93,12 @@ int ft_parsing(t_map *map, char *filename)
 		return (1);
 	if (ft_generate_dirty_map_file(fd, map, filename))
 		return (1);
-	if (ft_generate_map_file(map))
-		return (1);
-	// ft_load_textures(map);
+	// if (ft_generate_map_file(map))
+		// return (1);
 	// Find Colors (Floor and Ceiling)
+	// ft_load_textures(map);
 	// Check Valid
+	// ft_clean(map);
+	
 	return (0);
 }

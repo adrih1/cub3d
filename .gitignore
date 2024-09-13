@@ -1,6 +1,6 @@
 srcs/ft_parsing/ft_display_adrien.c
 cub3d
-libft/libft.a
+libft/libft.ag
 libft/*.o
 obj/*.o
 obj/srcs/ft_parsing/*.o
