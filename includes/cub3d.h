@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/13 13:15:25 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/13 15:21:47 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,9 @@ typedef struct s_map
 /************ WINDOW INIT ************/
 
 /************ PARSING ************/
-//Debug Display - To Be Deleted
-void    ft_display_grid(t_map *map, char *grid_name); 
-void    ft_display_colors(t_map *map); 
-
+// Debug Display - To Be Deleted
+void		ft_display_grid(t_map *map, char *grid_name);
+void		ft_display_colors(t_map *map);
 
 // Utils
 int			ft_open_file(char *filename);
@@ -70,19 +69,22 @@ int			ft_map_copy_lines(int fd, t_map *map);
 char		*ft_str_trim(char *str, char c);
 
 // First Step - Retrieving Data From File
-void		ft_clean_dirty_map(t_map *map); 
+int			ft_check_trimmed_has_char(char *str);
+void		ft_clean_dirty_map(t_map *map);
 int			ft_generate_dirty_map_file(int fd, t_map *map, char *filename);
 // Second Step - Storing map info in our map structure
-int			ft_find_f_color(char *str); 
-int			ft_find_c_color(char *str); 
-int 		ft_find_colors(t_map *map); 
-int			ft_find_textures(t_map *map); 
-int			ft_map_find_info(t_map *map); 
+int			ft_find_f_color(char *str);
+int			ft_find_c_color(char *str);
+int			ft_find_colors(t_map *map);
+int			ft_find_textures(t_map *map);
+int			ft_map_find_info(t_map *map);
 
 // Third Step - Building the actual map grid
 int			ft_generate_map_file(t_map *map);
 // Fourth Step
-
 int			ft_parsing(char *filename);
+
+/************ CLEANING ************/
+void		ft_clean(t_map *map);
 
 #endif

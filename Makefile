@@ -7,6 +7,7 @@ SRC_DIR = srcs
 OBJ_DIR = obj
 
 SRCS = 	main.c \
+		$(SRC_DIR)/ft_clean.c \
 		$(SRC_DIR)/ft_parsing/ft_find_colors.c \
 		$(SRC_DIR)/ft_parsing/ft_find_textures.c \
 		$(SRC_DIR)/ft_parsing/ft_map_info.c \
