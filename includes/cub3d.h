@@ -6,7 +6,7 @@
 /*   By: edouard <edouard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/14 14:47:55 by edouard          ###   ########.fr       */
+/*   Updated: 2024/09/14 14:55:05 by edouard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ typedef struct s_window
 
 typedef struct s_raycasting
 {
-	double pos_x;
-	double pos_y;
-	double dir_x;
-	double dir_y;
-	double plane_x;
-	double plane_y;
+	double pos_x;	 // Position de player
+	double pos_y;	 // Position de player
+	double dir_x;	 // Direction de player
+	double dir_y;	 // Direction de player
+	double plane_x; // Direction de la camera
+	double plane_y; // Direction de la camera
 } t_raycasting;
 
 typedef struct s_map
