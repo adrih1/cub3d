@@ -6,11 +6,23 @@
 /*   By: edouard <edouard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:56:47 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/14 14:27:04 by edouard          ###   ########.fr       */
+/*   Updated: 2024/09/14 14:49:53 by edouard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void init_player(t_map *map)
+{
+	map->raycasting.pos_x = 22.0;
+	map->raycasting.pos_y = 12.0;
+
+	map->raycasting.dir_x = -1.0;
+	map->raycasting.dir_y = 0.0;
+
+	map->raycasting.plane_x = 0.0;
+	map->raycasting.plane_y = 0.66;
+}
 
 int ft_mock_data(t_map *map)
 {
@@ -73,5 +85,6 @@ int ft_mock_data(t_map *map)
 	map->m_width = ft_strlen(map->grid[0]);
 	map->m_height = 14;
 
+	init_player(map);
 	return 0;
 }

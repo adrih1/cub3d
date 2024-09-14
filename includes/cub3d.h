@@ -6,7 +6,7 @@
 /*   By: edouard <edouard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/14 14:25:31 by edouard          ###   ########.fr       */
+/*   Updated: 2024/09/14 14:47:55 by edouard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,16 @@ typedef struct s_window
 	int height;
 } t_window;
 
+typedef struct s_raycasting
+{
+	double pos_x;
+	double pos_y;
+	double dir_x;
+	double dir_y;
+	double plane_x;
+	double plane_y;
+} t_raycasting;
+
 typedef struct s_map
 {
 	int m_width;
@@ -64,6 +74,7 @@ typedef struct s_map
 	char **c_color;
 	t_data data;
 	t_window window;
+	t_raycasting raycasting;
 } t_map;
 
 /*
