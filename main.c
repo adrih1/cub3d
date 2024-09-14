@@ -6,7 +6,7 @@
 /*   By: edouard <edouard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/12 18:11:53 by edouard          ###   ########.fr       */
+/*   Updated: 2024/09/14 14:01:47 by edouard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,24 @@ int main(int ac, char **av)
 	if (ft_init_map(&map))
 		return (1);
 	if (ac != 2)
+	{
 		printf("Please give a .cub file for the map\n");
+		if (ft_mock_data(map))
+			return (1);
+	}
 	else
-		// MinilibX - Initialisation de la fenetre
-		// Map Init - Parsing
+	{
 		if (ft_parsing(map, av[1]))
 		{
 			// Clean - Exit
 			return (1);
 		}
+	}
 	ft_executor(map);
 	// The Game
-	// Casting the Rays
+	// Ray Casting
 	// Rendering the walls
-	// Playr Movement
+	// Player Movement
 	// Clean
 
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: edouard <edouard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/12 19:38:05 by edouard          ###   ########.fr       */
+/*   Updated: 2024/09/14 14:25:31 by edouard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <math.h>
 
 /*
 -------------------------------------------------------------
@@ -40,6 +41,12 @@ typedef struct s_render_v
 	void *mlx_ptr;
 	void *win_ptr;
 } t_data;
+
+typedef struct s_window
+{
+	int width;
+	int height;
+} t_window;
 
 typedef struct s_map
 {
@@ -56,6 +63,7 @@ typedef struct s_map
 	char **f_color;
 	char **c_color;
 	t_data data;
+	t_window window;
 } t_map;
 
 /*
@@ -88,4 +96,7 @@ int ft_parsing(t_map *map, char *filename);
 int ft_message_error(char *error);
 int ft_executor(t_map *map);
 void *load_texture(void *mlx_ptr, char *path);
+int rgb_to_int(char **color);
+void ft_render_floor_ceiling(t_map *map);
+int ft_mock_data(t_map *map); // Mock Data - To Be Deleted
 #endif
