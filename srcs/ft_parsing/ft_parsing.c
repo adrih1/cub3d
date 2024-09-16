@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 14:53:21 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 15:22:01 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ void ft_clean_dirty_map(t_map *map)
 	while (i < map->m_height)
 	{
 		map->dirty_grid[i] = ft_str_trim(map->dirty_grid[i], ' ');
+		printf("I in clean dirty map: %d\n", i);
 		i++;
+	
 	}
+	map->dirty_grid[i] = NULL;
 }
 
 int ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
@@ -42,7 +45,7 @@ int ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 	ft_map_copy_lines(fd, map);
 	// ft_clean_dirty_map(map);
 	// ft_display_grid(map, "dirty");
-	// ft_map_find_info(map);
+	ft_map_find_info(map);
 	return (0);
 }
 

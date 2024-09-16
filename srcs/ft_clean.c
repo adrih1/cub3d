@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 15:12:43 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 15:25:42 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void ft_clean(t_map *map)
 
 
     // Libérer les couleurs de f_color et c_color si elles existent
-    // if(free_char_array(map->f_color))
-        // printf("Could not free f_color\n");        
-    // if(free_char_array(map->c_color))
-        // printf("Could not free c_color\n");        
+    if(free_char_array(map->f_color))
+        printf("Could not free f_color\n");        
+    if(free_char_array(map->c_color))
+        printf("Could not free c_color\n");        
 
 
     // Libérer les textures si elles ont été allouées dynamiquement
