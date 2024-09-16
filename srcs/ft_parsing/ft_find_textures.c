@@ -6,36 +6,42 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/13 15:07:10 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:11:01 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-// int ft_find_north_tetxure(t_map *map)
-// {
-//     return (0); 
-// }
+char	*ft_attribute_tetxure(char *str, t_map *map)
+{
+	int	i;
 
+	i = 0;
+	while (str[i])
+	{
+        // TODO - Je sais pas si la il faut ajouter une protection si ft_strdup foire (en tout cas pas de leaks ni segfault)
+		if (str[i] == 'N' && str[i + 1] == 'O')
+			map->north_textxure = ft_strdup(str);
+		else if (str[i] == 'S' && str[i + 1] == 'O')
+			map->south_textxure = ft_strdup(str);
+		else if (str[i] == 'E' && str[i + 1] == 'A')
+			map->east_textxure = ft_strdup(str);
+		else if (str[i] == 'W' && str[i + 1] == 'E')
+			map->west_textxure = ft_strdup(str);
+		i++;
+	}
+	return (NULL);
+}
 
-// int ft_find_textures(t_map *map)
-// {
-//     int i;
+int	ft_find_textures(t_map *map)
+{
+	int i;
 
-//     i = 0; 
-//     while (map->dirty_grid[i])
-//     {
-//         if (ft_find_north_tetxure(map->dirty_grid[i]))
-//         {
-//             map->north_textxure = malloc(sizeof(char *)); 
-//             if (!map->north_textxure)
-//             {
-//                 printf("There was an issue during malloc for map->north_texture\n"); 
-//                 return (1); 
-//             }
-//             map->north_textxure = ft_strdup(map->dirty_grid[i]);  
-//         }
-//         i++;
-//     }
-//     return (0);
-// }
+	i = 0;
+	while (map->dirty_grid[i])
+	{
+		ft_attribute_tetxure(map->dirty_grid[i], map);
+		i++;
+	}
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 13:38:58 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 15:51:25 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ typedef struct s_map
 	char	**grid;
 	int		player_x;
 	int		player_y;
-	void	*north_textxure;
-	void	*east_textxure;
-	void	*south_textxure;
-	void	*west_textxure;
+	char	*north_textxure;
+	char	*east_textxure;
+	char	*south_textxure;
+	char	*west_textxure;
 	char	**f_color;
 	char	**c_color;
 	t_data	data;
@@ -64,7 +64,8 @@ typedef struct s_map
 -------------------------------------------------------------
 */
 
-/************ WINDOW INIT ************/
+/************ INIT ************/
+int			init_mlx(t_data *data);
 
 /************ PARSING ************/
 // Debug Display - To Be Deleted
@@ -93,6 +94,9 @@ int			ft_map_find_info(t_map *map);
 int			ft_generate_map_file(t_map *map);
 // Fourth Step
 int			ft_parsing(t_map *map, char *filename);
+
+/************ EXECUTOR ************/
+int			ft_executor(t_map *map);
 
 /************ CLEANING ************/
 void		ft_clean(t_map *map);

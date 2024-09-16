@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 15:25:42 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:04:05 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void ft_clean(t_map *map)
 
 
     // Libérer les textures si elles ont été allouées dynamiquement
-    // free(map->north_textxure);
-    // free(map->east_textxure);
-    // free(map->south_textxure);
-    // free(map->west_textxure);
+    free(map->north_textxure);
+    free(map->east_textxure);
+    free(map->south_textxure);
+    free(map->west_textxure);
 
     // Libérer d'autres éléments si nécessaire, par exemple si `t_data` contient
     // des allocations dynamiques, elles doivent également être libérées ici
