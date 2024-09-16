@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 15:51:25 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:20:25 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ int			init_mlx(t_data *data);
 // Debug Display - To Be Deleted
 void		ft_display_grid(t_map *map, char *grid_name);
 void		ft_display_colors(t_map *map);
-int			ft_message_error(char *error);
-int			ft_executor(t_map *map);
+void		ft_display_map_info(t_map *map);
 
 // Utils
 int			ft_open_file(char *filename);
@@ -100,5 +99,6 @@ int			ft_executor(t_map *map);
 
 /************ CLEANING ************/
 void		ft_clean(t_map *map);
+int			ft_message_error(char *error);
 
 #endif
