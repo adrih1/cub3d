@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 17:02:52 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 17:33:50 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int			ft_find_file_height(int fd);
 int			ft_map_copy_lines(int fd, t_map *map);
 char		*ft_str_trim(char *str, char c);
 
-// First Step
+// First Step - Retrieving the file lines
 // int			ft_check_trimmed_has_char(char *str); _ Pas utilise pour l'instant
 // void		ft_clean_dirty_map(t_map *map); - Pas utilise pour l'instant
 int			ft_generate_dirty_map_file(int fd, t_map *map, char *filename);
@@ -103,7 +103,10 @@ int			ft_find_textures(t_map *map);
 int			ft_map_find_info(t_map *map);
 // Third Step - Building the actual map grid
 int			ft_generate_map_file(t_map *map);
-// Fourth Step
+
+// Fourth Step - Check Everything is valid
+
+// Main Function
 int			ft_parsing(t_map *map, char *filename);
 
 /************ EXECUTOR ************/
