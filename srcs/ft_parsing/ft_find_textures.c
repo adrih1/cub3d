@@ -6,20 +6,21 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/16 16:11:52 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 17:02:42 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char	*ft_attribute_tetxure(char *str, t_map *map)
+static char	*ft_attribute_tetxure(char *str, t_map *map)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-        // TODO - Je sais pas si la il faut ajouter une protection si ft_strdup foire (en tout cas pas de leaks ni segfault)
+		// TODO
+		//Je sais pas si la il faut ajouter une protection si ft_strdup foire (en tout cas pas de leaks ni segfault)
 		if (str[i] == 'N' && str[i + 1] == 'O')
 			map->north_textxure = ft_strdup(str);
 		else if (str[i] == 'S' && str[i + 1] == 'O')
