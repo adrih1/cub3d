@@ -6,13 +6,13 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:58:31 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/16 15:25:48 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 17:01:52 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_find_c_color(char *str)
+static int	ft_find_c_color(char *str)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ int	ft_find_c_color(char *str)
 	return (0);
 }
 
-int	ft_find_f_color(char *str)
+static int	ft_find_f_color(char *str)
 {
 	int	i;
 
@@ -40,6 +40,36 @@ int	ft_find_f_color(char *str)
 	return (0);
 }
 
+static int	ft_handle_f_color(t_map *map, char *line)
+{
+	if (ft_find_f_color(line))
+	{
+		map->f_color = ft_split(line, ',');
+		if (!map->f_color)
+		{
+			printf("There was an issue during malloc for map->f_color\n");
+			return (1);
+		}
+		return (0); 
+	}
+	return (1);
+}
+
+static int	ft_handle_c_color(t_map *map, char *line)
+{
+	if (ft_find_c_color(line))
+	{
+		map->c_color = ft_split(line, ',');
+		if (!map->c_color)
+		{
+			printf("There was an issue during malloc for map->c_color\n");
+			return (1);
+		}
+		return (0); 
+	}
+	return (1);
+}
+
 int	ft_find_colors(t_map *map)
 {
 	int	i;
@@ -51,26 +81,10 @@ int	ft_find_colors(t_map *map)
 	found_f = 0;
 	while (map->dirty_grid[i] && i < map->m_height)
 	{
-		if (ft_find_f_color(map->dirty_grid[i]))
-		{
-			map->f_color = ft_split(map->dirty_grid[i], ',');
-			if (!map->f_color)
-			{
-				printf("There was an issue during malloc for map->f_color\n");
-				return (1);
-			}
+		if (ft_handle_f_color(map, map->dirty_grid[i]) == 0)
 			found_f = 1;
-		}
-		if (ft_find_c_color(map->dirty_grid[i]))
-		{
-			map->c_color = ft_split(map->dirty_grid[i], ',');
-			if (!map->c_color)
-			{
-				printf("There was an issue during malloc for map->c_color\n");
-				return (1);
-			}
+		if (ft_handle_c_color(map, map->dirty_grid[i]) == 0)
 			found_c = 1;
-		}
 		if (found_c && found_f)
 			return (0);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 16:20:25 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:55:40 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,28 @@
 -------------------------------------------------------------
 */
 
-// Structure pour représenter la map
-
+// Structure pour la fenetre de la MLX
 typedef struct s_render_v
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 }			t_data;
 
+// Structure pour stocker les infos des textures
+typedef struct s_texture
+{
+	char	*id;
+	char	*filename;
+}			t_texture;
+
+// Structure pour stocker les colors de la map
+typedef struct s_color
+{
+	char	*id;
+	char	**rgb;
+}			t_color;
+
+// Structure pour représenter la map
 typedef struct s_map
 {
 	int		m_width;
@@ -80,12 +94,10 @@ int			ft_map_copy_lines(int fd, t_map *map);
 char		*ft_str_trim(char *str, char c);
 
 // First Step
-int			ft_check_trimmed_has_char(char *str);
-void		ft_clean_dirty_map(t_map *map);
+// int			ft_check_trimmed_has_char(char *str); _ Pas utilise pour l'instant
+// void		ft_clean_dirty_map(t_map *map); - Pas utilise pour l'instant
 int			ft_generate_dirty_map_file(int fd, t_map *map, char *filename);
 // Second Step - Storing map info in our map structure
-int			ft_find_f_color(char *str);
-int			ft_find_c_color(char *str);
 int			ft_find_colors(t_map *map);
 int			ft_find_textures(t_map *map);
 int			ft_map_find_info(t_map *map);
