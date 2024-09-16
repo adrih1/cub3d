@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 17:33:50 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 18:19:42 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ char		*ft_str_trim(char *str, char c);
 // void		ft_clean_dirty_map(t_map *map); - Pas utilise pour l'instant
 int			ft_generate_dirty_map_file(int fd, t_map *map, char *filename);
 // Second Step - Storing map info in our map structure
+char		*ft_clean_id_whitespace_color(char *str);
 int			ft_find_colors(t_map *map);
 int			ft_find_textures(t_map *map);
 int			ft_map_find_info(t_map *map);

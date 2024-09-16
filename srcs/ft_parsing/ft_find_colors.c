@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:58:31 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/16 17:29:57 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 18:19:52 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,33 +40,12 @@ static int	ft_find_f_color(char *str)
 	return (0);
 }
 
-char	*ft_clean_id_whitespace(char *str)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (!str)
-		return (NULL);
-	while (str[i])
-	{
-		if (str[i] != ' ' && !ft_isalpha(str[i]))
-		{
-			str[j] = str[i];
-			j++;
-		}
-		i++;
-	}
-	str[j] = '\0';
-	return (str);
-}
 
 static int	ft_handle_f_color(t_map *map, char *line)
 {
 	if (ft_find_f_color(line))
 	{
-		ft_clean_id_whitespace(line);
+		ft_clean_id_whitespace_color(line);
 		map->f_color = ft_split(line, ',');
 		if (!map->f_color)
 		{
@@ -82,7 +61,7 @@ static int	ft_handle_c_color(t_map *map, char *line)
 {
 	if (ft_find_c_color(line))
 	{
-		ft_clean_id_whitespace(line);
+		ft_clean_id_whitespace_color(line);
 		map->c_color = ft_split(line, ',');
 		if (!map->c_color)
 		{

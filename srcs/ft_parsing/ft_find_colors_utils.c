@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map_info.c                                      :+:      :+:    :+:   */
+/*   ft_find_colors_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/11 17:20:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 17:42:26 by ahors            ###   ########.fr       */
+/*   Created: 2024/09/16 17:40:53 by ahors             #+#    #+#             */
+/*   Updated: 2024/09/16 18:19:30 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
-int	ft_map_find_info(t_map *map)
+char	*ft_clean_id_whitespace_color(char *str)
 {
-	// Find Colors
-	if (ft_find_colors(map))
-		ft_message_error("There was an error finding colors\n");
-	// ft_display_colors(map);
-	// Find Textures
-	if (ft_find_textures(map))
-		ft_message_error("There was an errrir finding textures\n");
-	return (0);
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	if (!str)
+		return (NULL);
+	while (str[i])
+	{
+		if (str[i] != ' ' && !ft_isalpha(str[i]))
+		{
+			str[j] = str[i];
+			j++;
+		}
+		i++;
+	}
+	str[j] = '\0';
+	return (str);
 }
