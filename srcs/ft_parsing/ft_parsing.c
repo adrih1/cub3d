@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/13 15:47:20 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:53:21 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void ft_clean_dirty_map(t_map *map)
 int ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 {
 	map->m_height = ft_find_file_height(fd);
-	map->dirty_grid = malloc(sizeof(char *) * map->m_height);
+	map->dirty_grid = malloc(sizeof(char *) * (map->m_height + 1));
 	if (!map->dirty_grid)
 	{
 		printf("Error during malloc for map->dirty_grid\n");
@@ -98,7 +98,6 @@ int ft_parsing(t_map *map, char *filename)
 	// Find Colors (Floor and Ceiling)
 	// ft_load_textures(map);
 	// Check Valid
-	// ft_clean(map);
 	
 	return (0);
 }
