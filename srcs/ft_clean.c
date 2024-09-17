@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 17:31:13 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/17 11:21:42 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,22 @@ int	free_char_array(char **array)
 	return (0);
 }
 
+void	ft_free_textures(t_texture *map_textures)
+{
+	t_texture	*current;
+	t_texture	*next;
+
+	current = map_textures;
+	while (current)
+	{
+		next = current->next;
+		free(current->filename);
+		free(current);
+		current = next;
+	}
+	map_textures = NULL;
+}
+
 // Fonction pour libérer toute la structure t_map
 void	ft_clean(t_map *map)
 {
@@ -42,9 +58,7 @@ void	ft_clean(t_map *map)
 		printf("Could not free f_color\n");
 	if (free_char_array(map->c_color))
 		printf("Could not free c_color\n");
-	free(map->north_textxure);
-	free(map->east_textxure);
-	free(map->south_textxure);
-	free(map->west_textxure);
+	if (map->textures)
+		ft_free_textures(map->textures);
 	free(map);
 }

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 16:07:40 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/17 11:17:57 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ int ft_init_map(t_map **map)
 	(*map)->grid = NULL;
 	(*map)->player_x = 0;
 	(*map)->player_y = 0;
-	(*map)->north_textxure = NULL;
-	(*map)->east_textxure = NULL;
-	(*map)->south_textxure = NULL;
-	(*map)->west_textxure = NULL;
 	(*map)->f_color = NULL;
 	(*map)->c_color = NULL;
 	(*map)->data.mlx_ptr = NULL;
