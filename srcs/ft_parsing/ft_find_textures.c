@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/17 11:15:33 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/17 11:35:58 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,22 @@ void	ft_add_texture(t_texture **textures, t_texture *new_texture)
 
 static void	ft_attribute_texture(char *str, t_texture **textures)
 {
-	if (str[0] == 'N' && str[1] == 'O')
-		ft_add_texture(textures, ft_new_texture(NORTH_TEXTURE, str));
-	else if (str[0] == 'S' && str[1] == 'O')
-		ft_add_texture(textures, ft_new_texture(SOUTH_TEXTURE, str));
-	else if (str[0] == 'E' && str[1] == 'A')
-		ft_add_texture(textures, ft_new_texture(EAST_TEXTURE, str));
-	else if (str[0] == 'W' && str[1] == 'E')
-		ft_add_texture(textures, ft_new_texture(WEST_TEXTURE, str));
+	int i; 
+
+	i = 0;
+	while(str[i])
+	{
+		if (str[i] == 'N' && str[i + 1] == 'O')
+			ft_add_texture(textures, ft_new_texture(NORTH_TEXTURE, str));
+		else if (str[i] == 'S' && str[i + 1] == 'O')
+			ft_add_texture(textures, ft_new_texture(SOUTH_TEXTURE, str));
+		else if (str[i] == 'E' && str[i + 1] == 'A')
+			ft_add_texture(textures, ft_new_texture(EAST_TEXTURE, str));
+		else if (str[i] == 'W' && str[i + 1] == 'E')
+			ft_add_texture(textures, ft_new_texture(WEST_TEXTURE, str));
+		i++;
+	}
+
 }
 
 int	ft_find_textures(t_map *map)
