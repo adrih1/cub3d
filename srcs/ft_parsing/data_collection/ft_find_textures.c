@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_find_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/17 11:41:43 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/17 17:47:58 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 t_texture	*ft_new_texture(t_texture_type id, char *filename)
 {
 	t_texture	*new_texture;
+	char *filename_cleaned; 
 
 	new_texture = (t_texture *)malloc(sizeof(t_texture));
 	if (!new_texture)
 		return (NULL);
 	new_texture->texture_id = id;
-	// TODO - Get rid of IDs and whtespaces in filename
-	new_texture->filename = ft_strdup(filename);
+	filename_cleaned = ft_delete_id_filename(filename);
+	new_texture->filename = ft_strdup(filename_cleaned);
+	printf("New Texture Filename:  %s\n", new_texture->filename); 
 	new_texture->next = NULL;
 	return (new_texture);
 }

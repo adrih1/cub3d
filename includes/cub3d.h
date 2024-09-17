@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/17 11:15:52 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/17 17:42:07 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,9 @@ int						ft_generate_dirty_map_file(int fd, t_map *map,
 // Second Step - Storing map info in our map structure
 char					*ft_clean_id_whitespace_color(char *str);
 int						ft_find_colors(t_map *map);
+char *skip_whitespaces(char *str); 
+char *ft_skip_identifier(char *str); 
+char *ft_delete_id_filename(char *str); 
 int						ft_find_textures(t_map *map);
 int						ft_map_find_info(t_map *map);
 // Third Step - Building the actual map grid

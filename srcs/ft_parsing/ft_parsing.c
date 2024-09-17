@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/17 11:32:57 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/17 17:47:24 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 	ft_map_copy_lines(fd, map);
 	if (ft_map_find_info(map))
 		return (1);
-	ft_display_map_info(map);
+	// ft_display_map_info(map);
 	return (0);
 }
 
