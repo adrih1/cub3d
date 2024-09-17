@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/17 11:35:58 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/17 11:41:43 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_texture	*ft_new_texture(t_texture_type id, char *filename)
 	if (!new_texture)
 		return (NULL);
 	new_texture->texture_id = id;
+	// TODO - Get rid of IDs and whtespaces in filename
 	new_texture->filename = ft_strdup(filename);
 	new_texture->next = NULL;
 	return (new_texture);
