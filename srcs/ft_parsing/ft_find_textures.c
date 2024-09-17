@@ -6,36 +6,62 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/13 15:07:10 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/17 11:15:33 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-// int ft_find_north_tetxure(t_map *map)
-// {
-//     return (0); 
-// }
+t_texture	*ft_new_texture(t_texture_type id, char *filename)
+{
+	t_texture	*new_texture;
 
+	new_texture = (t_texture *)malloc(sizeof(t_texture));
+	if (!new_texture)
+		return (NULL);
+	new_texture->texture_id = id;
+	new_texture->filename = ft_strdup(filename);
+	new_texture->next = NULL;
+	return (new_texture);
+}
 
-// int ft_find_textures(t_map *map)
-// {
-//     int i;
+void	ft_add_texture(t_texture **textures, t_texture *new_texture)
+{
+	t_texture	*tmp;
 
-//     i = 0; 
-//     while (map->dirty_grid[i])
-//     {
-//         if (ft_find_north_tetxure(map->dirty_grid[i]))
-//         {
-//             map->north_textxure = malloc(sizeof(char *)); 
-//             if (!map->north_textxure)
-//             {
-//                 printf("There was an issue during malloc for map->north_texture\n"); 
-//                 return (1); 
-//             }
-//             map->north_textxure = ft_strdup(map->dirty_grid[i]);  
-//         }
-//         i++;
-//     }
-//     return (0);
-// }
+	if (!*textures)
+		*textures = new_texture;
+	else
+	{
+		tmp = *textures;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_texture;
+	}
+}
+
+static void	ft_attribute_texture(char *str, t_texture **textures)
+{
+	if (str[0] == 'N' && str[1] == 'O')
+		ft_add_texture(textures, ft_new_texture(NORTH_TEXTURE, str));
+	else if (str[0] == 'S' && str[1] == 'O')
+		ft_add_texture(textures, ft_new_texture(SOUTH_TEXTURE, str));
+	else if (str[0] == 'E' && str[1] == 'A')
+		ft_add_texture(textures, ft_new_texture(EAST_TEXTURE, str));
+	else if (str[0] == 'W' && str[1] == 'E')
+		ft_add_texture(textures, ft_new_texture(WEST_TEXTURE, str));
+}
+
+int	ft_find_textures(t_map *map)
+{
+	int i;
+
+	i = 0;
+	map->textures = NULL;
+	while (map->dirty_grid[i])
+	{
+		ft_attribute_texture(map->dirty_grid[i], &(map->textures));
+		i++;
+	}
+	return (0);
+}

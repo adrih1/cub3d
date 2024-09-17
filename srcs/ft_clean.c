@@ -6,28 +6,59 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/13 15:33:10 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/17 11:21:42 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/cub3d.h"
 
-
-void    ft_clean(t_map *map)
+// Fonction pour libérer un tableau de chaînes de caractères
+int	free_char_array(char **array)
 {
-    int i; 
+	int	i;
 
-    i = 0;
-    while(map->dirty_grid[i])
-    {
-        free(map->dirty_grid[i]);
-        i++;
-    }
-    i = 0;
-    // while(map->grid[i])
-    // {
-    //     free(map->grid[i]);
-    //     i++;
-    // }
+	i = 0;
+	if (!array)
+		return (1);
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+	return (0);
+}
+
+void	ft_free_textures(t_texture *map_textures)
+{
+	t_texture	*current;
+	t_texture	*next;
+
+	current = map_textures;
+	while (current)
+	{
+		next = current->next;
+		free(current->filename);
+		free(current);
+		current = next;
+	}
+	map_textures = NULL;
+}
+
+// Fonction pour libérer toute la structure t_map
+void	ft_clean(t_map *map)
+{
+	if (!map)
+		return ;
+	if (free_char_array(map->dirty_grid))
+		printf("Could not free map dirty grid\n");
+	// if(free_char_array(map->grid))
+	//     printf("Could not free map grid\n");
+	if (free_char_array(map->f_color))
+		printf("Could not free f_color\n");
+	if (free_char_array(map->c_color))
+		printf("Could not free c_color\n");
+	if (map->textures)
+		ft_free_textures(map->textures);
+	free(map);
 }

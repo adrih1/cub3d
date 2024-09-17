@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:46:23 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/13 15:30:43 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/16 15:20:30 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	ft_map_copy_lines(int fd, t_map *map)
 		free(temp);
 		i++;
 	}
+	map->dirty_grid[i] = NULL;
 	free(line);
 	close(fd);
 	return (0);
@@ -113,5 +114,8 @@ char	*ft_str_trim(char *str, char c)
 	if (ft_check_trimmed_has_char(trimmed))
 		return (trimmed);
 	else
+	{
+		free(trimmed);
 		return ("");
+	}
 }
