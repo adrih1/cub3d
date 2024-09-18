@@ -6,7 +6,7 @@
 /*   By: edouard <edouard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/14 14:01:47 by edouard          ###   ########.fr       */
+/*   Updated: 2024/09/18 14:03:51 by edouard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ int ft_init_map(t_map **map)
 	(*map)->grid = NULL;
 	(*map)->player_x = 0;
 	(*map)->player_y = 0;
-	(*map)->north_textxure = NULL;
-	(*map)->east_textxure = NULL;
-	(*map)->south_textxure = NULL;
-	(*map)->west_textxure = NULL;
 	(*map)->f_color = NULL;
 	(*map)->c_color = NULL;
 	(*map)->data.mlx_ptr = NULL;
@@ -41,7 +37,10 @@ int main(int ac, char **av)
 	t_map *map;
 
 	if (ft_init_map(&map))
-		return (1);
+	{
+		printf("Probleme pour init\n");
+		return (1);		
+	}
 	if (ac != 2)
 	{
 		printf("Please give a .cub file for the map\n");
@@ -53,6 +52,7 @@ int main(int ac, char **av)
 		if (ft_parsing(map, av[1]))
 		{
 			// Clean - Exit
+			ft_clean(map);
 			return (1);
 		}
 	}
@@ -62,6 +62,6 @@ int main(int ac, char **av)
 	// Rendering the walls
 	// Player Movement
 	// Clean
-
+	ft_clean(map);
 	return (0);
 }

@@ -11,10 +11,17 @@ SRCS = 	main.c \
 			mock.c \
 		$(SRC_DIR)/ft_parsing/ft_parsing.c \
 		$(SRC_DIR)/ft_parsing/ft_parsing_utils.c \
+		$(SRC_DIR)/ft_clean.c \
+		$(SRC_DIR)/ft_parsing/ft_display_adrien.c \
+		$(SRC_DIR)/ft_parsing/ft_find_colors.c \
+		$(SRC_DIR)/ft_parsing/ft_find_colors_utils.c \
+		$(SRC_DIR)/ft_parsing/ft_find_textures.c \
 		$(SRC_DIR)/ft_parsing/ft_map_info.c \
 		$(SRC_DIR)/ft_execution/ft_executor.c \
 		$(SRC_DIR)/ft_execution/ft_floor.c \
 		$(SRC_DIR)/ft_execution/outils/outils.c \
+		$(SRC_DIR)/ft_parsing/ft_parsing_utils.c \
+		$(SRC_DIR)/ft_parsing/ft_parsing.c \
 
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 MAKE_MLX = make -C $(MLX_DIR)
