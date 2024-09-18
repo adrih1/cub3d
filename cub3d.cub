@@ -1,7 +1,15 @@
             NO                       ./image.png    
-  SO            ./path_to_the_south_texture
-     WE              ./path_to_the_west_texture
-   EA             ./path_to_the_east_texture
+  SO            ./image.png
+     WE             ./image.png
+   EA             ./image.png
+
+
+
+
+
+
+
+
 F 220,                           255,                 0
                     C   20  ttt0, 255,       50
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_find_colors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:58:31 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/16 18:19:52 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/18 19:05:51 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,29 @@ int	ft_find_colors(t_map *map)
 	int	i;
 	int	found_c;
 	int	found_f;
+	int	count;
 
 	i = 0;
 	found_c = 0;
 	found_f = 0;
+	count = 0; 
 	while (map->dirty_grid[i] && i < map->m_height)
-	{
+	{	
 		if (ft_handle_f_color(map, map->dirty_grid[i]) == 0)
+		{
+			count++; 
 			found_f = 1;
+		}
 		if (ft_handle_c_color(map, map->dirty_grid[i]) == 0)
+		{
+			count++; 
 			found_c = 1;
+		}
+		if(count > 2)
+		{
+			printf("There is too many colors\n"); 
+			return (1); 
+		}
 		if (found_c && found_f)
 			return (0);
 		i++;
