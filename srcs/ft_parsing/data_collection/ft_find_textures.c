@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/17 17:47:58 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/18 10:24:57 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_texture	*ft_new_texture(t_texture_type id, char *filename)
 	new_texture->texture_id = id;
 	filename_cleaned = ft_delete_id_filename(filename);
 	new_texture->filename = ft_strdup(filename_cleaned);
-	printf("New Texture Filename:  %s\n", new_texture->filename); 
 	new_texture->next = NULL;
 	return (new_texture);
 }

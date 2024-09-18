@@ -6,11 +6,11 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/17 17:47:24 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/18 14:15:18 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 void	ft_clean_dirty_map(t_map *map)
 {
@@ -94,6 +94,8 @@ int	ft_parsing(t_map *map, char *filename)
 	if (fd < 0)
 		return (1);
 	if (ft_generate_dirty_map_file(fd, map, filename))
+		return (1);
+	if (ft_map_info_is_valid(map))
 		return (1);
 	// if (ft_generate_map_file(map))
 	// return (1);

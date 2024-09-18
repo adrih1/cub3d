@@ -6,4 +6,4 @@ obj/
 obj/*.o
 obj/srcs/ft_parsing/*.o
 obj/srcsm/*.o
-mlx/
+mlx_lib/
