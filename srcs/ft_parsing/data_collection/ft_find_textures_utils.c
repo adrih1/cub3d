@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_find_textures_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 17:05:54 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/17 18:02:20 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/19 12:04:44 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ char *ft_skip_identifier(char *str)
     return (str);
 }
 
-char *ft_delete_id_filename(char *str) {
+char *ft_delete_id_filename(char *str) 
+{
     char *start;
     char *end;
     int length;
@@ -44,7 +45,7 @@ char *ft_delete_id_filename(char *str) {
         str++;
     end = str;
     length = end - start;
-    filename = (char *)malloc((length + 1) * sizeof(char));
+    filename = (char *)malloc(sizeof(char) * (length + 1));
     if (!filename)
         return NULL;
     ft_strncpy(filename, start, length);
