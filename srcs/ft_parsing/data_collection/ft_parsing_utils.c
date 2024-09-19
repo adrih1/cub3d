@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:46:23 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/19 17:07:15 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/19 17:46:44 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_map_copy_lines(int fd, t_map *map)
 	return (0);
 }
 
-int	ft_check_trimmed_has_char(char *str)
+int	ft_str_has_char(char *str)
 {
 	size_t	i;
 	int		has_chars;
@@ -89,34 +89,20 @@ int	ft_check_trimmed_has_char(char *str)
 	return (has_chars);
 }
 
-char	*ft_str_trim(char *str, char c)
+int	ft_find_map_height(t_map *map)
 {
-	int		len;
-	int		i;
-	int		j;
-	char	*trimmed;
+	int	i;
+	int	empty_lines;
+	int	map_real_height;
 
 	i = 0;
-	j = 0;
-	len = ft_strlen(str);
-	trimmed = (char *)malloc(len + 1);
-	if (!trimmed)
-		return (NULL);
-	while (i < len)
+	empty_lines = 0;
+	while (map->dirty_grid[i])
 	{
-		if (str[i] != c)
-		{
-			trimmed[j] = str[i];
-			j++;
-		}
+		if (!ft_str_has_char(map->dirty_grid[i]))
+			empty_lines++;
 		i++;
 	}
-	trimmed[j] = '\0';
-	if (ft_check_trimmed_has_char(trimmed))
-		return (trimmed);
-	else
-	{
-		free(trimmed);
-		return ("");
-	}
+	map_real_height = map->m_height - 6 - empty_lines; 
+	return (map_real_height);
 }

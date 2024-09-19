@@ -6,25 +6,11 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/19 17:19:41 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/19 17:46:47 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_clean_dirty_map(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < map->m_height)
-	{
-		map->dirty_grid[i] = ft_str_trim(map->dirty_grid[i], ' ');
-		printf("I in clean dirty map: %d\n", i);
-		i++;
-	}
-	map->dirty_grid[i] = NULL;
-}
 
 int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 {
@@ -47,23 +33,6 @@ int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 		return (1);
 	// ft_display_map_info(map);
 	return (0);
-}
-
-int	ft_find_map_height(t_map *map)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (map->dirty_grid[i])
-	{
-		if (ft_strcmp("\0", map->dirty_grid[i]) == 0)
-			i++;
-		count++;
-		i++;
-	}
-	return (count);
 }
 
 int	ft_generate_map_file(t_map *map)
@@ -101,8 +70,10 @@ int	ft_parsing(t_map *map, char *filename)
 		return (1);
 	if (ft_map_info_is_valid(map))
 		return (1);
-	// if (ft_generate_map_file(map))
-	// return (1);
+	if (ft_generate_map_file(map))
+		return (1);
+		// Get Real Map Height --> Map->m_height - 6 lines (colors and textures) - empty lines
+		// Malloc this for map grid 
 	// ft_load_textures(map);
 	// Check Valid
 	return (0);

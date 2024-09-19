@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/19 17:08:18 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/19 17:41:11 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,13 @@ void					ft_display_grid(t_map *map, char *grid_name);
 void					ft_display_colors(t_map *map);
 void					ft_display_map_info(t_map *map);
 
-// Utils
+// Parsing Utils
 int						ft_open_file(char *filename);
 int						ft_find_file_height(int fd);
 int						ft_map_copy_lines(int fd, t_map *map);
-char					*ft_str_trim(char *str, char c);
+int						ft_check_trimmed_has_char(char *str); 
+int						ft_find_map_height(t_map *map); 
+
 
 // First Step - Retrieving the file lines
 int						ft_generate_dirty_map_file(int fd, t_map *map,
@@ -110,7 +112,6 @@ int						ft_map_find_info(t_map *map);
 
 // Fourth Step - Building the actual map grid
 // int					ft_check_trimmed_has_char(char *str); _ Pas utilise pour l'instant
-// void					ft_clean_dirty_map(t_map *map); - Pas utilise pour l'instant
 int						ft_generate_map_file(t_map *map);
 
 // Fith Step - Check Map Grid is valid
