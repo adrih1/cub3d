@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:58:31 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/18 19:05:51 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/19 17:01:14 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	ft_find_f_color(char *str)
 }
 
 
-static int	ft_handle_f_color(t_map *map, char *line)
+static int	ft_handle_f_color(t_map *map, char *line, int *count)
 {
 	if (ft_find_f_color(line))
 	{
@@ -52,12 +52,13 @@ static int	ft_handle_f_color(t_map *map, char *line)
 			printf("There was an issue during malloc for map->f_color\n");
 			return (1);
 		}
+		(*count)++; 
 		return (0);
 	}
 	return (1);
 }
 
-static int	ft_handle_c_color(t_map *map, char *line)
+static int	ft_handle_c_color(t_map *map, char *line, int *count)
 {
 	if (ft_find_c_color(line))
 	{
@@ -68,6 +69,7 @@ static int	ft_handle_c_color(t_map *map, char *line)
 			printf("There was an issue during malloc for map->c_color\n");
 			return (1);
 		}
+		(*count)++; 
 		return (0);
 	}
 	return (1);
@@ -84,24 +86,13 @@ int	ft_find_colors(t_map *map)
 	found_c = 0;
 	found_f = 0;
 	count = 0; 
-	while (map->dirty_grid[i] && i < map->m_height)
+	while (map->dirty_grid[i])
 	{	
-		if (ft_handle_f_color(map, map->dirty_grid[i]) == 0)
-		{
-			count++; 
+		if (ft_handle_f_color(map, map->dirty_grid[i], &count) == 0)
 			found_f = 1;
-		}
-		if (ft_handle_c_color(map, map->dirty_grid[i]) == 0)
-		{
-			count++; 
+		if (ft_handle_c_color(map, map->dirty_grid[i], &count) == 0)
 			found_c = 1;
-		}
-		if(count > 2)
-		{
-			printf("There is too many colors\n"); 
-			return (1); 
-		}
-		if (found_c && found_f)
+		if (found_c && found_f && !(count > 2) && i == (map->m_height - 1))
 			return (0);
 		i++;
 	}
