@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:27:22 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/18 17:09:03 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/19 17:12:31 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ static int ft_texture_is_valid(t_texture *texture)
     if (fd < 0)
     {
         printf("Texture : %s was not found\n", texture->filename); 
-        close(fd); 
+        close (fd); 
         return (1);
     }
+    close (fd); 
     return (0); 
 }
 

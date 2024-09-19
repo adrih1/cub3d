@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_display_adrien.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:50:42 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/19 11:55:56 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/19 17:19:44 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,22 @@ void	ft_display_colors(t_map *map)
 	printf("Third RGB: %s\n", map->f_color[2]);
 }
 
-void	ft_display_textures(t_map *map)
+void	ft_display_textures(t_texture *map_texures)
 {
 	t_texture *first_texture;
 
-	first_texture = map->textures;
 	printf("**********Map Textures************\n");
-	
-	while(map->textures)
+	first_texture = map_texures; 	
+	while(map_texures)
 	{
-		printf("%s", map->textures->filename);
-		map->textures = map->textures->next;
+		printf("%u: %s\n", map_texures->texture_id, map_texures->filename);
+		map_texures = map_texures->next;
 	}
-	map->textures = first_texture;
+	map_texures = first_texture;
 }
 
 void	ft_display_map_info(t_map *map)
 {
 	ft_display_colors(map);
-	ft_display_textures(map);
+	ft_display_textures(map->textures);
 }

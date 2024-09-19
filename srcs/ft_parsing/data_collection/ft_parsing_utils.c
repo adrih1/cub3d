@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:46:23 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/16 15:20:30 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/19 17:07:15 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_open_file(char *filename)
 	if (fd < 0)
 	{
 		printf("Probleme pour pour ouvrir le fichier");
+		close (fd); 
 		return (-1);
 	}
 	return (fd);

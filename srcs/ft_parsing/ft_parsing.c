@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/19 17:00:21 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/19 17:19:41 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 	if (fd < 0)
 	{
 		free(map);
+		close(fd); 
 		return (1);
 	}
 	ft_map_copy_lines(fd, map);
@@ -92,7 +93,10 @@ int	ft_parsing(t_map *map, char *filename)
 
 	fd = ft_open_file(filename);
 	if (fd < 0)
+	{
+		close (fd); 
 		return (1);
+	}
 	if (ft_generate_dirty_map_file(fd, map, filename))
 		return (1);
 	if (ft_map_info_is_valid(map))
