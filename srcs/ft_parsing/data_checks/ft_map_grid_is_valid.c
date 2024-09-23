@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/23 15:55:34 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 16:56:48 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int	ft_check_unvalid_chars(char c)
 {
-	if (c != 'N' && c != 'E' && c != 'S' && c != 'O' && c != '0' && c != '1'
-		&& c != ' ' && c != '\n')
-		return (1);
-	return (0);
+	if (c == 'N' || c == 'E' || c == 'S' || c == 'O' || c == '0' || c == '1' || c == ' ' || c == '\n')
+		return (0);	
+	else
+		printf("Use only valid chars\n");		
+	return (1);
 }
 
 int	ft_check_has_only_walls_spaces(char *str)
@@ -30,7 +31,31 @@ int	ft_check_has_only_walls_spaces(char *str)
 		if (str[i] == '1' || str[i] == ' ' || str[i] == '\n')
             i++;
         else
-            return (1);
+            return (1);			
+	}
+	return (0);
+}
+
+int	ft_check_ones_end_begin(char *str)
+{
+	int i;
+	char	last_char;
+
+	i = 0;
+	while(str[i] == ' ')
+		i++;
+	if (str[i] != '1')
+		return (1);
+	while(str[i])
+	{
+		if (ft_isdigit(str[i]))
+			last_char = str[i];
+		i++;
+	}
+	if(last_char != '1')
+	{
+		printf("Missing a wall somewhere\n");
+		return(1);
 	}
 	return (0);
 }
@@ -41,9 +66,9 @@ int	ft_map_grid_is_valid(t_map *map, char **grid)
 	int j;
 
 	i = 0;
-	j = 0;
 	while (grid[i])
 	{
+		j = 0;
 		if (i == 0 || i == map->real_height)
 		{
 			if (ft_check_has_only_walls_spaces(map->grid[i]))
@@ -52,10 +77,12 @@ int	ft_map_grid_is_valid(t_map *map, char **grid)
 				return (1);
 			}
 		}
+		if(ft_check_ones_end_begin(map->grid[i]))
+			return (1);
 		while (grid[i][j])
 		{
 			if (ft_check_unvalid_chars(grid[i][j]))
-				return (1);
+				return (1);								
 			j++;
 		}
 		i++;
