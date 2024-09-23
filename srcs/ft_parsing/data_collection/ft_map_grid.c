@@ -6,13 +6,13 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/23 14:31:50 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 14:38:28 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*ft_find_player(char *str)
+static char	*ft_find_player(char *str)
 {
 	int	i;
 
@@ -21,12 +21,12 @@ char	*ft_find_player(char *str)
 	{
 		if (str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'O')
 			return (str);
-        i++;
+		i++;
 	}
 	return (NULL);
 }
 
-void	ft_player_orientation(char c, t_player *player)
+static void	ft_player_orientation(char c, t_player *player)
 {
 	if (c == 'N')
 	{
@@ -50,33 +50,34 @@ void	ft_player_orientation(char c, t_player *player)
 	}
 }
 
-int	ft_init_player(t_map *map, char *str, int y)
+static int	ft_init_player(t_map *map, char *str, int y)
 {
 	t_player	*player;
 	int			i;
 
 	i = 0;
 	player = malloc(sizeof(t_player));
-    map->player = player;
-    if(!player)
-    {
-        printf("Error during malloc for player\n");
-        return (1);
-    }
+	map->player = player;
+	if (!player)
+	{
+		printf("Error during malloc for player\n");
+		return (1);
+	}
 	while (str[i])
 	{
 		ft_player_orientation(str[i], player);
 		if (str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'O')
 			player->x = i;
-        i++;
+		i++;
 	}
 	player->y = y;
 	player->planeX = 0; // Plan de la caméra perpendiculaire à dirX et dirY
 	player->planeY = 0.66;
-    return (0);
+    ft_display_player_info(player);
+	return (0);
 }
 
-int	ft_copy_lines(t_map *map)
+static int	ft_copy_lines(t_map *map)
 {
 	int	i;
 	int	j;
@@ -87,13 +88,13 @@ int	ft_copy_lines(t_map *map)
 	{
 		map->grid[i] = ft_strdup(map->dirty_grid[j]);
 		if (ft_find_player(map->grid[i]))
-			if(ft_init_player(map, map->grid[i], i))
-                return (1);        
+			if (ft_init_player(map, map->grid[i], i))
+				return (1);
 		j++;
 		i++;
 	}
 	map->grid[i] = NULL;
-    return (0);
+	return (0);
 }
 
 void	ft_generate_map_file_util(t_map *map)

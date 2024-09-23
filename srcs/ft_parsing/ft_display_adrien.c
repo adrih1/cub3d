@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:50:42 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/23 13:56:51 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 14:40:00 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,13 @@ void	ft_display_map_info(t_map *map)
 {
 	ft_display_colors(map);
 	ft_display_textures(map->textures);
+}
+
+void	ft_display_player_info(t_player *player)
+{
+	printf("PLAYER INFO\n");
+	printf("X: %f\n", player->x);
+	printf("Y: %f\n", player->y);
+	printf("DirX: %f\n", player->dirX);
+	printf("DirY: %f\n", player->dirY);
 }

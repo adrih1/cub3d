@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/23 14:31:36 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 14:38:00 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int						init_mlx(t_data *data);
 void					ft_display_grid(t_map *map, char *grid_name);
 void					ft_display_colors(t_map *map);
 void					ft_display_map_info(t_map *map);
+void					ft_display_player_info(t_player *player);
 
 // Parsing Utils
 int						ft_open_file(char *filename);
@@ -135,7 +136,6 @@ int						ft_parsing(t_map *map, char *filename);
 // Window Init and Game Loop
 int						ft_executor(t_map *map);
 // Game Logic
-int						ft_init_player(t_map *map, char *str, int y);
 int						ft_render_frame(t_map *map);
 void					ft_raycasting(t_map *map);
 
