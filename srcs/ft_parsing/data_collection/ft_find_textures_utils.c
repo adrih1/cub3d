@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 17:05:54 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/23 10:42:25 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 11:02:41 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ char *ft_delete_id_filename(char *str)
         str++;
     end = str;
     length = end - start;
-    filename = (char *)malloc(sizeof(char) * (length + 1));
+    filename = malloc(sizeof(char) * (length + 1));
     if (!filename)
         return NULL;
     ft_strncpy(filename, start, length);
-    filename[length] = '\0'; 
     return (filename);
 }

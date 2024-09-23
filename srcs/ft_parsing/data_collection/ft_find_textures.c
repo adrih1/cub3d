@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/19 12:09:21 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 11:03:41 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_texture	*ft_new_texture(t_texture_type id, char *filename)
 		return (NULL);
 	new_texture->filename = ft_strdup(filename_cleaned);
 	new_texture->next = NULL;
+	free(filename_cleaned);
 	return (new_texture);
 }
 
