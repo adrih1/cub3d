@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/22 15:51:16 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/23 14:31:36 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # include "../libft/libft.h"
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -47,8 +48,8 @@ typedef struct s_render_v
 {
 	void				*mlx_ptr;
 	void				*win_ptr;
-	int     			win_width; 
-	int     			win_height;
+	int					win_width;
+	int					win_height;
 }						t_data;
 
 // Structure pour stocker les infos des textures
@@ -60,32 +61,31 @@ typedef struct s_texture
 	struct s_texture	*next;
 }						t_texture;
 
-// Structure pour représenter le player 
+// Structure pour représenter le player
 typedef struct s_player
 {
-	double x;
-	double y;
-    double dirX;
-    double dirY;
-    double planeX; // Plan de la caméra
-    double planeY; // Plan de la caméra
-	char	*orientation; // La position du joueur es défini par un N, E, S ou W selon qu'il doit à l'apparition regarder vers Nord Est Sud ou Ouest
-}	t_player;
+	double				x;
+	double				y;
+	double				dirX;
+	double				dirY;
+	double				planeX;
+	double				planeY;
+}						t_player;
 
 // Structure pour représenter la map
 typedef struct s_map
 {
 	int					m_width;
 	int					m_height;
+	int					real_height;
 	char				**dirty_grid;
 	char				**grid;
 	t_texture			*textures;
 	char				**f_color;
 	char				**c_color;
 	t_data				data;
-	t_player			player; 
+	t_player			*player;
 }						t_map;
-
 
 /*
 -------------------------------------------------------------
@@ -106,30 +106,27 @@ void					ft_display_map_info(t_map *map);
 int						ft_open_file(char *filename);
 int						ft_find_file_height(int fd);
 int						ft_map_copy_lines(int fd, t_map *map);
-int						ft_check_trimmed_has_char(char *str); 
-int						ft_find_map_height(t_map *map); 
-
+int						ft_check_trimmed_has_char(char *str);
+int						ft_find_map_height(t_map *map);
 
 // First Step - Retrieving the file lines
 int						ft_generate_dirty_map_file(int fd, t_map *map,
 							char *filename);
 // Second Step - Storing map info in our map structure
 char					*ft_clean_id_whitespace_color(char *str);
+char					*skip_whitespaces(char *str);
+char					*ft_skip_identifier(char *str);
+char					*ft_delete_id_filename(char *str);
 int						ft_find_colors(t_map *map);
-char					*skip_whitespaces(char *str); 
-char					*ft_skip_identifier(char *str); 
-char					*ft_delete_id_filename(char *str); 
 int						ft_find_textures(t_map *map);
 int						ft_map_find_info(t_map *map);
+
 // Third Step - Check Colors and Textures are valid
+int						ft_map_info_is_valid(t_map *map);
 
-
-
-// Fourth Step - Building the actual map grid
+// Fourht Step - Building the actual map grid
+void					ft_generate_map_file_util(t_map *map);
 int						ft_generate_map_file(t_map *map);
-
-// Fith Step - Check Map Grid is valid
-int						ft_map_info_is_valid(t_map *map); 
 
 // Main Function
 int						ft_parsing(t_map *map, char *filename);
@@ -137,11 +134,10 @@ int						ft_parsing(t_map *map, char *filename);
 /************ THE GAME ************/
 // Window Init and Game Loop
 int						ft_executor(t_map *map);
-// Game Logic 
-void ft_init_player(t_player *player); 
-int ft_render_frame(t_map *map); 
-void ft_raycasting(t_map *map); 
-
+// Game Logic
+int						ft_init_player(t_map *map, char *str, int y);
+int						ft_render_frame(t_map *map);
+void					ft_raycasting(t_map *map);
 
 /************ CLEANING ************/
 void					ft_clean(t_map *map);

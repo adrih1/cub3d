@@ -6,16 +6,16 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/23 11:03:41 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 11:55:35 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-t_texture	*ft_new_texture(t_texture_type id, char *filename)
+static t_texture	*ft_new_texture(t_texture_type id, char *filename)
 {
 	t_texture	*new_texture;
-	char *filename_cleaned; 
+	char		*filename_cleaned;
 
 	new_texture = (t_texture *)malloc(sizeof(t_texture));
 	if (!new_texture)
@@ -47,10 +47,10 @@ void	ft_add_texture(t_texture **textures, t_texture *new_texture)
 
 static void	ft_attribute_texture(char *str, t_texture **textures)
 {
-	int i; 
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == 'N' && str[i + 1] == 'O')
 			ft_add_texture(textures, ft_new_texture(NORTH_TEXTURE, str));
@@ -62,7 +62,6 @@ static void	ft_attribute_texture(char *str, t_texture **textures)
 			ft_add_texture(textures, ft_new_texture(WEST_TEXTURE, str));
 		i++;
 	}
-
 }
 
 int	ft_find_textures(t_map *map)

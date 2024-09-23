@@ -9,6 +9,7 @@ MLX_DIR = ./mlx_lib/
 
 SRCS = 	main.c \
 		$(SRC_DIR)/ft_clean.c \
+		$(SRC_DIR)/ft_execution/ft_game.c \
 		$(SRC_DIR)/ft_execution/ft_window.c \
 		$(SRC_DIR)/ft_execution/ft_raycasting.c \
 		$(SRC_DIR)/ft_execution/outils/outils.c \
@@ -17,6 +18,7 @@ SRCS = 	main.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_find_colors.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_find_colors_utils.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_find_textures.c \
+		$(SRC_DIR)/ft_parsing/data_collection/ft_map_grid.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_find_textures_utils.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_map_info.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_parsing_utils.c \

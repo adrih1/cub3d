@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/23 10:37:48 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 12:10:18 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,12 @@ int main(int ac, char **av)
 	if (ac != 2)
 		printf("Please give a .cub file for the map\n");
 	else
-		// MinilibX - Initialisation de la fenetre
-		// Map Init - Parsing
 		if (ft_parsing(map, av[1]))
 		{
-			// Clean - Exit
 			ft_clean(map);
 			return (1);
 		}
+	// MinilibX - Initialisation de la fenetre
 	// ft_executor(map);
 	// The Game
 		// Casting the Rays

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:46:23 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/19 17:46:44 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/23 12:09:16 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_open_file(char *filename)
 	if (fd < 0)
 	{
 		printf("Probleme pour pour ouvrir le fichier");
-		close (fd); 
+		close(fd);
 		return (-1);
 	}
 	return (fd);
@@ -91,9 +91,9 @@ int	ft_str_has_char(char *str)
 
 int	ft_find_map_height(t_map *map)
 {
-	int	i;
-	int	empty_lines;
-	int	map_real_height;
+	int i;
+	int empty_lines;
+	int map_real_height;
 
 	i = 0;
 	empty_lines = 0;
@@ -103,6 +103,6 @@ int	ft_find_map_height(t_map *map)
 			empty_lines++;
 		i++;
 	}
-	map_real_height = map->m_height - 6 - empty_lines; 
+	map_real_height = map->m_height - 6 - empty_lines;
 	return (map_real_height);
 }

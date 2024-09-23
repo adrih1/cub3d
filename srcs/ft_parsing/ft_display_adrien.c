@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_display_adrien.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:50:42 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/19 17:20:44 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/23 13:56:51 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 void	ft_display_grid(t_map *map, char *grid_name)
 {
@@ -33,8 +33,8 @@ void	ft_display_grid(t_map *map, char *grid_name)
 	}
 	else if (clean == 0)
 	{
-		printf("GRID");
-		while (i < map->m_height)
+		printf("GRID\n");
+		while (i < map->real_height)
 		{
 			printf("%s", map->grid[i]);
 			i++;
@@ -60,11 +60,11 @@ void	ft_display_colors(t_map *map)
 
 void	ft_display_textures(t_texture *map_texures)
 {
-	t_texture *first_texture;
+	t_texture	*first_texture;
 
 	printf("**********Map Textures************\n");
-	first_texture = map_texures; 	
-	while(map_texures)
+	first_texture = map_texures;
+	while (map_texures)
 	{
 		printf("%u: %s\n", map_texures->texture_id, map_texures->filename);
 		map_texures = map_texures->next;

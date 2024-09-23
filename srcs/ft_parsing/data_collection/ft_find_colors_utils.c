@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_find_colors_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:40:53 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/18 11:13:58 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/23 11:05:41 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_clean_id_whitespace_color(char *str)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;

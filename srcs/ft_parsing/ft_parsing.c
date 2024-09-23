@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/23 10:54:12 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 14:24:47 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 	if (fd < 0)
 	{
 		free(map);
-		close(fd); 
+		close(fd);
 		return (1);
 	}
 	ft_map_copy_lines(fd, map);
@@ -37,23 +37,16 @@ int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 
 int	ft_generate_map_file(t_map *map)
 {
-	int	i;
-	int	height;
 
-	height = ft_find_map_height(map);
-	map->grid = malloc(sizeof(char *) * (height + 1));
+	map->real_height = ft_find_map_height(map);
+	map->grid = malloc(sizeof(char *) * (map->real_height + 1));
 	if (!map->grid)
 	{
 		printf("Error during malloc for map->grid");
 		return (1);
 	}
-	i = 0;
-	while (i < height)
-	{
-		map->grid[i] = ft_strdup(map->dirty_grid[i]);
-		i++;
-	}
-	map->grid[i] = NULL; 
+	ft_generate_map_file_util(map);
+	// ft_display_grid(map, "clean");
 	return (0);
 }
 
@@ -64,7 +57,7 @@ int	ft_parsing(t_map *map, char *filename)
 	fd = ft_open_file(filename);
 	if (fd < 0)
 	{
-		close (fd); 
+		close(fd);
 		return (1);
 	}
 	if (ft_generate_dirty_map_file(fd, map, filename))
@@ -73,9 +66,6 @@ int	ft_parsing(t_map *map, char *filename)
 		return (1);
 	if (ft_generate_map_file(map))
 		return (1);
-		// Get Real Map Height --> Map->m_height - 6 lines (colors and textures) - empty lines
-		// Malloc this for map grid 
-	// ft_load_textures(map);
-	// Check Valid
+	// Check Map Grid is Valid
 	return (0);
 }
