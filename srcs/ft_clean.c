@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/17 11:21:42 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 10:54:14 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	ft_clean(t_map *map)
 		return ;
 	if (free_char_array(map->dirty_grid))
 		printf("Could not free map dirty grid\n");
-	// if(free_char_array(map->grid))
-	//     printf("Could not free map grid\n");
+	if(free_char_array(map->grid))
+	    printf("Could not free map grid\n");
 	if (free_char_array(map->f_color))
 		printf("Could not free f_color\n");
 	if (free_char_array(map->c_color))

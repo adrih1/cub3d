@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_window.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/22 20:48:11 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/23 10:33:46 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	on_destroy(t_map *map)
 
 int	on_keypress(int keynum, t_map *map)
 {
-	if (keynum == 53)
+	if (keynum == 53 || keynum == 65307)
 		on_destroy(map); 
 	return (keynum);
 }
@@ -32,7 +32,7 @@ int init_mlx(t_data *data)
 		printf("Error initializing MLX\n");
 		return (1); 
 	}
-	data->win_width = 800; 
+	data->win_width = 900; 
 	data->win_height = 600; 
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_width, data->win_height, "cub3D");
 	if (!data->win_ptr)

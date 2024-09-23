@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/19 17:46:47 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/23 10:54:12 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,20 @@ int	ft_generate_map_file(t_map *map)
 	int	i;
 	int	height;
 
-	i = 0;
 	height = ft_find_map_height(map);
-	map->grid = malloc(sizeof(char *) * height);
+	map->grid = malloc(sizeof(char *) * (height + 1));
 	if (!map->grid)
 	{
 		printf("Error during malloc for map->grid");
 		return (1);
 	}
-	while (i < map->m_height)
+	i = 0;
+	while (i < height)
 	{
 		map->grid[i] = ft_strdup(map->dirty_grid[i]);
 		i++;
 	}
+	map->grid[i] = NULL; 
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 17:05:54 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/19 12:04:44 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 10:42:25 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char *ft_delete_id_filename(char *str)
 {
     char *start;
     char *end;
-    int length;
     char *filename;
+    int length;
 
     str = ft_skip_whitespaces(str);
     str = ft_skip_identifier(str);
