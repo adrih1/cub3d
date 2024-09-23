@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/23 14:38:28 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/23 15:46:50 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static int	ft_init_player(t_map *map, char *str, int y)
 	player->y = y;
 	player->planeX = 0; // Plan de la caméra perpendiculaire à dirX et dirY
 	player->planeY = 0.66;
-    ft_display_player_info(player);
 	return (0);
 }
 
@@ -97,7 +96,13 @@ static int	ft_copy_lines(t_map *map)
 	return (0);
 }
 
-void	ft_generate_map_file_util(t_map *map)
+int	ft_generate_map_file_util(t_map *map)
 {
 	ft_copy_lines(map);
+	if(ft_map_grid_is_valid(map, map->grid))
+	{
+		printf("This map is not valid\n");
+		return (1);
+	}
+	return (0);
 }
