@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/18 19:02:59 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/22 15:20:33 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int ft_init_map(t_map **map)
 	(*map)->m_height = 0;
 	(*map)->dirty_grid = NULL;
 	(*map)->grid = NULL;
-	(*map)->player_x = 0;
-	(*map)->player_y = 0;
 	(*map)->f_color = NULL;
 	(*map)->c_color = NULL;
 	(*map)->data.mlx_ptr = NULL;
@@ -52,11 +50,11 @@ int main(int ac, char **av)
 			ft_clean(map);
 			return (1);
 		}
-	// ft_executor(map);
+	ft_executor(map);
 	// The Game
-	// Casting the Rays
-	// Rendering the walls
-	// Playr Movement
+		// Casting the Rays
+		// Rendering the walls
+		// Player Movement
 	// Clean
 	ft_clean(map);
 	return (0);

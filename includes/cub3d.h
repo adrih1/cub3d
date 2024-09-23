@@ -6,7 +6,7 @@
 /*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/19 17:41:11 by adrienhors       ###   ########.fr       */
+/*   Updated: 2024/09/22 15:51:16 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_render_v
 {
 	void				*mlx_ptr;
 	void				*win_ptr;
+	int     			win_width; 
+	int     			win_height;
 }						t_data;
 
 // Structure pour stocker les infos des textures
@@ -54,8 +56,21 @@ typedef struct s_texture
 {
 	t_texture_type		texture_id;
 	char				*filename;
+	void				*img_ptr;
 	struct s_texture	*next;
 }						t_texture;
+
+// Structure pour représenter le player 
+typedef struct s_player
+{
+	double x;
+	double y;
+    double dirX;
+    double dirY;
+    double planeX; // Plan de la caméra
+    double planeY; // Plan de la caméra
+	char	*orientation; // La position du joueur es défini par un N, E, S ou W selon qu'il doit à l'apparition regarder vers Nord Est Sud ou Ouest
+}	t_player;
 
 // Structure pour représenter la map
 typedef struct s_map
@@ -64,13 +79,13 @@ typedef struct s_map
 	int					m_height;
 	char				**dirty_grid;
 	char				**grid;
-	int					player_x;
-	int					player_y;
 	t_texture			*textures;
 	char				**f_color;
 	char				**c_color;
 	t_data				data;
+	t_player			player; 
 }						t_map;
+
 
 /*
 -------------------------------------------------------------
@@ -111,7 +126,6 @@ int						ft_map_find_info(t_map *map);
 
 
 // Fourth Step - Building the actual map grid
-// int					ft_check_trimmed_has_char(char *str); _ Pas utilise pour l'instant
 int						ft_generate_map_file(t_map *map);
 
 // Fith Step - Check Map Grid is valid
@@ -120,8 +134,14 @@ int						ft_map_info_is_valid(t_map *map);
 // Main Function
 int						ft_parsing(t_map *map, char *filename);
 
-/************ EXECUTOR ************/
+/************ THE GAME ************/
+// Window Init and Game Loop
 int						ft_executor(t_map *map);
+// Game Logic 
+void ft_init_player(t_player *player); 
+int ft_render_frame(t_map *map); 
+void ft_raycasting(t_map *map); 
+
 
 /************ CLEANING ************/
 void					ft_clean(t_map *map);
