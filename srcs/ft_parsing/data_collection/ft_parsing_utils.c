@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:46:23 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/23 12:09:16 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 14:24:11 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ int	ft_str_has_char(char *str)
 
 int	ft_find_map_height(t_map *map)
 {
-	int i;
-	int empty_lines;
-	int map_real_height;
+	int	i;
+	int	empty_lines;
+	int	map_real_height;
 
 	i = 0;
 	empty_lines = 0;

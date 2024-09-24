@@ -6,20 +6,20 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:38:58 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/24 13:53:29 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 14:25:17 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int ft_len_of_chars_double_array(char **array)
+int	ft_len_of_chars_double_array(char **array)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (array[i])
-        i++;
-    return(i);
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
 }
 
 int	ft_color_has_no_numbers(char *str)
@@ -36,16 +36,16 @@ int	ft_color_has_no_numbers(char *str)
 	return (1);
 }
 
-int ft_colors_has_no_numbers(char **colors)
+int	ft_colors_has_no_numbers(char **colors)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (colors[i])
-    {
-        if(ft_color_has_no_numbers(colors[i]))
-            return (1);
-        i++;
-    }    
-    return (0);
+	i = 0;
+	while (colors[i])
+	{
+		if (ft_color_has_no_numbers(colors[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }

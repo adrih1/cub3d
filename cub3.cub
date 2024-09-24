@@ -1,7 +1,7 @@
-NO ./image.png    
-SO ./image.png
-WE ./image.png
-EA ./image.png
+NO ./textures/image.png    
+SO ./textures/image.png
+WE ./textures/image.png
+EA ./textures
 
 C 0,   85  ,32
 F 220, 255, 200

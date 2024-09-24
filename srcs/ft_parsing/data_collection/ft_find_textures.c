@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/23 11:55:35 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 14:23:34 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	ft_attribute_texture(char *str, t_texture **textures)
 
 int	ft_find_textures(t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	map->textures = NULL;

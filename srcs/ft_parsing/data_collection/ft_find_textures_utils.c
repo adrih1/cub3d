@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 17:05:54 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/23 11:06:08 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 14:23:41 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*ft_skip_whitespaces(char *str)
 		i++;
 	return (str + i);
 }
+
 char	*ft_skip_identifier(char *str)
 {
 	if (!ft_strncmp(str, "NO", 2) || !ft_strncmp(str, "SO", 2)
