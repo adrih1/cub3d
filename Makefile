@@ -23,6 +23,7 @@ SRCS = 	main.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_map_info.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_parsing_utils.c \
 		$(SRC_DIR)/ft_parsing/data_checks/ft_map_info_is_valid.c \
+		$(SRC_DIR)/ft_parsing/data_checks/ft_map_info_is_valid_utils.c \
 		$(SRC_DIR)/ft_parsing/data_checks/ft_map_grid_is_valid.c
 
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))

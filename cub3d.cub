@@ -2,8 +2,9 @@ NO ./image.png
 SO ./image.png
 WE ./image.png
 EA ./image.png
-C 0, 25, 50
-F 220, 255,0
+
+C 0,     ,32
+F 220, 255, 200
 
 
 

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/23 16:02:33 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 13:47:33 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,9 @@ int						ft_find_textures(t_map *map);
 int						ft_map_find_info(t_map *map);
 
 // Third Step - Check Colors and Textures are valid
+int						ft_len_of_chars_double_array(char **array);
+int						ft_color_has_no_numbers(char *str);
+int						ft_colors_has_no_numbers(char **colors);
 int						ft_map_info_is_valid(t_map *map);
 
 // Fourht Step - Building the actual map grid

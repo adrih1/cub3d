@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/23 16:12:55 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 13:32:27 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ static int	ft_copy_lines(t_map *map)
 int	ft_generate_map_file_util(t_map *map)
 {
 	ft_copy_lines(map);
-	if(ft_map_grid_is_valid(map, map->grid))
-	{
-		printf("This map is not valid\n");
-		return (1);
-	}
+	// if(ft_map_grid_is_valid(map, map->grid))
+	// {
+	// 	printf("This map is not valid\n");
+	// 	return (1);
+	// }
 	return (0);
 }
