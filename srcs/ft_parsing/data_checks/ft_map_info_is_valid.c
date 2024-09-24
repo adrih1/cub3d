@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:27:22 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/24 13:54:15 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 13:57:35 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@ static int	ft_color_is_valid(char **color_array)
 	int	colors_array_len;
 
 	i = 0;
-	if (ft_colors_has_no_numbers(color_array))
-		return (1);
 	colors_array_len = ft_len_of_chars_double_array(color_array);
-	if (colors_array_len != 3)
+	if (ft_colors_has_no_numbers(color_array) || colors_array_len != 3)
 	{
 		printf("Please make sure to type three colors for rgb to work\n");
-		return (1);
+		return (1);		
 	}
 	while (i < colors_array_len)
 	{

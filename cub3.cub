@@ -1,10 +1,10 @@
-NO  ./image.png
+NO ./image.png    
 SO ./image.png
-WE  ./image.png
-EA  ./image.png
+WE ./image.png
+EA ./image.png
 
-F 20,20,20
-C 200,200,                  
+C 0,   85  ,32
+F 220, 255, 200
 
 
 11111

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/24 12:16:21 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 14:09:12 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,43 @@ int ft_init_map(t_map **map)
 	return (0);
 }
 
+
+int	ft_verify_extension(char *str)
+{
+	int i;
+	int last_dot_found;
+
+	i = 0;
+	last_dot_found = 0;
+	while(str[i])
+	{
+		if(str[i] == '.')
+			last_dot_found = i;
+		i++;
+	}
+	last_dot_found++;
+	if(str[last_dot_found] == 'c' && str[last_dot_found + 1] == 'u' && str[last_dot_found + 2] == 'b')
+		return (0);
+	else 
+		return (1);
+}
+
 int main(int ac, char **av)
 {
 	t_map *map;
 
+	if (ac != 2)
+		printf("Please give a .cub file for the map\n");
+	if (ft_verify_extension(av[1]))
+	{
+		printf("Please make sure the file extension is '.cub'\n");		
+		return (1);
+	}
 	if (ft_init_map(&map))
 	{
 		printf("Probleme pour init\n");
 		return (1);		
 	}
-	if (ac != 2)
-		printf("Please give a .cub file for the map\n");
 	else
 		if (ft_parsing(map, av[1]))
 		{
