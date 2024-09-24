@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/23 12:10:18 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 12:16:21 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ int ft_init_map(t_map **map)
 	*map = malloc(sizeof(t_map));
 	if (!(*map))
 		return ft_message_error("Error during malloc for map\n");
-
 	(*map)->m_width = 0;
 	(*map)->m_height = 0;
+	(*map)->real_height = 0;
 	(*map)->dirty_grid = NULL;
 	(*map)->grid = NULL;
+	(*map)->textures = NULL;  
 	(*map)->f_color = NULL;
 	(*map)->c_color = NULL;
 	(*map)->data.mlx_ptr = NULL;
 	(*map)->data.win_ptr = NULL;
-
+	(*map)->player = NULL;
+	
 	return (0);
 }
 
