@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/24 14:09:12 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 16:46:40 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ int main(int ac, char **av)
 	t_map *map;
 
 	if (ac != 2)
+	{
 		printf("Please give a .cub file for the map\n");
+		return (1);		
+	}
 	if (ft_verify_extension(av[1]))
 	{
 		printf("Please make sure the file extension is '.cub'\n");		
