@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/24 13:47:33 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 18:03:28 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,24 @@ typedef struct s_texture
 	void				*img_ptr;
 	struct s_texture	*next;
 }						t_texture;
+
+// Structure qui represente un rayon
+typedef struct s_ray
+{
+	double				rayDirX;
+	double				rayDirY;
+	int					mapX;
+	int					mapY;
+	double				sideDistX;
+	double				sideDistY;
+	double				deltaDistX;
+	double				deltaDistY;
+	int					stepX;
+	int					stepY;
+	int					hit;
+	int					side;
+	double				perpWallDist;
+}						t_ray;
 
 // Structure pour représenter le player
 typedef struct s_player
@@ -118,6 +136,8 @@ char					*ft_clean_id_whitespace_color(char *str);
 char					*ft_skip_whitespaces(char *str);
 char					*ft_skip_identifier(char *str);
 char					*ft_delete_id_filename(char *str);
+void					*ft_load_image(void *mlx_ptr, char *file_path,
+							int *width, int *height);
 int						ft_find_colors(t_map *map);
 int						ft_find_textures(t_map *map);
 int						ft_map_find_info(t_map *map);
@@ -141,7 +161,8 @@ int						ft_parsing(t_map *map, char *filename);
 int						ft_executor(t_map *map);
 // Game Logic
 int						ft_render_frame(t_map *map);
-void					ft_raycasting(t_map *map);
+void					ft_raycasting(t_map *map, int screenWidth,
+							int screenHeight);
 
 /************ CLEANING ************/
 void					ft_clean(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/24 14:21:39 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 15:27:55 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	ft_check_ones_end_begin(char *str)
 
 // If strlen(curr_row) > strlen(row_on_top) && current col > strlen(row_on_top), current character should be '1'
 // If strlen(curr_row) > strlen(row_on_bottom) && current col > strlen(row_on_bottom), current character should be '1'
-
 int	ft_map_grid_is_valid(t_map *map, char **grid)
 {
 	int i;
@@ -72,7 +71,12 @@ int	ft_map_grid_is_valid(t_map *map, char **grid)
 	i = 0;
 	while (grid[i])
 	{
-		if (i == 0 || i == map->real_height)
+		if (ft_check_ones_end_begin(map->grid[i]))
+		{
+			printf("Each line must be enclosed by walls\n");
+			return (1);			
+		}
+		if (i == 0 || i == map->real_height - 1)
 		{
 			if (ft_check_has_only_walls_spaces(map->grid[i]))
 			{
@@ -80,8 +84,6 @@ int	ft_map_grid_is_valid(t_map *map, char **grid)
 				return (1);
 			}
 		}
-		if (ft_check_ones_end_begin(map->grid[i]))
-			return (1);
 		j = 0;
 		while (grid[i][j])
 		{

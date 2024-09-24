@@ -6,30 +6,142 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/23 13:53:58 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 18:36:06 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// static double ft_fabs(double n)
-// {
-//     if (n < 0)
-//         return (-n);
-//     return (n);
-// }
-
-void	ft_raycasting(t_map *map)
+static double	ft_fabs(double n)
 {
-	(void)map;
-	// Joueur
-	
-	// Find Angle for first ray 
-		// Player Angle 
-	// Loop for each ray 
-	// Get horizontal intersection
-	// Get vertical intersection
-	// Calculate the distance 
-	// Take the closest distance
+	if (n < 0)
+		return (-n);
+	return (n);
 }
 
+// Initialise le rayon pour une colonne x.
+void	init_ray(t_ray *ray, t_player *player, int x, int screenWidth)
+{
+	double	cameraX;
+
+	cameraX = 2 * x / (double)screenWidth - 1;
+	ray->rayDirX = player->dirX + player->planeX * cameraX;
+	ray->rayDirY = player->dirY + player->planeY * cameraX;
+	ray->mapX = (int)player->x;
+	ray->mapY = (int)player->y;
+	ray->deltaDistX = ft_fabs(1 / ray->rayDirX);
+	ray->deltaDistY = ft_fabs(1 / ray->rayDirY);
+	ray->hit = 0;
+}
+
+void	calculate_step_and_side_dist(t_ray *ray, t_player *player)
+{
+	if (ray->rayDirX < 0)
+	{
+		ray->stepX = -1;
+		ray->sideDistX = (player->x - ray->mapX) * ray->deltaDistX;
+	}
+	else
+	{
+		ray->stepX = 1;
+		ray->sideDistX = (ray->mapX + 1.0 - player->x) * ray->deltaDistX;
+	}
+	if (ray->rayDirY < 0)
+	{
+		ray->stepY = -1;
+		ray->sideDistY = (player->y - ray->mapY) * ray->deltaDistY;
+	}
+	else
+	{
+		ray->stepY = 1;
+		ray->sideDistY = (ray->mapY + 1.0 - player->y) * ray->deltaDistY;
+	}
+}
+
+void	perform_dda(t_ray *ray, t_map *map)
+{
+	while (ray->hit == 0) // Tant que le rayon n'a pas touché un mur
+	{
+		if (ray->sideDistX < ray->sideDistY)
+		{
+			ray->sideDistX += ray->deltaDistX;
+			ray->mapX += ray->stepX;
+			ray->side = 0; // Rayon touche un mur sur l'axe X
+		}
+		else
+		{
+			ray->sideDistY += ray->deltaDistY;
+			ray->mapY += ray->stepY;
+			ray->side = 1; // Rayon touche un mur sur l'axe Y
+		}
+		// Ici on vérifie si la case dans grid contient un mur
+		if (map->grid[ray->mapY][ray->mapX] == '1')
+			// Si la case contient un mur ('1')
+			ray->hit = 1;
+	}
+}
+
+double	calculate_perp_wall_dist(t_ray *ray, t_player *player)
+{
+	if (ray->side == 0)
+		return ((ray->mapX - player->x + (1 - ray->stepX) / 2) / ray->rayDirX);
+	else
+		return ((ray->mapY - player->y + (1 - ray->stepY) / 2) / ray->rayDirY);
+}
+
+int	calculate_line_height(double perpWallDist, int screenHeight)
+{
+	return (int)(screenHeight / perpWallDist);
+}
+
+void draw_vertical_line(void *mlx_ptr, void *win_ptr, int x, int drawStart, int drawEnd)
+{
+    int y;
+
+    y = drawStart;
+    while (y <= drawEnd)
+    {
+        // Dessine un pixel rouge (couleur hexadécimale : 0xFF0000)
+        mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xFF0000);
+        y++;
+    }
+}
+
+void	ft_raycasting(t_map *map, int screenWidth, int screenHeight)
+{
+	int	x;
+	int	lineHeight;
+	int	drawStart;
+	int	drawEnd;
+	t_ray ray;
+
+	x = 0;
+	while (x < screenWidth)
+	{
+		// 1. Initialiser le rayon
+		init_ray(&ray, map->player, x, screenWidth);
+		// 2. Calculer le step et la distance initiale
+		calculate_step_and_side_dist(&ray, map->player);
+		// 3. Exécuter l'algorithme DDA pour trouver le mur
+		perform_dda(&ray, map);
+		// 4. Calculer la distance perpendiculaire au mur
+		ray.perpWallDist = calculate_perp_wall_dist(&ray, map->player);
+		// 5. Calculer la hauteur de la ligne de mur à dessiner
+		lineHeight = calculate_line_height(ray.perpWallDist, screenHeight);
+		// 6. Calculer les points de départ et de fin de la ligne
+		drawStart = -lineHeight / 2 + screenHeight / 2;
+		if (drawStart < 0)
+			drawStart = 0;
+		drawEnd = lineHeight / 2 + screenHeight / 2;
+		if (drawEnd >= screenHeight)
+			drawEnd = screenHeight - 1;
+		// 7. Draw Wall Line betweem drawStart and drawEnd for X column
+		x++;
+	}
+}
+
+int	ft_render_frame(t_map *map)
+{
+	ft_raycasting(map, 800, 600);
+	return (0);
+}

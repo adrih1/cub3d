@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/23 13:47:41 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/24 16:48:18 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,6 @@ int	init_mlx(t_data *data)
 	return (0);
 }
 
-int	ft_render_frame(t_map *map)
-{
-	ft_raycasting(map);
-	return (0);
-}
 
 int	ft_executor(t_map *map)
 {
@@ -64,7 +59,7 @@ int	ft_executor(t_map *map)
 	mlx_hook(data.win_ptr, 17, 1L << 4, on_destroy, map);
 
 	// Appeller render frame dans un hook - TODO
-
+	ft_render_frame(map);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
