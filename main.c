@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/25 13:36:47 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/25 14:33:48 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int ft_init_map(t_map **map)
 	if(!(*map)->data)
 	{
 		printf("Error during malloc for map->data\n");
-		return (1);		
+		return (1);
 	}
 	(*map)->data->mlx_ptr = NULL;
 	(*map)->data->win_ptr = NULL;
@@ -74,7 +74,8 @@ int main(int ac, char **av)
 	}
 	if (ft_init_map(&map))
 	{
-		printf("Probleme pour init\n");
+		printf("Probleme pour init map\n");
+		ft_clean(map);
 		return (1);		
 	}
 	else
