@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/24 18:03:28 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/25 11:20:18 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,12 +157,18 @@ int						ft_generate_map_file(t_map *map);
 int						ft_parsing(t_map *map, char *filename);
 
 /************ THE GAME ************/
+
+// Render
+void					*load_texture(void *mlx_ptr, char *path);
+int						rgb_to_int(char **color);
+void					ft_render_floor_ceiling(t_map *map);
+
+// Game Logic
+void					ft_raycasting(t_map *map);
+int						ft_render_frame(t_map *map);
+
 // Window Init and Game Loop
 int						ft_executor(t_map *map);
-// Game Logic
-int						ft_render_frame(t_map *map);
-void					ft_raycasting(t_map *map, int screenWidth,
-							int screenHeight);
 
 /************ CLEANING ************/
 void					ft_clean(t_map *map);

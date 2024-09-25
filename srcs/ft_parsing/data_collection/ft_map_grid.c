@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/24 16:44:56 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/25 11:35:35 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ft_player_orientation(char c, t_player *player)
 	if (c == 'N')
 	{
 		player->dirX = 0;
-		player->dirY = 1;
+		player->dirY = -1;
 	}
 	else if (c == 'E')
 	{
@@ -41,7 +41,7 @@ static void	ft_player_orientation(char c, t_player *player)
 	else if (c == 'S')
 	{
 		player->dirX = 0;
-		player->dirY = -1;
+		player->dirY = 1;
 	}
 	else if (c == 'O')
 	{

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/24 16:48:18 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/25 11:28:56 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	init_mlx(t_data *data)
 		printf("Error initializing MLX\n");
 		return (1);
 	}
-	data->win_width = 900;
+	data->win_width = 800;
 	data->win_height = 600;
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_width,
 			data->win_height, "cub3D");
@@ -55,11 +55,12 @@ int	ft_executor(t_map *map)
 		printf("There was an issue to initialize data\n");
 		return (1);
 	}
+	map->data = data;
 	mlx_hook(data.win_ptr, 2, 1L << 0, on_keypress, map);
 	mlx_hook(data.win_ptr, 17, 1L << 4, on_destroy, map);
 
-	// Appeller render frame dans un hook - TODO
-	ft_render_frame(map);
+	// TODO - Appeller render frame dans un hook
+	ft_raycasting(map);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
