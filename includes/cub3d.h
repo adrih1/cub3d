@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/25 11:53:23 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/25 13:15:29 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef enum e_texture_type
 }						t_texture_type;
 
 // Structure pour la fenetre de la MLX
-typedef struct s_render_v
+typedef struct s_data
 {
 	void				*mlx_ptr;
 	void				*win_ptr;
@@ -101,7 +101,7 @@ typedef struct s_map
 	t_texture			*textures;
 	char				**f_color;
 	char				**c_color;
-	t_data				data;
+	t_data				*data;
 	t_player			*player;
 }						t_map;
 

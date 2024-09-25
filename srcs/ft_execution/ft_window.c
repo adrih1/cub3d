@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/25 11:28:56 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/25 13:26:46 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	on_keypress(int keynum, t_map *map)
 		on_destroy(map);
 	return (keynum);
 }
-int	init_mlx(t_data *data)
+int	ft_init_mlx(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
@@ -50,12 +50,12 @@ int	ft_executor(t_map *map)
 	(void)map;
 	t_data data;
 
-	if (init_mlx(&data))
+	if (ft_init_mlx(&data))
 	{
 		printf("There was an issue to initialize data\n");
 		return (1);
 	}
-	map->data = data;
+	map->data = &data;
 	mlx_hook(data.win_ptr, 2, 1L << 0, on_keypress, map);
 	mlx_hook(data.win_ptr, 17, 1L << 4, on_destroy, map);
 

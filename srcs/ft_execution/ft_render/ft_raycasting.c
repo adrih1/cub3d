@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/25 11:29:36 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/25 13:19:41 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,10 @@ void	ft_raycasting(t_map *map)
 	t_ray ray;
 
 	x = 0;
-	while (x < map->data.win_width)
+	while (x < map->data->win_width)
 	{
 		// 1. Initialiser le rayon
-		init_ray(&ray, map->player, x, map->data.win_width);
+		init_ray(&ray, map->player, x, map->data->win_width);
 		// 2. Calculer le step et la distance initiale
 		calculate_step_and_side_dist(&ray, map->player);
 		// 3. Exécuter l'algorithme DDA pour trouver le mur
@@ -128,16 +128,16 @@ void	ft_raycasting(t_map *map)
 		// 4. Calculer la distance perpendiculaire au mur
 		ray.perpWallDist = calculate_perp_wall_dist(&ray, map->player);
 		// 5. Calculer la hauteur de la ligne de mur à dessiner
-		lineHeight = calculate_line_height(ray.perpWallDist, map->data.win_height);
+		lineHeight = calculate_line_height(ray.perpWallDist, map->data->win_height);
 		// 6. Calculer les points de départ et de fin de la ligne
-		drawStart = -lineHeight / 2 + map->data.win_height / 2;
+		drawStart = -lineHeight / 2 + map->data->win_height / 2;
 		if (drawStart < 0)
 			drawStart = 0;
-		drawEnd = lineHeight / 2 + map->data.win_height / 2;
-		if (drawEnd >= map->data.win_height)
-			drawEnd = map->data.win_height - 1;
+		drawEnd = lineHeight / 2 + map->data->win_height / 2;
+		if (drawEnd >= map->data->win_height)
+			drawEnd = map->data->win_height - 1;
 		// 7. Draw Wall Line betweem drawStart and drawEnd for X column
-        draw_vertical_line(map->data.mlx_ptr, map->data.win_ptr, x, drawStart, drawEnd);
+        draw_vertical_line(map->data->mlx_ptr, map->data->win_ptr, x, drawStart, drawEnd);
 		x++;
 	}
 }
