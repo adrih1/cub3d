@@ -6,44 +6,54 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/25 11:35:35 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/25 11:55:02 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static char	*ft_find_player(char *str)
+static void	ft_player_plane(char c, t_player *player)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (c == 'N')
 	{
-		if (str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'O')
-			return (str);
-		i++;
+		player->planeX = 0.66;
+		player->planeY = 0;
 	}
-	return (NULL);
+	else if (c == 'E')
+	{
+		player->planeX = 0;
+		player->planeY = 0.66;
+	}
+	else if (c == 'S')
+	{
+		player->planeX = -0.66;
+		player->planeY = 0;
+	}
+	else if (c == 'O')
+	{
+		player->planeX = 0;
+		player->planeY = -0.66;
+	}
 }
 
 static void	ft_player_orientation(char c, t_player *player)
 {
-	if (c == 'N')
+	if (c == 'N') // Nord
 	{
 		player->dirX = 0;
 		player->dirY = -1;
 	}
-	else if (c == 'E')
+	else if (c == 'E') // Est
 	{
 		player->dirX = 1;
 		player->dirY = 0;
 	}
-	else if (c == 'S')
+	else if (c == 'S') // Sud
 	{
 		player->dirX = 0;
 		player->dirY = 1;
 	}
-	else if (c == 'O')
+	else if (c == 'O') // Ouest
 	{
 		player->dirX = -1;
 		player->dirY = 0;
@@ -66,13 +76,12 @@ static int	ft_init_player(t_map *map, char *str, int y)
 	while (str[i])
 	{
 		ft_player_orientation(str[i], player);
+		ft_player_plane(str[i], player);
 		if (str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'O')
 			player->x = i;
 		i++;
 	}
 	player->y = y;
-	player->planeX = 0; // Plan de la caméra perpendiculaire à dirX et dirY
-	player->planeY = 0.66;
 	return (0);
 }
 
@@ -96,9 +105,8 @@ static int	ft_copy_lines(t_map *map)
 	return (0);
 }
 
-int	ft_generate_map_file_util(t_map *map)
+int	ft_generate_map_grid_util(t_map *map)
 {
 	ft_copy_lines(map);
-	
 	return (0);
 }

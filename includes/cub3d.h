@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/25 11:20:18 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/25 11:53:23 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,10 +149,12 @@ int						ft_colors_has_no_numbers(char **colors);
 int						ft_map_info_is_valid(t_map *map);
 
 // Fourht Step - Building the actual map grid
-int						ft_generate_map_file_util(t_map *map);
-int						ft_map_grid_is_valid(t_map *map, char **grid);
-int						ft_generate_map_file(t_map *map);
+char					*ft_find_player(char *str);
+int						ft_generate_map_grid_util(t_map *map);
+int						ft_generate_map_grid(t_map *map);
 
+// Fith Step - Check Map Grid
+int						ft_map_grid_is_valid(t_map *map, char **grid);
 // Main Function
 int						ft_parsing(t_map *map, char *filename);
 

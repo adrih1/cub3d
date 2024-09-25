@@ -18,6 +18,7 @@ SRCS = 	main.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_find_colors.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_find_colors_utils.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_find_textures.c \
+		$(SRC_DIR)/ft_parsing/data_collection/ft_map_grid_utils.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_map_grid.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_find_textures_utils.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_map_info.c \
