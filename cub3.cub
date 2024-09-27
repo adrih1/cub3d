@@ -1,7 +1,7 @@
 NO ./textures/wolfenstein/grey_stone.xpm   
-SO ./textures/wolfenstein/grey_stone.xpm
-WE ./textures/wolfenstein/grey_stone.xpm
-EA ./textures/wolfenstein/grey_stone.xpm
+                 SO ./textures/wolfenstein/grey_stone.xpm
+          WE ./textures/wolfenstein/grey_stone.xpm
+EA             ./textures/wolfenstein/grey_stone.xpm
 
 C 0,   85  ,32
 F 220, 255, 200
@@ -12,4 +12,3 @@ F 220, 255, 200
 1E00001000000000000000001
 1000000000000000000000001
 1111111111111111111111111
-

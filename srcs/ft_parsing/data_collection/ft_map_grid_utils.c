@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:48:05 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/25 11:54:43 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 15:39:27 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,25 @@ char	*ft_find_player(char *str)
 		i++;
 	}
 	return (NULL);
+}
+
+int	ft_find_map_beginning(char **dirty_grid)
+{
+	int i;
+	int j;
+	char **temp;
+
+	i = 0;
+	temp = dirty_grid;
+	while (temp[i])
+	{
+		j = 0;
+		while(temp[i][j] == ' ')
+			j++;
+		if (temp[i][j] == '1')
+			return (i);
+		i++;
+	}
+	free(temp);
+	return (0);
 }

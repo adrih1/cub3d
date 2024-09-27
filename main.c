@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/25 14:33:48 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 15:32:50 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@ int ft_init_map(t_map **map)
 	(*map)->textures = NULL;  
 	(*map)->f_color = NULL;
 	(*map)->c_color = NULL;
-	(*map)->data = malloc(sizeof(t_data));
-	if(!(*map)->data)
-	{
-		printf("Error during malloc for map->data\n");
-		return (1);
-	}
-	(*map)->data->mlx_ptr = NULL;
-	(*map)->data->win_ptr = NULL;
 	(*map)->player = NULL;
 	return (0);
 }

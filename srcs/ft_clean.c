@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/25 14:32:02 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 15:30:28 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	free_char_array(char **array)
 		return (1);
 	while (array[i])
 	{
-		free(array[i]);
+		if (array[i] != NULL)
+			free(array[i]);
 		i++;
 	}
 	free(array);

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/25 11:55:02 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 15:37:17 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,42 @@ static int	ft_init_player(t_map *map, char *str, int y)
 	return (0);
 }
 
-static int	ft_copy_lines(t_map *map)
+// static int	ft_copy_lines(t_map *map)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	j = 9;
+// 	while (i < map->real_height)
+// 	{
+// 		map->grid[i] = ft_strdup(map->dirty_grid[j]);
+// 		if (ft_find_player(map->grid[i]))
+// 			if (ft_init_player(map, map->grid[i], i))
+// 				return (1);
+// 		j++;
+// 		i++;
+// 	}
+// 	map->grid[i] = NULL;
+// 	return (0);
+// }
+
+static int	ft_grid_copy_lines(t_map *map, int start)
 {
 	int	i;
-	int	j;
+	int	total_height;
 
 	i = 0;
-	j = 9;
-	while (i < map->real_height)
+	total_height = start + map->real_height;
+	while (start < total_height )
 	{
-		map->grid[i] = ft_strdup(map->dirty_grid[j]);
+		map->grid[i] = ft_strdup(map->dirty_grid[start]);
 		if (ft_find_player(map->grid[i]))
+		{
 			if (ft_init_player(map, map->grid[i], i))
 				return (1);
-		j++;
+		}
+		start++;
 		i++;
 	}
 	map->grid[i] = NULL;
@@ -107,6 +129,9 @@ static int	ft_copy_lines(t_map *map)
 
 int	ft_generate_map_grid_util(t_map *map)
 {
-	ft_copy_lines(map);
+	int map_beginning;
+
+	map_beginning = ft_find_map_beginning(map->dirty_grid);
+	ft_grid_copy_lines(map, map_beginning);
 	return (0);
 }
