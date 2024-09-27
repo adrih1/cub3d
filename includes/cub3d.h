@@ -6,12 +6,14 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 14:24:41 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 17:23:45 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# define ROTATION_SPEED 0.05
+# define MOVE_SPEED 0.05
 
 # include "../mlx_lib/mlx.h"
 
@@ -165,10 +167,12 @@ int						ft_parsing(t_map *map, char *filename);
 void					*load_texture(void *mlx_ptr, char *path);
 int						rgb_to_int(char **color);
 void					ft_render_floor_ceiling(t_map *map);
-
-// Game Logic
 void					ft_raycasting(t_map *map);
 int						ft_render_frame(t_map *map);
+
+// Movement
+void					ft_move_player(int keynum, t_map *map);
+void					ft_rotate_camera(int keynum, t_map *map);
 
 // Window Init and Game Loop
 int						ft_executor(t_map *map);
