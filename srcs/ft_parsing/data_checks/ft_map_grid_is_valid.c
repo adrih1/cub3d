@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 14:46:47 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 16:24:08 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	ft_map_grid_is_valid(t_map *map, char **grid)
 	int j;
 
 	i = 0;
+	ft_display_grid(map, "clean");
 	while (grid[i])
 	{
 		if (ft_check_ones_end_begin(map->grid[i]))
@@ -95,12 +96,18 @@ int	ft_map_grid_is_valid(t_map *map, char **grid)
 					&& ((size_t)j > ft_strlen(grid[i - 1])))
 					if (grid[i][j] != '1' && grid[i][j] != ' '
 						&& grid[i][j] != '\n')
-						return (1);
+						{
+							printf("Player shoudl not be able to exit the map\n");
+							return (1);							
+						}
 				if ((ft_strlen(grid[i]) > ft_strlen(grid[i + 1]))
 					&& ((size_t)j > ft_strlen(grid[i + 1])))
 					if (grid[i][j] != '1' && grid[i][j] != ' '
 						&& grid[i][j] != '\n')
-						return (1);
+						{
+							printf("Player shoudl not be able to exit the map\n");
+							return (1);							
+						}
 			}
 			j++;
 		}

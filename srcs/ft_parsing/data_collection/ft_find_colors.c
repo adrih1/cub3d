@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:58:31 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/24 13:15:32 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 15:47:04 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,9 @@ int	ft_find_colors(t_map *map)
 			return (0);
 		i++;
 	}
+	if (!found_c)
+		printf("Color C - Information not found \n");
+	if (!found_f)
+		printf("Color F - Information not found \n");
 	return (1);
 }
