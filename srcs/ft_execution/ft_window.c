@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/27 17:21:18 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 18:08:30 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	on_destroy(t_map *map)
 	exit(1);
 }
 
+void	clear_window(t_data *data)
+{
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+}
+
 
 int	on_keypress(int keynum, t_map *map)
 {
@@ -25,6 +30,7 @@ int	on_keypress(int keynum, t_map *map)
 	if (keynum == 53 || keynum == 65307)
 		on_destroy(map);
 	
+	clear_window(map->data);
 	// Déplacement du joueur (W, A, S, D)
 	ft_move_player(keynum, map);
 
@@ -32,7 +38,6 @@ int	on_keypress(int keynum, t_map *map)
 	ft_rotate_camera(keynum, map);
 	
 	// Redessiner la scène après le mouvement ou la rotation
-	ft_raycasting(map);
 	return (keynum);
 }
 

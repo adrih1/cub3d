@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/27 16:40:09 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 18:06:35 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,37 @@ void draw_vertical_line(void *mlx_ptr, void *win_ptr, int x, int drawStart, int 
     }
 }
 
+void	draw_vertical_line_with_color(void *mlx_ptr, void *win_ptr, int x, int drawStart, int drawEnd, int color)
+{
+	int y;
+
+	y = drawStart;
+	while (y <= drawEnd)
+	{
+		// Dessine un pixel avec la couleur donnée
+		mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
+		y++;
+	}
+}
+
+// Fonction pour choisir une couleur en fonction de la case dans la map
+int choose_wall_color(t_map *map, int mapX, int mapY)
+{
+	// On choisit la couleur en fonction du contenu de la case (mur)
+	char wall = map->grid[mapY][mapX];
+
+	if (wall == '1')
+		return 0xFF0000; // Rouge
+	else if (wall == '2')
+		return 0x00FF00; // Vert
+	else if (wall == '3')
+		return 0x0000FF; // Bleu
+	else if (wall == '4')
+		return 0xFFFFFF; // Blanc
+	else
+		return 0xFFFF00; // Jaune par défaut
+}
+
 void	ft_raycasting(t_map *map)
 {
 	int	x;
@@ -115,6 +146,7 @@ void	ft_raycasting(t_map *map)
 	int	drawStart;
 	int	drawEnd;
 	t_ray ray;
+	int		color;
 
 	x = 0;
 	while (x < map->data->win_width)
@@ -136,8 +168,15 @@ void	ft_raycasting(t_map *map)
 		drawEnd = lineHeight / 2 + map->data->win_height / 2;
 		if (drawEnd >= map->data->win_height)
 			drawEnd = map->data->win_height - 1;
-		// 7. Draw Wall Line betweem drawStart and drawEnd for X column
-        draw_vertical_line(map->data->mlx_ptr, map->data->win_ptr, x, drawStart, drawEnd);
+		// 7. Choisir la couleur en fonction de la position du mur dans la map
+		color = choose_wall_color(map, ray.mapX, ray.mapY);
+
+		// 8. Ajuster la luminosité si on a touché un mur sur un côté Y (side == 1)
+		if (ray.side == 1)
+			color = color / 2; // On divise la couleur par 2 pour assombrir
+
+		// 9. Dessiner la ligne avec la couleur choisie
+		draw_vertical_line_with_color(map->data->mlx_ptr, map->data->win_ptr, x, drawStart, drawEnd, color);
 		x++;
 	}
 }
