@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 18:02:47 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 18:40:23 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_texture
 	t_texture_type		texture_id;
 	char				*filename;
 	void				*img_ptr;
+	int					width;
+	int					height;
 	struct s_texture	*next;
 }						t_texture;
 
@@ -164,7 +166,7 @@ int						ft_parsing(t_map *map, char *filename);
 /************ THE GAME ************/
 
 // Render
-void					*load_texture(void *mlx_ptr, char *path);
+int						ft_load_textures(t_texture *textures, t_data *data);
 int						rgb_to_int(char **color);
 void					ft_render_floor_ceiling(t_map *map);
 void					ft_raycasting(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 17:13:22 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 18:06:33 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 18:12:57 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	ft_move_player(int keynum, t_map *map)
 		if (map->grid[(int)(player->x)][(int)(player->y + player->planeY * MOVE_SPEED)] == '0')
 			player->y += player->planeY * MOVE_SPEED;
 	}
-	ft_raycasting(map);
 }
 
 void	ft_rotate_camera(int keynum, t_map *map)

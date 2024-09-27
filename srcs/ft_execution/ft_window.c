@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/27 18:08:30 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 18:41:03 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,12 @@ void	clear_window(t_data *data)
 
 int	on_keypress(int keynum, t_map *map)
 {
-	printf("Keynum :%d\n", keynum);
 	if (keynum == 53 || keynum == 65307)
 		on_destroy(map);
-	
 	clear_window(map->data);
-	// Déplacement du joueur (W, A, S, D)
 	ft_move_player(keynum, map);
-
-	// Rotation de la caméra (flèches gauche et droite)
 	ft_rotate_camera(keynum, map);
-	
-	// Redessiner la scène après le mouvement ou la rotation
+	ft_raycasting(map);
 	return (keynum);
 }
 
@@ -73,6 +67,11 @@ int	ft_executor(t_map *map)
 		return (1);
 	}
 	map->data = &data;
+	if(ft_load_textures(map->textures, map->data))
+	{
+		printf("Isssue with textures in ft_executor\n");
+		return (1);		
+	}
 	mlx_hook(data.win_ptr, 2, 1L << 0, on_keypress, map);
 	mlx_hook(data.win_ptr, 17, 1L << 4, on_destroy, map);
 

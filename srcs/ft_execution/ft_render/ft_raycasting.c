@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/27 18:06:35 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 18:54:04 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,15 +168,16 @@ void	ft_raycasting(t_map *map)
 		drawEnd = lineHeight / 2 + map->data->win_height / 2;
 		if (drawEnd >= map->data->win_height)
 			drawEnd = map->data->win_height - 1;
-		// 7. Choisir la couleur en fonction de la position du mur dans la map
-		color = choose_wall_color(map, ray.mapX, ray.mapY);
-
-		// 8. Ajuster la luminosité si on a touché un mur sur un côté Y (side == 1)
-		if (ray.side == 1)
-			color = color / 2; // On divise la couleur par 2 pour assombrir
-
-		// 9. Dessiner la ligne avec la couleur choisie
-		draw_vertical_line_with_color(map->data->mlx_ptr, map->data->win_ptr, x, drawStart, drawEnd, color);
 		x++;
 	}
 }
+
+//RENDER VISUEL - OLD LINE 
+// // 7. Choisir la couleur en fonction de la position du mur dans la map
+// color = choose_wall_color(map, ray.mapX, ray.mapY);
+// // 8. Ajuster la luminosité si on a touché un mur sur un côté Y (side == 1)
+// if (ray.side == 1)
+// 	color = color / 2; // On divise la couleur par 2 pour assombrir
+
+// // 9. Dessiner la ligne avec la couleur choisie
+// draw_vertical_line_with_color(map->data->mlx_ptr, map->data->win_ptr, x, drawStart, drawEnd, color);
