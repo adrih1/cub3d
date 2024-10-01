@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 15:37:17 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/30 12:42:13 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,48 +62,26 @@ static void	ft_player_orientation(char c, t_player *player)
 
 static int	ft_init_player(t_map *map, char *str, int y)
 {
-	t_player	*player;
 	int			i;
 
 	i = 0;
-	player = malloc(sizeof(t_player));
-	map->player = player;
-	if (!player)
+	map->player = malloc(sizeof(t_player));
+	if (!map->player)
 	{
 		printf("Error during malloc for player\n");
 		return (1);
 	}
 	while (str[i])
 	{
-		ft_player_orientation(str[i], player);
-		ft_player_plane(str[i], player);
+		ft_player_orientation(str[i], map->player);
+		ft_player_plane(str[i], map->player);
 		if (str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'O')
-			player->x = i;
+			map->player->x = i;
 		i++;
 	}
-	player->y = y;
+	map->player->y = y;
 	return (0);
 }
-
-// static int	ft_copy_lines(t_map *map)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	j = 9;
-// 	while (i < map->real_height)
-// 	{
-// 		map->grid[i] = ft_strdup(map->dirty_grid[j]);
-// 		if (ft_find_player(map->grid[i]))
-// 			if (ft_init_player(map, map->grid[i], i))
-// 				return (1);
-// 		j++;
-// 		i++;
-// 	}
-// 	map->grid[i] = NULL;
-// 	return (0);
-// }
 
 static int	ft_grid_copy_lines(t_map *map, int start)
 {

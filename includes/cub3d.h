@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 18:40:23 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/01 11:58:09 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define MOVE_SPEED 0.05
 
 # include "../mlx_lib/mlx.h"
+# include "../mlx_lib/mlx_int.h"
 
 /*
 -------------------------------------------------------------
@@ -59,7 +60,6 @@ typedef struct s_texture
 {
 	t_texture_type		texture_id;
 	char				*filename;
-	void				*img_ptr;
 	int					width;
 	int					height;
 	struct s_texture	*next;
@@ -107,6 +107,10 @@ typedef struct s_map
 	char				**c_color;
 	t_data				*data;
 	t_player			*player;
+	t_img				*north;
+	t_img				*east;
+	t_img				*south;
+	t_img				*west;
 }						t_map;
 
 /*
@@ -163,20 +167,30 @@ int						ft_map_grid_is_valid(t_map *map, char **grid);
 // Main Function
 int						ft_parsing(t_map *map, char *filename);
 
-/************ THE GAME ************/
-
-// Render
-int						ft_load_textures(t_texture *textures, t_data *data);
+/************ RENDER ************/
+// Textures
+int						get_texture_color(t_img *texture, int texture_x,
+							int texture_y);
+int						calculate_texture_x(t_ray *ray, t_player *player,
+							t_img *texture);
+int						ft_choose_wall_color(int side, int stepX, int stepY);
+void					ft_draw_vertical_line_with_color(void *mlx_ptr,
+							void *win_ptr, int x, int drawStart, int drawEnd,
+							int color);
+int						ft_load_textures(t_texture *textures, t_map *map);
+// Wall / Ceilling
 int						rgb_to_int(char **color);
 void					ft_render_floor_ceiling(t_map *map);
+
+// Main Functions
 void					ft_raycasting(t_map *map);
 int						ft_render_frame(t_map *map);
 
-// Movement
+/************ MOVEMENT ************/
 void					ft_move_player(int keynum, t_map *map);
 void					ft_rotate_camera(int keynum, t_map *map);
 
-// Window Init and Game Loop
+/************ WINDOOW INIT + GAME LOOP ************/
 int						ft_executor(t_map *map);
 
 /************ CLEANING ************/

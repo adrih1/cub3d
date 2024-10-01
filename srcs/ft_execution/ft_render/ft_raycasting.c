@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/27 18:54:04 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/01 12:57:37 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static double	ft_fabs(double n)
 }
 
 // Initialise le rayon pour une colonne x.
-void	init_ray(t_ray *ray, t_player *player, int x, int screenWidth)
+static void	ft_init_ray(t_ray *ray, t_player *player, int x, int screenWidth)
 {
 	double	cameraX;
 
@@ -35,7 +35,7 @@ void	init_ray(t_ray *ray, t_player *player, int x, int screenWidth)
 	ray->hit = 0;
 }
 
-void	calculate_step_and_side_dist(t_ray *ray, t_player *player)
+static void	ft_calculate_step_and_side_dist(t_ray *ray, t_player *player)
 {
 	if (ray->rayDirX < 0)
 	{
@@ -59,7 +59,7 @@ void	calculate_step_and_side_dist(t_ray *ray, t_player *player)
 	}
 }
 
-void	perform_dda(t_ray *ray, t_map *map)
+static void	ft_perform_dda(t_ray *ray, t_map *map)
 {
 	while (ray->hit == 0) // Tant que le rayon n'a pas touché un mur
 	{
@@ -82,7 +82,7 @@ void	perform_dda(t_ray *ray, t_map *map)
 	}
 }
 
-double	calculate_perp_wall_dist(t_ray *ray, t_player *player)
+static double	ft_calculate_perp_wall_dist(t_ray *ray, t_player *player)
 {
 	if (ray->side == 0)
 		return ((ray->mapX - player->x + (1 - ray->stepX) / 2) / ray->rayDirX);
@@ -90,53 +90,9 @@ double	calculate_perp_wall_dist(t_ray *ray, t_player *player)
 		return ((ray->mapY - player->y + (1 - ray->stepY) / 2) / ray->rayDirY);
 }
 
-int	calculate_line_height(double perpWallDist, int screenHeight)
+static int	ft_calculate_line_height(double perpWallDist, int screenHeight)
 {
 	return (int)(screenHeight / perpWallDist);
-}
-
-void draw_vertical_line(void *mlx_ptr, void *win_ptr, int x, int drawStart, int drawEnd)
-{
-    int y;
-
-    y = drawStart;
-    while (y <= drawEnd)
-    {
-        // Dessine un pixel rouge (couleur hexadécimale : 0xFF0000)
-        mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xFF0000);
-        y++;
-    }
-}
-
-void	draw_vertical_line_with_color(void *mlx_ptr, void *win_ptr, int x, int drawStart, int drawEnd, int color)
-{
-	int y;
-
-	y = drawStart;
-	while (y <= drawEnd)
-	{
-		// Dessine un pixel avec la couleur donnée
-		mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
-		y++;
-	}
-}
-
-// Fonction pour choisir une couleur en fonction de la case dans la map
-int choose_wall_color(t_map *map, int mapX, int mapY)
-{
-	// On choisit la couleur en fonction du contenu de la case (mur)
-	char wall = map->grid[mapY][mapX];
-
-	if (wall == '1')
-		return 0xFF0000; // Rouge
-	else if (wall == '2')
-		return 0x00FF00; // Vert
-	else if (wall == '3')
-		return 0x0000FF; // Bleu
-	else if (wall == '4')
-		return 0xFFFFFF; // Blanc
-	else
-		return 0xFFFF00; // Jaune par défaut
 }
 
 void	ft_raycasting(t_map *map)
@@ -151,23 +107,24 @@ void	ft_raycasting(t_map *map)
 	x = 0;
 	while (x < map->data->win_width)
 	{
-		// 1. Initialiser le rayon
-		init_ray(&ray, map->player, x, map->data->win_width);
-		// 2. Calculer le step et la distance initiale
-		calculate_step_and_side_dist(&ray, map->player);
-		// 3. Exécuter l'algorithme DDA pour trouver le mur
-		perform_dda(&ray, map);
-		// 4. Calculer la distance perpendiculaire au mur
-		ray.perpWallDist = calculate_perp_wall_dist(&ray, map->player);
-		// 5. Calculer la hauteur de la ligne de mur à dessiner
-		lineHeight = calculate_line_height(ray.perpWallDist, map->data->win_height);
-		// 6. Calculer les points de départ et de fin de la ligne
+		ft_init_ray(&ray, map->player, x, map->data->win_width);
+		ft_calculate_step_and_side_dist(&ray, map->player);
+		ft_perform_dda(&ray, map);
+		ray.perpWallDist = ft_calculate_perp_wall_dist(&ray, map->player);
+		lineHeight = ft_calculate_line_height(ray.perpWallDist, map->data->win_height);
 		drawStart = -lineHeight / 2 + map->data->win_height / 2;
 		if (drawStart < 0)
 			drawStart = 0;
 		drawEnd = lineHeight / 2 + map->data->win_height / 2;
 		if (drawEnd >= map->data->win_height)
 			drawEnd = map->data->win_height - 1;
+		// 7. Choisir la couleur en fonction de la position du mur dans la map
+ 		color = ft_choose_wall_color(ray.side, ray.stepX, ray.stepY);
+		// 8. Ajuster la luminosité si on a touché un mur sur un côté Y (side == 1)
+ 		if (ray.side == 1)
+ 			color = color / 2;
+		//   9. Dessiner la ligne avec la couleur choisie
+		ft_draw_vertical_line_with_color(map->data->mlx_ptr, map->data->win_ptr, x, drawStart, drawEnd, color);
 		x++;
 	}
 }
