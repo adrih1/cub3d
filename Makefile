@@ -9,15 +9,26 @@ MLX_DIR = ./mlx_lib/
 
 SRCS = 	main.c \
 		$(SRC_DIR)/ft_clean.c \
-		$(SRC_DIR)/ft_parsing/ft_display_adrien.c \
-		$(SRC_DIR)/ft_parsing/ft_find_colors.c \
-		$(SRC_DIR)/ft_parsing/ft_find_colors_utils.c \
-		$(SRC_DIR)/ft_parsing/ft_find_textures.c \
-		$(SRC_DIR)/ft_parsing/ft_map_info.c \
-		$(SRC_DIR)/ft_execution/ft_executor.c \
+		$(SRC_DIR)/ft_execution/ft_render/ft_load_textures.c \
+		$(SRC_DIR)/ft_execution/ft_render/ft_draw_textures.c \
+		$(SRC_DIR)/ft_execution/ft_render/ft_floor_ceiling_render.c \
+		$(SRC_DIR)/ft_execution/ft_render/ft_raycasting.c \
+		$(SRC_DIR)/ft_execution/ft_movement/ft_movement.c \
+		$(SRC_DIR)/ft_execution/ft_window.c \
 		$(SRC_DIR)/ft_execution/outils/outils.c \
-		$(SRC_DIR)/ft_parsing/ft_parsing_utils.c \
 		$(SRC_DIR)/ft_parsing/ft_parsing.c \
+		$(SRC_DIR)/ft_parsing/ft_display_adrien.c \
+		$(SRC_DIR)/ft_parsing/data_collection/ft_find_colors.c \
+		$(SRC_DIR)/ft_parsing/data_collection/ft_find_colors_utils.c \
+		$(SRC_DIR)/ft_parsing/data_collection/ft_find_textures.c \
+		$(SRC_DIR)/ft_parsing/data_collection/ft_map_grid_utils.c \
+		$(SRC_DIR)/ft_parsing/data_collection/ft_map_grid.c \
+		$(SRC_DIR)/ft_parsing/data_collection/ft_find_textures_utils.c \
+		$(SRC_DIR)/ft_parsing/data_collection/ft_map_info.c \
+		$(SRC_DIR)/ft_parsing/data_collection/ft_parsing_utils.c \
+		$(SRC_DIR)/ft_parsing/data_checks/ft_map_info_is_valid.c \
+		$(SRC_DIR)/ft_parsing/data_checks/ft_map_info_is_valid_utils.c \
+		$(SRC_DIR)/ft_parsing/data_checks/ft_map_grid_is_valid.c
 
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 MAKE_MLX = make -C $(MLX_DIR)

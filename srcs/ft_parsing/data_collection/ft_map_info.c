@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   outils.c                                           :+:      :+:    :+:   */
+/*   ft_map_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 17:25:37 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/30 14:10:00 by ahors            ###   ########.fr       */
+/*   Created: 2024/09/11 17:20:18 by ahors             #+#    #+#             */
+/*   Updated: 2024/09/27 18:14:16 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
-int	ft_message_error(char *error)
+int	ft_map_find_info(t_map *map)
 {
-	perror(error);
-	return (1);
-}
-
-void	ft_exit_error(char *error)
-{
-	perror(error);
-	exit(1);
-}
-
-int	rgb_to_int(char **color)
-{
-	int r = atoi(color[0]);
-	int g = atoi(color[1]);
-	int b = atoi(color[2]);
-	return ((r << 16) | (g << 8) | b);
+	if (ft_find_colors(map))
+	{
+		printf("There was an error with colors\n");
+		return (1);
+	}
+	if (ft_find_textures(map))
+	{
+		printf("There was an error finding textures\n");
+		return (1);
+	}
+	return (0);
 }

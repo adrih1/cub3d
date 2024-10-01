@@ -6,25 +6,11 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/17 11:23:39 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/27 15:40:15 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
-void	ft_clean_dirty_map(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < map->m_height)
-	{
-		map->dirty_grid[i] = ft_str_trim(map->dirty_grid[i], ' ');
-		printf("I in clean dirty map: %d\n", i);
-		i++;
-	}
-	map->dirty_grid[i] = NULL;
-}
+#include "cub3d.h"
 
 int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 {
@@ -39,6 +25,7 @@ int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 	if (fd < 0)
 	{
 		free(map);
+		close(fd);
 		return (1);
 	}
 	ft_map_copy_lines(fd, map);
@@ -48,40 +35,21 @@ int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 	return (0);
 }
 
-int	ft_find_map_height(t_map *map)
+int	ft_generate_map_grid(t_map *map)
 {
-	int	i;
-	int	count;
 
-	i = 0;
-	count = 0;
-	while (map->dirty_grid[i])
-	{
-		if (ft_strcmp("\0", map->dirty_grid[i]) == 0)
-			i++;
-		count++;
-		i++;
-	}
-	return (count);
-}
-
-int	ft_generate_map_file(t_map *map)
-{
-	int	i;
-	int	height;
-
-	i = 0;
-	height = ft_find_map_height(map);
-	map->grid = malloc(sizeof(char *) * height);
+	map->real_height = ft_find_map_height(map);
+	map->grid = malloc(sizeof(char *) * (map->real_height + 1));
 	if (!map->grid)
 	{
 		printf("Error during malloc for map->grid");
 		return (1);
 	}
-	while (i < map->m_height)
+	ft_generate_map_grid_util(map);
+	if(ft_map_grid_is_valid(map, map->grid))
 	{
-		map->grid[i] = ft_strdup(map->dirty_grid[i]);
-		i++;
+		printf("This map is not valid\n");
+		return (1);
 	}
 	return (0);
 }
@@ -92,12 +60,16 @@ int	ft_parsing(t_map *map, char *filename)
 
 	fd = ft_open_file(filename);
 	if (fd < 0)
+	{
+		close(fd);
 		return (1);
+	}
 	if (ft_generate_dirty_map_file(fd, map, filename))
 		return (1);
-	// if (ft_generate_map_file(map))
-	// return (1);
-	// ft_load_textures(map);
-	// Check Valid
+	if (ft_map_info_is_valid(map))
+		return (1);
+	if (ft_generate_map_grid(map))
+		return (1);
+	
 	return (0);
 }

@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   outils.c                                           :+:      :+:    :+:   */
+/*   ft_find_colors_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 17:25:37 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/30 14:10:00 by ahors            ###   ########.fr       */
+/*   Created: 2024/09/16 17:40:53 by ahors             #+#    #+#             */
+/*   Updated: 2024/09/23 11:05:41 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_message_error(char *error)
+char	*ft_clean_id_whitespace_color(char *str)
 {
-	perror(error);
-	return (1);
-}
+	int	i;
+	int	j;
 
-void	ft_exit_error(char *error)
-{
-	perror(error);
-	exit(1);
-}
-
-int	rgb_to_int(char **color)
-{
-	int r = atoi(color[0]);
-	int g = atoi(color[1]);
-	int b = atoi(color[2]);
-	return ((r << 16) | (g << 8) | b);
+	i = 0;
+	j = 0;
+	if (!str)
+		return (NULL);
+	while (str[i])
+	{
+		if (str[i] != ' ' && !ft_isalpha(str[i]))
+		{
+			str[j] = str[i];
+			j++;
+		}
+		i++;
+	}
+	str[j] = '\0';
+	return (str);
 }

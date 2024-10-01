@@ -1,33 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   outils.c                                           :+:      :+:    :+:   */
+/*   ft_map_info_is_valid_utils.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 17:25:37 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/30 14:10:00 by ahors            ###   ########.fr       */
+/*   Created: 2024/09/24 13:38:58 by ahors             #+#    #+#             */
+/*   Updated: 2024/09/24 14:25:17 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_message_error(char *error)
+int	ft_len_of_chars_double_array(char **array)
 {
-	perror(error);
+	int	i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
+}
+
+int	ft_color_has_no_numbers(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
 	return (1);
 }
 
-void	ft_exit_error(char *error)
+int	ft_colors_has_no_numbers(char **colors)
 {
-	perror(error);
-	exit(1);
-}
+	int	i;
 
-int	rgb_to_int(char **color)
-{
-	int r = atoi(color[0]);
-	int g = atoi(color[1]);
-	int b = atoi(color[2]);
-	return ((r << 16) | (g << 8) | b);
+	i = 0;
+	while (colors[i])
+	{
+		if (ft_color_has_no_numbers(colors[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }
