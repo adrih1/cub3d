@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/01 12:57:37 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/01 15:54:29 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,7 @@ void	ft_raycasting(t_map *map)
 		drawEnd = lineHeight / 2 + map->data->win_height / 2;
 		if (drawEnd >= map->data->win_height)
 			drawEnd = map->data->win_height - 1;
-		// 7. Choisir la couleur en fonction de la position du mur dans la map
- 		color = ft_choose_wall_color(ray.side, ray.stepX, ray.stepY);
-		// 8. Ajuster la luminosité si on a touché un mur sur un côté Y (side == 1)
- 		if (ray.side == 1)
- 			color = color / 2;
-		//   9. Dessiner la ligne avec la couleur choisie
-		ft_draw_vertical_line_with_color(map->data->mlx_ptr, map->data->win_ptr, x, drawStart, drawEnd, color);
+		// TODO - Calculer TexY pour chaque pixel vertical de la texture (voir ft_draw_textures qui s'occupe deja de TexX)
 		x++;
 	}
 }

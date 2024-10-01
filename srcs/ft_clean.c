@@ -6,11 +6,11 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/01 15:12:16 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/01 15:16:03 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 // Fonction pour libérer un tableau de chaînes de caractères
 int	free_char_array(char **array)

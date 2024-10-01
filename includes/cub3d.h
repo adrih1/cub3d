@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/01 11:58:09 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/01 15:52:45 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,16 +168,20 @@ int						ft_map_grid_is_valid(t_map *map, char **grid);
 int						ft_parsing(t_map *map, char *filename);
 
 /************ RENDER ************/
-// Textures
-int						get_texture_color(t_img *texture, int texture_x,
-							int texture_y);
-int						calculate_texture_x(t_ray *ray, t_player *player,
-							t_img *texture);
+// Fonction a supprimer plus tard - Dessine les murs de differentes couleurs
 int						ft_choose_wall_color(int side, int stepX, int stepY);
 void					ft_draw_vertical_line_with_color(void *mlx_ptr,
 							void *win_ptr, int x, int drawStart, int drawEnd,
 							int color);
+// Textures
+t_img					*ft_select_texture(t_map *map, t_ray *ray);
+int						ft_calculate_texture_x(t_ray *ray, t_player *player,
+							t_img *texture);
+int						ft_get_texture_color(t_img *texture, int texture_x,
+							int texture_y);
 int						ft_load_textures(t_texture *textures, t_map *map);
+
+				
 // Wall / Ceilling
 int						rgb_to_int(char **color);
 void					ft_render_floor_ceiling(t_map *map);
