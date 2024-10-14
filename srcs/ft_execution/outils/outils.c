@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:25:37 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/30 14:10:00 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/14 15:19:19 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,12 @@ int	rgb_to_int(char **color)
 	int g = atoi(color[1]);
 	int b = atoi(color[2]);
 	return ((r << 16) | (g << 8) | b);
+}
+
+void	my_mlx_pixel_put(t_texture *texture, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = texture->addr + (y * texture->line_length + x * (texture->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }

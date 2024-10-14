@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/01 15:54:29 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/14 15:21:39 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ static int	ft_calculate_line_height(double perpWallDist, int screenHeight)
 
 void	ft_raycasting(t_map *map)
 {
-	int	x;
-	int	lineHeight;
-	int	drawStart;
-	int	drawEnd;
-	t_ray ray;
-	int		color;
+	int				x;
+	int				lineHeight;
+	int				drawStart;
+	int				drawEnd;
+	t_ray			ray;
+	int				texX;
 
 	x = 0;
 	while (x < map->data->win_width)
@@ -111,19 +111,22 @@ void	ft_raycasting(t_map *map)
 		ft_calculate_step_and_side_dist(&ray, map->player);
 		ft_perform_dda(&ray, map);
 		ray.perpWallDist = ft_calculate_perp_wall_dist(&ray, map->player);
-		lineHeight = ft_calculate_line_height(ray.perpWallDist, map->data->win_height);
+		lineHeight = ft_calculate_line_height(ray.perpWallDist,
+				map->data->win_height);
 		drawStart = -lineHeight / 2 + map->data->win_height / 2;
 		if (drawStart < 0)
 			drawStart = 0;
 		drawEnd = lineHeight / 2 + map->data->win_height / 2;
 		if (drawEnd >= map->data->win_height)
 			drawEnd = map->data->win_height - 1;
-		// TODO - Calculer TexY pour chaque pixel vertical de la texture (voir ft_draw_textures qui s'occupe deja de TexX)
+		
+		
+		texX = ft_calculate_texture_x(&ray, map->player, ft_select_texture(map, &ray));		
 		x++;
 	}
 }
 
-//RENDER VISUEL - OLD LINE 
+// RENDER VISUEL - OLD LINE
 // // 7. Choisir la couleur en fonction de la position du mur dans la map
 // color = choose_wall_color(map, ray.mapX, ray.mapY);
 // // 8. Ajuster la luminosité si on a touché un mur sur un côté Y (side == 1)
@@ -131,4 +134,5 @@ void	ft_raycasting(t_map *map)
 // 	color = color / 2; // On divise la couleur par 2 pour assombrir
 
 // // 9. Dessiner la ligne avec la couleur choisie
-// draw_vertical_line_with_color(map->data->mlx_ptr, map->data->win_ptr, x, drawStart, drawEnd, color);
+// draw_vertical_line_with_color(map->data->mlx_ptr, map->data->win_ptr, x,
+	// drawStart, drawEnd, color);

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/01 12:42:08 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/14 14:55:16 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_executor(t_map *map)
 		return (1);
 	}
 	map->data = &data;
-	if(ft_load_textures(map->textures, map))
+	if(ft_load_textures(map))
 	{
 		printf("Isssue with textures in ft_executor\n");
 		return (1);		
