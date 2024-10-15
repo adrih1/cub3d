@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:10:03 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/14 14:47:48 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 11:04:49 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_load_north_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->north = malloc(sizeof(t_img));
+	map->north = malloc(sizeof(t_texture));
 	if (!map->north)
 	{
 		printf("Failed to allocate memory for North texture\n");
@@ -38,7 +38,7 @@ int	ft_load_north_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_east_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->east = malloc(sizeof(t_img));
+	map->east = malloc(sizeof(t_texture));
 	if (!map->east)
 	{
 		printf("Failed to allocate memory for East texture\n");
@@ -62,7 +62,7 @@ int	ft_load_east_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_south_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->south = malloc(sizeof(t_img));
+	map->south = malloc(sizeof(t_texture));
 	if (!map->south)
 	{
 		printf("Failed to allocate memory for South texture\n");
@@ -86,7 +86,7 @@ int	ft_load_south_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_west_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->west = malloc(sizeof(t_img));
+	map->west = malloc(sizeof(t_texture));
 	if (!map->west)
 	{
 		printf("Failed to allocate memory for West texture\n");

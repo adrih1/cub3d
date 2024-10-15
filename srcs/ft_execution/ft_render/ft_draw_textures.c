@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:48:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/14 15:20:59 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 11:03:18 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	ft_calculate_texture_x(t_ray *ray, t_player *player, t_texture *texture)
 	if (ray->side == 1 && ray->rayDirY < 0)
 		texX = texture->width - texX - 1;
 	// Debug : affichage de texX
-	printf("TexX calculated: %d\n", texX);
+	// printf("TexX calculated: %d\n", texX);
 	return (texX);
 }
 
