@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/01 12:42:08 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:18:19 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,65 +18,45 @@ int	on_destroy(t_map *map)
 	exit(1);
 }
 
-void	clear_window(t_data *data)
-{
-	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-}
-
-
 int	on_keypress(int keynum, t_map *map)
 {
 	if (keynum == 53 || keynum == 65307)
 		on_destroy(map);
-	clear_window(map->data);
+	ft_clear_window(map->data, map->main_image);
 	ft_move_player(keynum, map);
-	ft_rotate_camera(keynum, map);
-	ft_raycasting(map);
+	ft_move_camera(keynum, map);
+	ft_render_frame(map);
 	return (keynum);
 }
 
-int	ft_init_mlx(t_data *data)
+int	ft_check_error(int ret_value, const char *error_msg)
 {
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
+	if (ret_value != 0)
 	{
-		printf("Error initializing MLX\n");
-		return (1);
-	}
-	data->win_width = 1200;
-	data->win_height = 700;
-	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_width,
-			data->win_height, "cub3D");
-	if (!data->win_ptr)
-	{
-		printf("Error creating window\n");
+		printf("%s\n", error_msg);
 		return (1);
 	}
 	return (0);
 }
 
-
 int	ft_executor(t_map *map)
 {
-	(void)map;
-	t_data data;
+	t_data		data;
+	t_texture	main_image;
 
 	if (ft_init_mlx(&data))
-	{
-		printf("There was an issue to initialize data\n");
-		return (1);
-	}
+		return (ft_message_error("Error: initialize data in executor"));
 	map->data = &data;
-	if(ft_load_textures(map->textures, map))
-	{
-		printf("Isssue with textures in ft_executor\n");
-		return (1);		
-	}
+	if (ft_load_textures(map))
+		return (ft_message_error("Error with textures in ft_executor"));
+	if (ft_init_main_image(map->data, &main_image))
+		return (ft_message_error("Error: Could not initialize main image\n"));
+	map->main_image = &main_image;
+	ft_render_frame(map);
+	mlx_put_image_to_window(map->data->mlx_ptr, map->data->win_ptr,
+		main_image.img, 0, 0);
 	mlx_hook(data.win_ptr, 2, 1L << 0, on_keypress, map);
 	mlx_hook(data.win_ptr, 17, 1L << 4, on_destroy, map);
-
-	// TODO - Appeller render frame dans un hook
-	ft_raycasting(map);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }

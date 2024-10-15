@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/01 11:58:09 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:18:04 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ typedef struct s_texture
 	char				*filename;
 	int					width;
 	int					height;
+	void				*img;
+	char				*addr;
+	int					bits_per_pixel;
+	int					line_length;
+	int					endian;
 	struct s_texture	*next;
 }						t_texture;
 
@@ -81,6 +86,10 @@ typedef struct s_ray
 	int					hit;
 	int					side;
 	double				perpWallDist;
+	int					line_height;
+	int					draw_start;
+	int					draw_end;
+	int					color;
 }						t_ray;
 
 // Structure pour représenter le player
@@ -107,10 +116,11 @@ typedef struct s_map
 	char				**c_color;
 	t_data				*data;
 	t_player			*player;
-	t_img				*north;
-	t_img				*east;
-	t_img				*south;
-	t_img				*west;
+	t_texture			*north;
+	t_texture			*east;
+	t_texture			*south;
+	t_texture			*west;
+	t_texture			*main_image;
 }						t_map;
 
 /*
@@ -168,27 +178,42 @@ int						ft_map_grid_is_valid(t_map *map, char **grid);
 int						ft_parsing(t_map *map, char *filename);
 
 /************ RENDER ************/
-// Textures
-int						get_texture_color(t_img *texture, int texture_x,
-							int texture_y);
-int						calculate_texture_x(t_ray *ray, t_player *player,
-							t_img *texture);
+// Fonction a supprimer plus tard - Dessine les murs de differentes couleurs
 int						ft_choose_wall_color(int side, int stepX, int stepY);
-void					ft_draw_vertical_line_with_color(void *mlx_ptr,
-							void *win_ptr, int x, int drawStart, int drawEnd,
+void					ft_draw_vertical_line(t_texture *texture, int x,
+							int drawStart, int drawEnd, int color);
+
+// Init
+int						ft_init_mlx(t_data *data);
+int						ft_init_main_image(t_data *data, t_texture *texture);
+
+// Outils
+void					ft_clear_window(t_data *data, t_texture *texture);
+void					my_mlx_pixel_put(t_texture *texture, int x, int y,
 							int color);
-int						ft_load_textures(t_texture *textures, t_map *map);
+
+// Textures
+t_texture				*ft_select_texture(t_map *map, t_ray *ray);
+int						ft_calculate_texture_x(t_ray *ray, t_player *player,
+							t_texture *texture);
+int						ft_calculate_texture_y(int y, int line_height,
+							t_texture *texture, t_data *data);
+unsigned int			ft_get_texture_color(t_texture *texture, int texX,
+							int texY);
+int						ft_load_textures(t_map *map);
+
 // Wall / Ceilling
 int						rgb_to_int(char **color);
 void					ft_render_floor_ceiling(t_map *map);
 
 // Main Functions
-void					ft_raycasting(t_map *map);
-int						ft_render_frame(t_map *map);
+void					ft_render_column(t_map *map, t_ray *ray, int x);
+void					ft_raycasting(t_map *map, t_ray *ray, int x);
+void					ft_render_frame(t_map *map);
 
 /************ MOVEMENT ************/
 void					ft_move_player(int keynum, t_map *map);
-void					ft_rotate_camera(int keynum, t_map *map);
+void					ft_move_camera(int keynum, t_map *map);
 
 /************ WINDOOW INIT + GAME LOOP ************/
 int						ft_executor(t_map *map);

@@ -6,100 +6,66 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:48:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/01 12:17:50 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:22:33 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// Fonction pour choisir une couleur en fonction de la case dans la map
-int ft_choose_wall_color(int side, int stepX, int stepY)
+t_texture	*ft_select_texture(t_map *map, t_ray *ray)
 {
-    // Choix de la couleur en fonction de la direction du mur
-    if (side == 0) // Mur est-ouest
-    {
-        if (stepX > 0)
-            return 0xFF0000; // Mur à l'est (rouge)
-        else
-            return 0x00FF00; // Mur à l'ouest (vert)
-    }
-    else // Mur nord-sud
-    {
-        if (stepY > 0)
-            return 0x0000FF; // Mur au sud (bleu)
-        else
-            return 0x800080; // Mur au nord (blanc)
-    }
-}
-
-void	ft_draw_vertical_line_with_color(void *mlx_ptr, void *win_ptr, int x, int drawStart, int drawEnd, int color)
-{
-	int y;
-
-	y = drawStart;
-	while (y <= drawEnd)
+	if (ray->side == 0)
 	{
-		// Dessine un pixel avec la couleur donnée
-		mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
-		y++;
+		if (ray->rayDirX > 0)
+			return (map->west);
+		else
+			return (map->east);
+	}
+	else
+	{
+		if (ray->rayDirY > 0)
+			return (map->north);
+		else
+			return (map->south);
 	}
 }
 
-int calculate_texture_x(t_ray *ray, t_player *player, t_img *texture)
+int	ft_calculate_texture_x(t_ray *ray, t_player *player, t_texture *texture)
 {
-    double wallX;
-    int texX;
+	double	wall_x;
+	int		tex_x;
 
-    // Calcul de la position exacte où le mur a été touché
-    if (ray->side == 0)
-        wallX = player->y + ray->perpWallDist * ray->rayDirY;
-    else
-        wallX = player->x + ray->perpWallDist * ray->rayDirX;
-    wallX -= floor(wallX);  // Prend uniquement la partie décimale (fractionnaire)
-
-    // Convertit cette position en coordonnée sur la texture
-    texX = (int)(wallX * (double)(texture->width));
-    
-    // Ajuste pour l'orientation du mur
-    if (ray->side == 0 && ray->rayDirX > 0)
-        texX = texture->width - texX - 1;
-    if (ray->side == 1 && ray->rayDirY < 0)
-        texX = texture->width - texX - 1;
-
-    return texX;
+	if (ray->side == 0)
+		wall_x = player->y + ray->perpWallDist * ray->rayDirY;
+	else
+		wall_x = player->x + ray->perpWallDist * ray->rayDirX;
+	wall_x -= floor(wall_x);
+	tex_x = (int)(wall_x * (double)(texture->width));
+	if (ray->side == 0 && ray->rayDirX > 0)
+		tex_x = texture->width - tex_x - 1;
+	if (ray->side == 1 && ray->rayDirY < 0)
+		tex_x = texture->width - tex_x - 1;
+	return (tex_x);
 }
 
-t_img *select_texture(t_map *map, t_ray *ray)
+int	ft_calculate_texture_y(int y, int line_height, t_texture *texture,
+		t_data *data)
 {
-    if (ray->side == 0) // Mur Nord-Sud
-    {
-        if (ray->rayDirX > 0)
-            return map->west;  // Si le rayon va vers l'ouest, mur Ouest
-        else
-            return map->east;  // Si le rayon va vers l'est, mur Est
-    }
-    else // Mur Est-Ouest
-    {
-        if (ray->rayDirY > 0)
-            return map->north;  // Si le rayon va vers le nord, mur Nord
-        else
-            return map->south;  // Si le rayon va vers le sud, mur Sud
-    }
+	int	tex_y;
+	int	d;
+
+	d = y * 256 - data->win_height * 128 + line_height * 128;
+	tex_y = ((d * texture->height) / line_height) / 256;
+	return (tex_y);
 }
 
-// Étape 3 : Récupération de la couleur depuis la texture
-int get_texture_color(t_img *texture, int texture_x, int texture_y)
+unsigned int	ft_get_texture_color(t_texture *texture, int texX, int texY)
 {
-    // Assurez-vous que les coordonnées sont dans les limites de la texture
-    if (texture_x < 0 || texture_x >= texture->width ||
-        texture_y < 0 || texture_y >= texture->height)
-    {
-        return 0; // Couleur par défaut (transparent ou noir)
-    }
+	char			*pixel;
+	unsigned int	color;
 
-    // Cast de texture->data en int* pour accéder aux couleurs
-    int *data = (int *)texture->data;
-    // Calcul de l'index
-    int index = texture->width * texture_y + texture_x;
-    return data[index]; // Retourne la couleur
+	pixel = texture->addr + (texY * texture->line_length + texX
+			* (texture->bits_per_pixel / 8));
+	color = *(unsigned int *)pixel;
+	return (color);
 }
