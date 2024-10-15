@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:16:46 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 15:55:31 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:01:36 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,29 @@
 
 void	ft_render_column(t_map *map, t_ray *ray, int x)
 {
-	ray->color = ft_choose_wall_color(ray->side, ray->mapX, ray->mapY);
-	if (ray->side == 1)
-		ray->color = ray->color / 2;
-	ft_draw_vertical_line(map->main_image, x, ray->draw_start, ray->draw_end,
-		ray->color);
+    t_texture		*texture;
+    int				texX;
+	int				texY;
+	int				y;
+	unsigned int	color;
+
+
+	texture = ft_select_texture(map, ray);
+    texX = ft_calculate_texture_x(ray, map->player, texture);
+	y = ray->draw_start;
+	while (y <= ray->draw_end)
+	{
+		// Calcul de la coordonnée Y dans la texture pour chaque pixel en Y
+		texY = ft_calculate_texture_y(y, ray->line_height, texture, map->data);
+
+		// Récupération de la couleur du pixel (texX, texY) dans la texture
+		color = ft_get_texture_color(texture, texX, texY);
+
+		// Affichage du pixel avec la couleur de la texture
+		my_mlx_pixel_put(map->main_image, x, y, color);
+
+		y++;
+	}
 }
 // Fonction pour render l'ecran 
 void	ft_render_frame(t_map *map)

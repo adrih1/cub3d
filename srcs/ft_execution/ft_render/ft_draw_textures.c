@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:48:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 15:53:39 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:02:00 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,6 @@ int	ft_choose_wall_color(int side, int stepX, int stepY)
 			return (0x0000FF); // Mur au sud (bleu)
 		else
 			return (0x800080); // Mur au nord (blanc)
-	}
-}
-
-void	ft_draw_vertical_line_with_color(void *mlx_ptr, void *win_ptr, int x,
-		int drawStart, int drawEnd, int color)
-{
-	int	y;
-
-	y = drawStart;
-	while (y <= drawEnd)
-	{
-		// Dessine un pixel avec la couleur donnée
-		mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
-		y++;
 	}
 }
 
@@ -98,7 +84,6 @@ int	ft_calculate_texture_y(int y, int line_height, t_texture *texture,
 	d = y * 256 - data->win_height * 128 + line_height * 128;
 	texY = ((d * texture->height) / line_height) / 256;
 	// Debug : affichage de texY
-	printf("TexY calculated: %d\n", texY);
 	return (texY);
 }
 
@@ -113,7 +98,6 @@ unsigned int	ft_get_texture_color(t_texture *texture, int texX, int texY)
 	// Conversion de l'adresse en couleur (unsigned int)
 	color = *(unsigned int *)pixel;
 	// Debug : affichage de la couleur
-	printf("Texture Color at (texX: %d, texY: %d): %u\n", texX, texY, color);
 	return (color);
 }
 

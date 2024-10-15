@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/15 15:51:18 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 15:56:12 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	ft_check_error(int ret_value, const char *error_msg)
 	}
 	return (0);
 }
-
 
 int	ft_executor(t_map *map)
 {
