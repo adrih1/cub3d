@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/15 12:11:24 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:28:59 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,6 @@ int	ft_init_image(t_data *data, t_texture *texture)
 		printf("Error: Could not get image data address\n");
 		return (1);
 	}
-	// Afficher les informations pour déboguer
-	printf("bits_per_pixel = %d\n", texture->bits_per_pixel);
-	printf("line_length = %d\n", texture->line_length);
-	printf("endian = %d\n", texture->endian);
-	printf("Image address = %p\n", (void *)texture->addr);
 	return (0);
 }
 
@@ -85,7 +80,6 @@ int	ft_executor(t_map *map)
 		printf("There was an issue to initialize data\n");
 		return (1);
 	}
-	printf("Window initialized with width = %d and height = %d\n", data.win_width, data.win_height);
 	map->data = &data;
 	if(ft_load_textures(map))
 	{
@@ -99,8 +93,6 @@ int	ft_executor(t_map *map)
 	}
 	map->main_image = &main_image;
 	mlx_put_image_to_window(map->data->mlx_ptr, map->data->win_ptr, main_image.img, 0, 0);
-	printf("Image put to window at position (0, 0)\n");
-	
 	mlx_hook(data.win_ptr, 2, 1L << 0, on_keypress, map);
 	mlx_hook(data.win_ptr, 17, 1L << 4, on_destroy, map);
 	ft_raycasting(map);

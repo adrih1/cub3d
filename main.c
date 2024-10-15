@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 11:48:36 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:33:55 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,10 @@ int main(int ac, char **av)
 {
 	t_map *map;
 
-	if (ac != 2)
+	if (ac != 2 || ft_verify_extension(av[1]))
 	{
 		printf("Please give a .cub file for the map\n");
 		return (1);		
-	}
-	if (ft_verify_extension(av[1]))
-	{
-		printf("Please make sure the file extension is '.cub'\n");		
-		return (1);
 	}
 	if (ft_init_map(&map))
 	{
@@ -74,19 +69,12 @@ int main(int ac, char **av)
 		ft_clean(map);
 		return (1);		
 	}
-	else
-		if (ft_parsing(map, av[1]))
-		{
-			ft_clean(map);
-			return (1);
-		}
-	// MinilibX - Initialisation de la fenetre
+	if (ft_parsing(map, av[1]))
+	{
+		ft_clean(map);
+		return (1);
+	}
 	ft_executor(map);
-	// The Game
-		// Casting the Rays
-		// Rendering the walls
-		// Player Movement
-	// Clean
 	ft_clean(map);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:25:37 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/15 12:18:21 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:23:22 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_clear_window(t_data *data, t_texture *main_image)
 	{
 		for (int x = 0; x < data->win_width; x++)
 		{
-			my_mlx_pixel_put(main_image, x, y, 0x00000000);  // Couleur rouge
+			my_mlx_pixel_put(main_image, x, y, 0x00000000);
 		}
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, main_image->img, 0, 0);

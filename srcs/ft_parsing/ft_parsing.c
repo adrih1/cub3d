@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 15:40:15 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:32:34 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,5 @@ int	ft_parsing(t_map *map, char *filename)
 		return (1);
 	if (ft_generate_map_grid(map))
 		return (1);
-	
 	return (0);
 }
