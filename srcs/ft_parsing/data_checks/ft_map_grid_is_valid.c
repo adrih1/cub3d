@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 16:30:00 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 17:50:33 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	ft_check_unvalid_chars(char c)
 {
+	
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'O' || c == '0' || c == '1'
 		|| c == ' ' || c == '\n')
-		return (0);
+	{
+		return (0);		
+	}
 	else
 		printf("Use only valid chars\n");
 	return (1);
@@ -67,8 +70,10 @@ int	ft_map_grid_is_valid(t_map *map, char **grid)
 {
 	int i;
 	int j;
+	int player_count;
 
 	i = 0;
+	player_count = 0;
 	if(map->real_height < 3)
 	{
 		printf("Map is too smal\n");
@@ -94,6 +99,8 @@ int	ft_map_grid_is_valid(t_map *map, char **grid)
 		{
 			if (ft_check_unvalid_chars(grid[i][j]))
 				return (1);
+			if (grid[i][j] == 'N' || grid[i][j] == 'E' || grid[i][j] == 'S' || grid[i][j] == 'O')
+				player_count++;
 			if (i >= 1 && i < map->real_height - 1)
 			{
 				if ((ft_strlen(grid[i]) > ft_strlen(grid[i - 1]))
@@ -116,6 +123,11 @@ int	ft_map_grid_is_valid(t_map *map, char **grid)
 			j++;
 		}
 		i++;
+	}
+	if (player_count != 1)
+	{
+		printf("There must be exactly one player in the map\n");
+		return (1);
 	}
 	return (0);
 }
