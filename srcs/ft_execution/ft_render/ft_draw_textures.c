@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:48:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 11:03:18 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:16:37 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,21 +117,15 @@ unsigned int	ft_get_texture_color(t_texture *texture, int texX, int texY)
 	return (color);
 }
 
-void	ft_draw_texture(t_data *data, t_texture *texture, int x, int y_start,
-		int y_end, int texX, int line_height)
+void	ft_draw_vertical_line(t_texture *texture, int x, int drawStart, int drawEnd, int color)
 {
-	int y = y_start;
-	unsigned int color;
+	int	y;
 
-	while (y < y_end)
+	// Dessiner la ligne verticale entre drawStart et drawEnd
+	y = drawStart;
+	while (y <= drawEnd)
 	{
-		int texY = ft_calculate_texture_y(y, line_height, texture, data);
-
-		color = ft_get_texture_color(texture, texX, texY);
-
-		// Affichage du pixel sur l'écran
 		my_mlx_pixel_put(texture, x, y, color);
-
 		y++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/14 15:21:39 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:17:52 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ static int	ft_calculate_line_height(double perpWallDist, int screenHeight)
 
 void	ft_raycasting(t_map *map)
 {
-	int				x;
-	int				lineHeight;
-	int				drawStart;
-	int				drawEnd;
-	t_ray			ray;
-	int				texX;
+	int		x;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+	t_ray	ray;
+	int		color;
 
 	x = 0;
 	while (x < map->data->win_width)
@@ -119,9 +119,10 @@ void	ft_raycasting(t_map *map)
 		drawEnd = lineHeight / 2 + map->data->win_height / 2;
 		if (drawEnd >= map->data->win_height)
 			drawEnd = map->data->win_height - 1;
-		
-		
-		texX = ft_calculate_texture_x(&ray, map->player, ft_select_texture(map, &ray));		
+		color = ft_choose_wall_color(ray.side, ray.mapX, ray.mapY);
+		if (ray.side == 1)
+			color = color / 2; // On divise la couleur par 2 pour assombrir
+		ft_draw_vertical_line(map->main_image, x, drawStart, drawEnd, color);
 		x++;
 	}
 }
@@ -135,4 +136,4 @@ void	ft_raycasting(t_map *map)
 
 // // 9. Dessiner la ligne avec la couleur choisie
 // draw_vertical_line_with_color(map->data->mlx_ptr, map->data->win_ptr, x,
-	// drawStart, drawEnd, color);
+// drawStart, drawEnd, color);

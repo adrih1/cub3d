@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/01 12:24:15 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 11:48:36 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int ft_init_map(t_map **map)
 	(*map)->f_color = NULL;
 	(*map)->c_color = NULL;
 	(*map)->player = NULL;
+	(*map)->main_image = NULL;
 	return (0);
 }
 

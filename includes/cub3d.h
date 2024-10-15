@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/14 15:18:44 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:17:22 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ typedef struct s_map
 	t_texture			*east;
 	t_texture			*south;
 	t_texture			*west;
+	t_texture			*main_image;
 }						t_map;
 
 /*
@@ -178,7 +179,9 @@ int						ft_choose_wall_color(int side, int stepX, int stepY);
 void					ft_draw_vertical_line_with_color(void *mlx_ptr,
 							void *win_ptr, int x, int drawStart, int drawEnd,
 							int color);
-
+void					ft_draw_vertical_line(t_texture *texture, int x,
+							int drawStart, int drawEnd, int color);
+void					ft_clear_window(t_data *data, t_texture *texture);
 void					my_mlx_pixel_put(t_texture *texture, int x, int y,
 							int color);
 

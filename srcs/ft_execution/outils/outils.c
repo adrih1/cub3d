@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:25:37 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/14 15:19:19 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:18:21 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,17 @@ void	my_mlx_pixel_put(t_texture *texture, int x, int y, int color)
 
 	dst = texture->addr + (y * texture->line_length + x * (texture->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
+}
+
+
+void	ft_clear_window(t_data *data, t_texture *main_image)
+{
+	for (int y = 0; y < data->win_height; y++)
+	{
+		for (int x = 0; x < data->win_width; x++)
+		{
+			my_mlx_pixel_put(main_image, x, y, 0x00000000);  // Couleur rouge
+		}
+	}
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, main_image->img, 0, 0);
 }
