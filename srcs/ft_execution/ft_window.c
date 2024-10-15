@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/15 15:56:12 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:18:19 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	on_keypress(int keynum, t_map *map)
 		on_destroy(map);
 	ft_clear_window(map->data, map->main_image);
 	ft_move_player(keynum, map);
-	ft_rotate_camera(keynum, map);
+	ft_move_camera(keynum, map);
 	ft_render_frame(map);
 	return (keynum);
 }
@@ -45,7 +45,7 @@ int	ft_executor(t_map *map)
 	t_texture	main_image;
 
 	if (ft_init_mlx(&data))
-		return (ft_message_error("There was an issue to initialize data in executor"));
+		return (ft_message_error("Error: initialize data in executor"));
 	map->data = &data;
 	if (ft_load_textures(map))
 		return (ft_message_error("Error with textures in ft_executor"));

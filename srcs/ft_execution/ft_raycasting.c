@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/15 15:54:36 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:08:35 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static double	ft_fabs(double n)
 	return (n);
 }
 
-// Initialise le rayon pour une colonne x.
 static void	ft_init_ray(t_ray *ray, t_player *player, int x, int screenWidth)
 {
 	double	camera_x;
@@ -61,23 +60,21 @@ static void	ft_calculate_step_and_side_dist(t_ray *ray, t_player *player)
 
 static void	ft_perform_dda(t_ray *ray, t_map *map)
 {
-	while (ray->hit == 0) // Tant que le rayon n'a pas touché un mur
+	while (ray->hit == 0)
 	{
 		if (ray->sideDistX < ray->sideDistY)
 		{
 			ray->sideDistX += ray->deltaDistX;
 			ray->mapX += ray->stepX;
-			ray->side = 0; // Rayon touche un mur sur l'axe X
+			ray->side = 0;
 		}
 		else
 		{
 			ray->sideDistY += ray->deltaDistY;
 			ray->mapY += ray->stepY;
-			ray->side = 1; // Rayon touche un mur sur l'axe Y
+			ray->side = 1;
 		}
-		// Ici on vérifie si la case dans grid contient un mur
 		if (map->grid[ray->mapY][ray->mapX] == '1')
-			// Si la case contient un mur ('1')
 			ray->hit = 1;
 	}
 }

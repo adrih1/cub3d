@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:35:52 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 13:51:20 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:06:06 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,15 @@ int	ft_init_mlx(t_data *data)
 
 int	ft_init_main_image(t_data *data, t_texture *texture)
 {
-	
-	texture->img = mlx_new_image(data->mlx_ptr, data->win_width, data->win_height);
+	texture->img = mlx_new_image(data->mlx_ptr, data->win_width,
+			data->win_height);
 	if (!texture->img)
 	{
 		printf("Error: Could not create main image\n");
 		return (1);
 	}
-	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel, &texture->line_length, &texture->endian);
+	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
+			&texture->line_length, &texture->endian);
 	if (!texture->addr)
 	{
 		printf("Error: Could not get image data address of main image\n");

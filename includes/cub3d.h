@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 15:54:15 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:18:04 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ void					ft_render_frame(t_map *map);
 
 /************ MOVEMENT ************/
 void					ft_move_player(int keynum, t_map *map);
-void					ft_rotate_camera(int keynum, t_map *map);
+void					ft_move_camera(int keynum, t_map *map);
 
 /************ WINDOOW INIT + GAME LOOP ************/
 int						ft_executor(t_map *map);

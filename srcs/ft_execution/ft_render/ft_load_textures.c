@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:10:03 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 12:41:09 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:22:46 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	ft_load_east_texture(t_map *map, t_texture *texture, int width, int height)
 		return (1);
 	}
 	map->east->addr = mlx_get_data_addr(map->east->img,
-		&map->east->bits_per_pixel, &map->east->line_length,
-		&map->east->endian);
+			&map->east->bits_per_pixel, &map->east->line_length,
+			&map->east->endian);
 	map->east->width = width;
 	map->east->height = height;
 	return (0);
@@ -77,8 +77,8 @@ int	ft_load_south_texture(t_map *map, t_texture *texture, int width, int height)
 		return (1);
 	}
 	map->south->addr = mlx_get_data_addr(map->south->img,
-		&map->south->bits_per_pixel, &map->south->line_length,
-		&map->south->endian);
+			&map->south->bits_per_pixel, &map->south->line_length,
+			&map->south->endian);
 	map->south->width = width;
 	map->south->height = height;
 	return (0);
@@ -101,8 +101,8 @@ int	ft_load_west_texture(t_map *map, t_texture *texture, int width, int height)
 		return (1);
 	}
 	map->west->addr = mlx_get_data_addr(map->west->img,
-		&map->west->bits_per_pixel, &map->west->line_length,
-		&map->west->endian);
+			&map->west->bits_per_pixel, &map->west->line_length,
+			&map->west->endian);
 	map->west->width = width;
 	map->west->height = height;
 	return (0);
