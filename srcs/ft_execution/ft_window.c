@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/15 12:28:59 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:48:27 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,40 +29,11 @@ int	on_keypress(int keynum, t_map *map)
 	return (keynum);
 }
 
-int	ft_init_mlx(t_data *data)
+int	ft_check_error(int ret_value, const char *error_msg)
 {
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
+	if (ret_value != 0)
 	{
-		printf("Error initializing MLX\n");
-		return (1);
-	}
-	data->win_width = 1200;
-	data->win_height = 700;
-	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_width,
-			data->win_height, "cub3D");
-	if (!data->win_ptr)
-	{
-		printf("Error creating window\n");
-		return (1);
-	}
-	return (0);
-}
-
-int	ft_init_image(t_data *data, t_texture *texture)
-{
-	// Créer une nouvelle image avec les dimensions de la fenêtre
-	texture->img = mlx_new_image(data->mlx_ptr, data->win_width, data->win_height);
-	if (!texture->img)
-	{
-		printf("Error: Could not create image\n");
-		return (1);
-	}
-	// Obtenir l'adresse de l'image et les informations associées
-	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel, &texture->line_length, &texture->endian);
-	if (!texture->addr)
-	{
-		printf("Error: Could not get image data address\n");
+		printf("%s\n", error_msg);
 		return (1);
 	}
 	return (0);
@@ -71,28 +42,19 @@ int	ft_init_image(t_data *data, t_texture *texture)
 
 int	ft_executor(t_map *map)
 {
-	(void)map;
-	t_data data;
+	t_data		data;
 	t_texture	main_image;
 
 	if (ft_init_mlx(&data))
-	{
-		printf("There was an issue to initialize data\n");
-		return (1);
-	}
+		return (ft_message_error("There was an issue to initialize data in executor"));
 	map->data = &data;
-	if(ft_load_textures(map))
-	{
-		printf("Isssue with textures in ft_executor\n");
-		return (1);		
-	}
-	if (ft_init_image(map->data, &main_image))
-	{
-		printf("Error: Could not initialize main image\n");
-		return (1);
-	}
+	if (ft_load_textures(map))
+		return (ft_message_error("Error with textures in ft_executor"));
+	if (ft_init_main_image(map->data, &main_image))
+		return (ft_message_error("Error: Could not initialize main image\n"));
 	map->main_image = &main_image;
-	mlx_put_image_to_window(map->data->mlx_ptr, map->data->win_ptr, main_image.img, 0, 0);
+	mlx_put_image_to_window(map->data->mlx_ptr, map->data->win_ptr,
+		main_image.img, 0, 0);
 	mlx_hook(data.win_ptr, 2, 1L << 0, on_keypress, map);
 	mlx_hook(data.win_ptr, 17, 1L << 4, on_destroy, map);
 	ft_raycasting(map);

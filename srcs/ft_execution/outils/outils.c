@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:25:37 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/15 12:23:22 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:50:47 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_message_error(char *error)
 {
-	perror(error);
+	printf("%s\n", error);
 	return (1);
 }
 
@@ -23,6 +23,7 @@ void	ft_exit_error(char *error)
 	perror(error);
 	exit(1);
 }
+
 
 int	rgb_to_int(char **color)
 {

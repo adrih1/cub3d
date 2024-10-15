@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 12:33:55 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:50:12 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ int ft_init_map(t_map **map)
 {
 	*map = malloc(sizeof(t_map));
 	if (!*map)
-	{
-		printf("Error during malloc for map\n");
-		return (1);
-	}
+		return (ft_message_error("Error durring malloc for map\n"));
 	(*map)->m_width = 0;
 	(*map)->m_height = 0;
 	(*map)->real_height = 0;
@@ -59,10 +56,7 @@ int main(int ac, char **av)
 	t_map *map;
 
 	if (ac != 2 || ft_verify_extension(av[1]))
-	{
-		printf("Please give a .cub file for the map\n");
-		return (1);		
-	}
+		return (ft_message_error("Please give a .cub file for the map"));
 	if (ft_init_map(&map))
 	{
 		printf("Probleme pour init map\n");

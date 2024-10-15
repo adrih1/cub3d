@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 12:17:22 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 12:37:17 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,11 +176,14 @@ int						ft_parsing(t_map *map, char *filename);
 /************ RENDER ************/
 // Fonction a supprimer plus tard - Dessine les murs de differentes couleurs
 int						ft_choose_wall_color(int side, int stepX, int stepY);
-void					ft_draw_vertical_line_with_color(void *mlx_ptr,
-							void *win_ptr, int x, int drawStart, int drawEnd,
-							int color);
 void					ft_draw_vertical_line(t_texture *texture, int x,
 							int drawStart, int drawEnd, int color);
+
+// Init
+int						ft_init_mlx(t_data *data);
+int						ft_init_main_image(t_data *data, t_texture *texture);
+
+// Outils
 void					ft_clear_window(t_data *data, t_texture *texture);
 void					my_mlx_pixel_put(t_texture *texture, int x, int y,
 							int color);
