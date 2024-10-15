@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 14:58:34 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 15:54:15 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ typedef struct s_ray
 	int					draw_end;
 	int					color;
 }						t_ray;
-
 
 // Structure pour représenter le player
 typedef struct s_player
@@ -208,8 +207,9 @@ int						rgb_to_int(char **color);
 void					ft_render_floor_ceiling(t_map *map);
 
 // Main Functions
-void					ft_raycasting(t_map *map);
-int						ft_render_frame(t_map *map);
+void					ft_render_column(t_map *map, t_ray *ray, int x);
+void					ft_raycasting(t_map *map, t_ray *ray, int x);
+void					ft_render_frame(t_map *map);
 
 /************ MOVEMENT ************/
 void					ft_move_player(int keynum, t_map *map);

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/15 14:59:00 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 15:54:36 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,43 +95,18 @@ static int	ft_calculate_line_height(double perpWallDist, int screenHeight)
 	return ((int)(screenHeight / perpWallDist));
 }
 
-void	ft_raycasting(t_map *map)
+void	ft_raycasting(t_map *map, t_ray *ray, int x)
 {
-	int		x;
-	t_ray	ray;
-
-	x = 0;
-	while (x < map->data->win_width)
-	{
-		ft_init_ray(&ray, map->player, x, map->data->win_width);
-		ft_calculate_step_and_side_dist(&ray, map->player);
-		ft_perform_dda(&ray, map);
-		ray.perpWallDist = ft_calculate_perp_wall_dist(&ray, map->player);
-		ray.line_height = ft_calculate_line_height(ray.perpWallDist,
-				map->data->win_height);
-		ray.draw_start = -ray.line_height / 2 + map->data->win_height / 2;
-		if (ray.draw_start < 0)
-			ray.draw_start = 0;
-		ray.draw_end = ray.line_height / 2 + map->data->win_height / 2;
-		if (ray.draw_end >= map->data->win_height)
-			ray.draw_end = map->data->win_height - 1;
-
-		
-		ray.color = ft_choose_wall_color(ray.side, ray.mapX, ray.mapY);
-		if (ray.side == 1)
-			ray.color = ray.color / 2;
-		ft_draw_vertical_line(map->main_image, x, ray.draw_start, ray.draw_end, ray.color);
-		x++;
-	}
+	ft_init_ray(ray, map->player, x, map->data->win_width);
+	ft_calculate_step_and_side_dist(ray, map->player);
+	ft_perform_dda(ray, map);
+	ray->perpWallDist = ft_calculate_perp_wall_dist(ray, map->player);
+	ray->line_height = ft_calculate_line_height(ray->perpWallDist,
+			map->data->win_height);
+	ray->draw_start = -ray->line_height / 2 + map->data->win_height / 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + map->data->win_height / 2;
+	if (ray->draw_end >= map->data->win_height)
+		ray->draw_end = map->data->win_height - 1;
 }
-
-// RENDER VISUEL - OLD LINE
-// // 7. Choisir la couleur en fonction de la position du mur dans la map
-// color = choose_wall_color(map, ray.mapX, ray.mapY);
-// // 8. Ajuster la luminosité si on a touché un mur sur un côté Y (side == 1)
-// if (ray.side == 1)
-// 	color = color / 2; // On divise la couleur par 2 pour assombrir
-
-// // 9. Dessiner la ligne avec la couleur choisie
-// draw_vertical_line_with_color(map->data->mlx_ptr, map->data->win_ptr, x,
-// drawStart, drawEnd, color);
