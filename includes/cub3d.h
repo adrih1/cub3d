@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 14:18:22 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 14:58:34 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,12 @@ typedef struct s_ray
 	int					hit;
 	int					side;
 	double				perpWallDist;
-}						t_ray;
-
-// Structure qui represente un rayon
-typedef struct s_wall
-{
 	int					line_height;
 	int					draw_start;
 	int					draw_end;
 	int					color;
-}						t_wall;
+}						t_ray;
+
 
 // Structure pour représenter le player
 typedef struct s_player

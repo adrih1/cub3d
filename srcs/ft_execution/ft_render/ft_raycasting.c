@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/15 13:47:09 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 14:59:00 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ static int	ft_calculate_line_height(double perpWallDist, int screenHeight)
 void	ft_raycasting(t_map *map)
 {
 	int		x;
-	t_wall	wall;
 	t_ray	ray;
 
 	x = 0;
@@ -108,18 +107,20 @@ void	ft_raycasting(t_map *map)
 		ft_calculate_step_and_side_dist(&ray, map->player);
 		ft_perform_dda(&ray, map);
 		ray.perpWallDist = ft_calculate_perp_wall_dist(&ray, map->player);
-		wall.line_height = ft_calculate_line_height(ray.perpWallDist,
+		ray.line_height = ft_calculate_line_height(ray.perpWallDist,
 				map->data->win_height);
-		wall.draw_start = -wall.line_height / 2 + map->data->win_height / 2;
-		if (wall.draw_start < 0)
-			wall.draw_start = 0;
-		wall.draw_end = wall.line_height / 2 + map->data->win_height / 2;
-		if (wall.draw_end >= map->data->win_height)
-			wall.draw_end = map->data->win_height - 1;
-		wall.color = ft_choose_wall_color(ray.side, ray.mapX, ray.mapY);
+		ray.draw_start = -ray.line_height / 2 + map->data->win_height / 2;
+		if (ray.draw_start < 0)
+			ray.draw_start = 0;
+		ray.draw_end = ray.line_height / 2 + map->data->win_height / 2;
+		if (ray.draw_end >= map->data->win_height)
+			ray.draw_end = map->data->win_height - 1;
+
+		
+		ray.color = ft_choose_wall_color(ray.side, ray.mapX, ray.mapY);
 		if (ray.side == 1)
-			wall.color = wall.color / 2;
-		ft_draw_vertical_line(map->main_image, x, wall.draw_start, wall.draw_end, wall.color);
+			ray.color = ray.color / 2;
+		ft_draw_vertical_line(map->main_image, x, ray.draw_start, ray.draw_end, ray.color);
 		x++;
 	}
 }
