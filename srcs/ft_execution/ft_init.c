@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:35:52 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 12:39:40 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 13:51:20 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	ft_init_mlx(t_data *data)
 
 int	ft_init_main_image(t_data *data, t_texture *texture)
 {
+	
 	texture->img = mlx_new_image(data->mlx_ptr, data->win_width, data->win_height);
 	if (!texture->img)
 	{

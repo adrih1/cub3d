@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/15 12:17:52 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 13:47:09 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static double	ft_fabs(double n)
 // Initialise le rayon pour une colonne x.
 static void	ft_init_ray(t_ray *ray, t_player *player, int x, int screenWidth)
 {
-	double	cameraX;
+	double	camera_x;
 
-	cameraX = 2 * x / (double)screenWidth - 1;
-	ray->rayDirX = player->dirX + player->planeX * cameraX;
-	ray->rayDirY = player->dirY + player->planeY * cameraX;
+	camera_x = 2 * x / (double)screenWidth - 1;
+	ray->rayDirX = player->dirX + player->planeX * camera_x;
+	ray->rayDirY = player->dirY + player->planeY * camera_x;
 	ray->mapX = (int)player->x;
 	ray->mapY = (int)player->y;
 	ray->deltaDistX = ft_fabs(1 / ray->rayDirX);
@@ -92,17 +92,14 @@ static double	ft_calculate_perp_wall_dist(t_ray *ray, t_player *player)
 
 static int	ft_calculate_line_height(double perpWallDist, int screenHeight)
 {
-	return (int)(screenHeight / perpWallDist);
+	return ((int)(screenHeight / perpWallDist));
 }
 
 void	ft_raycasting(t_map *map)
 {
 	int		x;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
+	t_wall	wall;
 	t_ray	ray;
-	int		color;
 
 	x = 0;
 	while (x < map->data->win_width)
@@ -111,18 +108,18 @@ void	ft_raycasting(t_map *map)
 		ft_calculate_step_and_side_dist(&ray, map->player);
 		ft_perform_dda(&ray, map);
 		ray.perpWallDist = ft_calculate_perp_wall_dist(&ray, map->player);
-		lineHeight = ft_calculate_line_height(ray.perpWallDist,
+		wall.line_height = ft_calculate_line_height(ray.perpWallDist,
 				map->data->win_height);
-		drawStart = -lineHeight / 2 + map->data->win_height / 2;
-		if (drawStart < 0)
-			drawStart = 0;
-		drawEnd = lineHeight / 2 + map->data->win_height / 2;
-		if (drawEnd >= map->data->win_height)
-			drawEnd = map->data->win_height - 1;
-		color = ft_choose_wall_color(ray.side, ray.mapX, ray.mapY);
+		wall.draw_start = -wall.line_height / 2 + map->data->win_height / 2;
+		if (wall.draw_start < 0)
+			wall.draw_start = 0;
+		wall.draw_end = wall.line_height / 2 + map->data->win_height / 2;
+		if (wall.draw_end >= map->data->win_height)
+			wall.draw_end = map->data->win_height - 1;
+		wall.color = ft_choose_wall_color(ray.side, ray.mapX, ray.mapY);
 		if (ray.side == 1)
-			color = color / 2; // On divise la couleur par 2 pour assombrir
-		ft_draw_vertical_line(map->main_image, x, drawStart, drawEnd, color);
+			wall.color = wall.color / 2;
+		ft_draw_vertical_line(map->main_image, x, wall.draw_start, wall.draw_end, wall.color);
 		x++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:25:37 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/15 12:50:47 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 13:28:21 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,19 @@ void	my_mlx_pixel_put(t_texture *texture, int x, int y, int color)
 
 void	ft_clear_window(t_data *data, t_texture *main_image)
 {
-	for (int y = 0; y < data->win_height; y++)
+	int y;
+	int x;
+
+	y = 0;
+	while(y < data->win_height)
 	{
-		for (int x = 0; x < data->win_width; x++)
+		x = 0;
+		while (x < data->win_width)
 		{
 			my_mlx_pixel_put(main_image, x, y, 0x00000000);
+			x++;
 		}
+		y++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, main_image->img, 0, 0);
 }

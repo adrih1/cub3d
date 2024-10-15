@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/14 14:53:17 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 14:20:59 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,12 @@ void	ft_free_data(t_data *data)
 	}
 }
 
+void	ft_free_main_image(t_data *data, t_texture *main_image)
+{
+	mlx_destroy_image(data->mlx_ptr, main_image->img);
+	main_image->img = NULL; // Optionnel : éviter les pointeurs pendants
+}
+
 // Fonction pour libérer toute la structure t_map
 void	ft_clean(t_map *map)
 {
@@ -103,6 +109,8 @@ void	ft_clean(t_map *map)
 		ft_free_textures(map->textures, map);
 	if (map->player)
 		free(map->player);
+	if (map->main_image)
+		ft_free_main_image(map->data, map->main_image);
 	if (map->data)
 		ft_free_data(map->data);
 	free(map);
