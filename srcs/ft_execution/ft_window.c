@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/15 16:18:19 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 16:58:06 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ft_executor(t_map *map)
 	if (ft_init_main_image(map->data, &main_image))
 		return (ft_message_error("Error: Could not initialize main image\n"));
 	map->main_image = &main_image;
+	ft_render_floor_ceiling(map);
 	ft_render_frame(map);
 	mlx_put_image_to_window(map->data->mlx_ptr, map->data->win_ptr,
 		main_image.img, 0, 0);
