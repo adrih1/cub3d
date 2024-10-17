@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 16:18:04 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/15 17:41:44 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_player
 // Structure pour représenter la map
 typedef struct s_map
 {
+	int					nb_players;
 	int					m_width;
 	int					m_height;
 	int					real_height;
