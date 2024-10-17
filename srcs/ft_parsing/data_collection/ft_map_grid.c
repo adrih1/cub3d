@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/17 15:27:28 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/17 16:40:04 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,42 @@ static int	ft_init_player(t_map *map, char *str, int y)
 	return (0);
 }
 
+//Fonction d'affichage a supprimer plus tard
+void	ft_display_line(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i])
+	{
+		if (str[i] == ' ')
+			printf("_");
+		else
+			printf("%c", str[i]);
+		i++;
+	}
+}
+
+char *ft_copy_line_util(char *dest, char *src, int longest_string)
+{
+	int i; 
+
+	i = 0;
+	while(src[i] && src[i] != '\n')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	while(i < longest_string - 1)
+	{
+		dest[i] = ' ';
+		i++;
+	}
+	dest[i] = '\n';
+	dest[i + 1] = '\0';
+	return (dest);
+}
+
 static int	ft_grid_copy_lines(t_map *map, int start)
 {
 	int	i;
@@ -91,10 +127,10 @@ static int	ft_grid_copy_lines(t_map *map, int start)
 	i = 0;
 	total_height = start + map->real_height;
 	while (start < total_height && map->dirty_grid[start])
-	{	
-		map->grid[i] = malloc(sizeof(char) * (map->longest_str + 1));
-		ft_memset(map->grid[i], 32 , map->longest_str);
-		ft_strncpy(map->grid[i], map->dirty_grid[start], map->longest_str); 
+	{
+		map->grid[i] = malloc(sizeof(char) * (map->longest_str));
+		ft_copy_line_util(map->grid[i], map->dirty_grid[start], map->longest_str);
+		// ft_display_line(map->grid[i]);
 		if (ft_find_player(map->grid[i]))
 		{
 			if (ft_init_player(map, map->grid[i], i))
