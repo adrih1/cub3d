@@ -6,27 +6,11 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:46:23 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 14:59:42 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/17 15:16:07 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	ft_open_file(char *filename)
-{
-	int	fd;
-
-	if (!filename)
-		exit(1);
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Probleme pour pour ouvrir le fichier");
-		close(fd);
-		return (-1);
-	}
-	return (fd);
-}
 
 int	ft_find_file_height(int fd)
 {
@@ -105,4 +89,36 @@ int	ft_find_map_height(t_map *map)
 	}
 	map_real_height = map->m_height - 6 - empty_lines;
 	return (map_real_height);
+}
+
+size_t	ft_my_str_len(char *str)
+{
+	int i;
+	size_t count;  
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			count++;
+		i++;
+	} 
+	return (count);
+}
+
+int	ft_find_map_longest_str(t_map *map)
+{
+	int i;
+	size_t max_string;
+
+	i = map->begin;
+	max_string = 0;
+	while(map->dirty_grid[i])
+	{
+		if (ft_my_str_len(map->dirty_grid[i]) > max_string)
+			max_string = ft_my_str_len(map->dirty_grid[i]);
+		i++;
+	}
+	return (max_string);
 }

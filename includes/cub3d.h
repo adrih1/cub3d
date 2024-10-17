@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 17:41:44 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/17 14:50:52 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,9 @@ typedef struct s_map
 	int					nb_players;
 	int					m_width;
 	int					m_height;
+	int					begin;
+	int					end;
+	size_t				longest_str;
 	int					real_height;
 	char				**dirty_grid;
 	char				**grid;
@@ -169,12 +172,18 @@ int						ft_map_info_is_valid(t_map *map);
 
 // Fourht Step - Building the actual map grid
 int						ft_find_map_beginning(char **dirty_grid);
+int						ft_find_map_end(t_map *map);
+int						ft_find_map_longest_str(t_map *map);
 char					*ft_find_player(char *str);
 int						ft_generate_map_grid_util(t_map *map);
 int						ft_generate_map_grid(t_map *map);
 
 // Fith Step - Check Map Grid
-int						ft_map_grid_is_valid(t_map *map, char **grid);
+int						ft_check_unvalid_chars(char c);
+int						ft_check_has_only_walls_spaces(char *str);
+int						ft_check_ones_end_begin(char *str);
+
+int						ft_map_grid_is_valid(t_map *map);
 // Main Function
 int						ft_parsing(t_map *map, char *filename);
 

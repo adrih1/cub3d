@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 13:31:33 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/17 15:15:26 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 
 int	ft_generate_map_grid(t_map *map)
 {
-
+	map->begin = ft_find_map_beginning(map->dirty_grid);
+	map->end = ft_find_map_end(map);
+	map->longest_str = ft_find_map_longest_str(map);
 	map->real_height = ft_find_map_height(map);
 	map->grid = malloc(sizeof(char *) * (map->real_height + 1));
 	if (!map->grid)
 		return (ft_message_error("Error during malloc for map->grid"));
 	ft_generate_map_grid_util(map);
-	if(ft_map_grid_is_valid(map, map->grid))
+	if(ft_map_grid_is_valid(map))
 		return (ft_message_error("This map is not valid"));
 	return (0);
 }

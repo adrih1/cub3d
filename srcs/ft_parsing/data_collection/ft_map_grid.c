@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/30 12:42:13 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/17 15:27:28 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,11 @@ static int	ft_grid_copy_lines(t_map *map, int start)
 
 	i = 0;
 	total_height = start + map->real_height;
-	while (start < total_height )
-	{
-		map->grid[i] = ft_strdup(map->dirty_grid[start]);
+	while (start < total_height && map->dirty_grid[start])
+	{	
+		map->grid[i] = malloc(sizeof(char) * (map->longest_str + 1));
+		ft_memset(map->grid[i], 32 , map->longest_str);
+		ft_strncpy(map->grid[i], map->dirty_grid[start], map->longest_str); 
 		if (ft_find_player(map->grid[i]))
 		{
 			if (ft_init_player(map, map->grid[i], i))

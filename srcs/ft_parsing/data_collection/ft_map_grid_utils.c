@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:48:05 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 16:23:12 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/17 13:43:46 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_find_player(char *str)
 	return (NULL);
 }
 
-int ft_check_is_grid_beginning(char *str)
+int ft_check_is_grid_limit(char *str)
 {
     int i;
 	int count_one;
@@ -64,9 +64,30 @@ int	ft_find_map_beginning(char **dirty_grid)
 		j = 0;
 		while(temp[i][j] == ' ')
 			j++;
-		if (ft_check_is_grid_beginning(temp[i]))
+		if (ft_check_is_grid_limit(temp[i]))
 			return (i);
 		i++;
+	}
+	free(temp);
+	return (0);
+}
+
+int	ft_find_map_end(t_map *map)
+{
+	int i;
+	int j;
+	char **temp;
+
+	temp = map->dirty_grid;
+	i = map->m_height - 1;
+	while (temp[i])
+	{
+		j = 0;
+		while(temp[i][j] == ' ')
+			j++;
+		if (ft_check_is_grid_limit(temp[i]))
+			return (i);
+		i--;
 	}
 	free(temp);
 	return (0);
