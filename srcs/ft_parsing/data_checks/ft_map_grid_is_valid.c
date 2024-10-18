@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/17 14:33:47 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 11:59:27 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ int	ft_map_walls_is_valid(t_map *map)
 	{
 		printf("Your map must be enclosed by walls\n");
 		return (1);
-	}	
+	}
+	if (ft_check_player_can_exit_map(map))
+	{
+		printf("Player should not be able to exit map\n");
+		return(1);
+	}
 	return (0);
 }
 
