@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_find_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ebaillot <ebaillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/18 16:28:56 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 16:38:26 by ebaillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@ static t_texture	*ft_create_texture(t_texture_type id, char *filename)
 	new_texture->texture_id = id;
 	filename_cleaned = ft_delete_id_filename(filename);
 	if (!filename_cleaned)
+	{
+		free(new_texture);
 		return (NULL);
+	}
 	new_texture->filename = ft_strdup(filename_cleaned);
 	if (!new_texture->filename)
 	{
 		free(filename_cleaned);
+		free(new_texture);
 		return (NULL);
 	}
 	free(filename_cleaned);
