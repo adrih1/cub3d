@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 14:39:13 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 16:17:26 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct s_texture
 	int					bits_per_pixel;
 	int					line_length;
 	int					endian;
-	struct s_texture	*next;
 }						t_texture;
 
 // Structure qui represente un rayon
@@ -106,6 +105,7 @@ typedef struct s_player
 // Structure pour représenter la map
 typedef struct s_map
 {
+	int					nb_textures;
 	int					nb_players;
 	int					m_width;
 	int					m_height;

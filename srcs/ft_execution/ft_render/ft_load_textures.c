@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:10:03 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 14:53:00 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 16:16:25 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 int	ft_load_north_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->north = malloc(sizeof(t_texture));
-	if (!map->north)
-	{
-		printf("Failed to allocate memory for North texture\n");
-		return (1);
-	}
+	
 	map->north->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
 	if (!map->north->img)
@@ -38,12 +33,7 @@ int	ft_load_north_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_east_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->east = malloc(sizeof(t_texture));
-	if (!map->east)
-	{
-		printf("Failed to allocate memory for East texture\n");
-		return (1);
-	}
+	
 	map->east->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
 	if (!map->east->img)
@@ -61,12 +51,7 @@ int	ft_load_east_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_south_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->south = malloc(sizeof(t_texture));
-	if (!map->south)
-	{
-		printf("Failed to allocate memory for South texture\n");
-		return (1);
-	}
+
 	map->south->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
 	if (!map->south->img)
@@ -84,12 +69,6 @@ int	ft_load_south_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_west_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->west = malloc(sizeof(t_texture));
-	if (!map->west)
-	{
-		printf("Failed to allocate memory for West texture\n");
-		return (1);
-	}
 	map->west->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
 	if (!map->west->img)
