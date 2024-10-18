@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebaillot <ebaillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 16:39:43 by ebaillot         ###   ########.fr       */
+/*   Updated: 2024/10/18 18:08:45 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,28 @@ void	ft_free_textures(t_map *map)
 	if (map->north)
 	{
 		mlx_destroy_image(map->data->mlx_ptr, map->north->img);
+		map->north->img = NULL;
 		free(map->north->filename);
 		free(map->north);
 	}
 	if (map->east)
 	{
 		mlx_destroy_image(map->data->mlx_ptr, map->east->img);
+		map->east->img = NULL;
 		free(map->east->filename);
 		free(map->east);
 	}
 	if (map->south)
 	{
 		mlx_destroy_image(map->data->mlx_ptr, map->south->img);
+		map->south->img = NULL;
 		free(map->south->filename);
 		free(map->south);
 	}
 	if (map->west)
 	{
 		mlx_destroy_image(map->data->mlx_ptr, map->west->img);
+		map->west->img = NULL;
 		free(map->west->filename);
 		free(map->west);
 	}
@@ -72,7 +76,7 @@ void	ft_free_textures(t_map *map)
 void	ft_free_main_image(t_data *data, t_texture *main_image)
 {
 	mlx_destroy_image(data->mlx_ptr, main_image->img);
-	main_image->img = NULL; // Optionnel : éviter les pointeurs pendants
+	main_image->img = NULL;
 }
 
 // Fonction pour libérer toute la structure t_map
@@ -83,21 +87,23 @@ void	ft_clean(t_map *map)
 	if (map->dirty_grid)
 		if (free_char_array(map->dirty_grid))
 			printf("Could not free map dirty grid\n");
-	if (map->grid)
-		if (free_char_array(map->grid))
-			printf("Could not free map grid\n");
 	if (map->f_color)
 		if (free_char_array(map->f_color))
 			printf("Could not free f_color\n");
 	if (map->c_color)
 		if (free_char_array(map->c_color))
 			printf("Could not free c_color\n");
-	ft_free_textures(map);
-	if (map->player)
-		free(map->player);
+	if (map->grid)
+		if (free_char_array(map->grid))
+			printf("Could not free map grid\n");
+	if (map->textures_found == 1)
+		ft_free_textures(map);
 	if (map->main_image)
 		ft_free_main_image(map->data, map->main_image);
+	if (map->player)
+		free(map->player);
 	if (map->data)
 		ft_free_data(map->data);
 	free(map);
+	map = NULL;
 }

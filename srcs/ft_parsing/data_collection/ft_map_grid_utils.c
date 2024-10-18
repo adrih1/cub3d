@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:48:05 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/17 13:43:46 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 18:13:42 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_find_player(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'O')
+		if (str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'W')
 			return (str);
 		i++;
 	}

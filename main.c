@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 16:05:55 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 18:03:33 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	ft_init_map(t_map **map)
 	if (!*map)
 		return (ft_message_error("Error durring malloc for map\n"));
 	(*map)->nb_textures = 0;
+	(*map)->textures_found = 0;
 	(*map)->nb_players = 0;
 	(*map)->m_width = 0;
 	(*map)->m_height = 0;

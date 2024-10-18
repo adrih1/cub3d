@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 11:59:27 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 18:12:58 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int ft_map_has_one_player_is_valid(t_map *map)
 		j = 0;
 		while (map->grid[i][j])
 		{
-			if(map->grid[i][j] == 'N' || map->grid[i][j] == 'E' || map->grid[i][j] == 'O' ||map->grid[i][j] == 'S')
+			if(map->grid[i][j] == 'N' || map->grid[i][j] == 'E' || map->grid[i][j] == 'W' ||map->grid[i][j] == 'S')
 				count_player++;
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 14:11:10 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 18:13:57 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_player_plane(char c, t_player *player)
 		player->planeX = -0.66;
 		player->planeY = 0;
 	}
-	else if (c == 'O')
+	else if (c == 'W')
 	{
 		player->planeX = 0;
 		player->planeY = -0.66;
@@ -53,7 +53,7 @@ static void	ft_player_orientation(char c, t_player *player)
 		player->dirX = 0;
 		player->dirY = 1;
 	}
-	else if (c == 'O') // Ouest
+	else if (c == 'W') // Ouest
 	{
 		player->dirX = -1;
 		player->dirY = 0;
@@ -75,7 +75,7 @@ static int	ft_init_player(t_map *map, char *str, int y)
 	{
 		ft_player_orientation(str[i], map->player);
 		ft_player_plane(str[i], map->player);
-		if (str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'O')
+		if (str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'W')
 			map->player->x = i;
 		i++;
 	}

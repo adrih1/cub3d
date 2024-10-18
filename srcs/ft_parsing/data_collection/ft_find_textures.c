@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_find_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebaillot <ebaillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/18 16:38:26 by ebaillot         ###   ########.fr       */
+/*   Updated: 2024/10/18 18:04:59 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int	ft_find_textures(t_map *map)
 		printf("You should have 4 textures\n");
 		return (1);		
 	}
+	map->textures_found = 1;
 	return (0);
 }
