@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/17 14:50:21 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 14:39:31 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,14 @@ int	ft_init_map(t_map **map)
 	(*map)->real_height = 0;
 	(*map)->dirty_grid = NULL;
 	(*map)->grid = NULL;
-	(*map)->textures = NULL;
 	(*map)->f_color = NULL;
 	(*map)->c_color = NULL;
 	(*map)->player = NULL;
 	(*map)->main_image = NULL;
+	(*map)->north = NULL;
+	(*map)->east = NULL;
+	(*map)->south = NULL;
+	(*map)->west = NULL;
 	return (0);
 }
 
@@ -88,7 +91,11 @@ int	main(int ac, char **av)
 		ft_clean(map);
 		return (1);
 	}
-	ft_executor(map);
+	if (ft_executor(map))
+	{
+		ft_clean(map);
+		return (1);		
+	}
 	ft_clean(map);
 	return (0);
 }

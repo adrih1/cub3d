@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:27:22 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/24 14:30:15 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 14:50:33 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static int	ft_colors_is_valid(char **f_color, char **c_color)
 static int	ft_texture_is_valid(t_texture *texture)
 {
 	int	fd;
-
 	fd = open(texture->filename, O_RDONLY);
 	if (fd < 0)
 	{
@@ -68,25 +67,17 @@ static int	ft_texture_is_valid(t_texture *texture)
 	return (0);
 }
 
-static int	ft_textures_is_valid(t_texture *texture)
-{
-	while (texture)
-	{
-		if (ft_texture_is_valid(texture))
-		{
-			printf("A texture was not found\n");
-			return (1);
-		}
-		texture = texture->next;
-	}
-	return (0);
-}
-
 int	ft_map_info_is_valid(t_map *map)
 {
 	if (ft_colors_is_valid(map->f_color, map->c_color))
 		return (1);
-	if (ft_textures_is_valid(map->textures))
+	if (ft_texture_is_valid(map->north))
+		return (1);
+	if (ft_texture_is_valid(map->east))
+		return (1);
+	if (ft_texture_is_valid(map->south))
+		return (1);
+	if (ft_texture_is_valid(map->west))
 		return (1);
 	return (0);
 }

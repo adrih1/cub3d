@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/15 16:58:06 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 13:22:59 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ int	ft_executor(t_map *map)
 		return (ft_message_error("Error: initialize data in executor"));
 	map->data = &data;
 	if (ft_load_textures(map))
-		return (ft_message_error("Error with textures in ft_executor"));
+	{
+		printf("Error with textures in executor\n");
+		return (1);		
+	}
 	if (ft_init_main_image(map->data, &main_image))
 		return (ft_message_error("Error: Could not initialize main image\n"));
 	map->main_image = &main_image;

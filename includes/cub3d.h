@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 11:59:47 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/18 14:39:13 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ typedef struct s_map
 	int					real_height;
 	char				**dirty_grid;
 	char				**grid;
-	t_texture			*textures;
 	char				**f_color;
 	char				**c_color;
 	t_data				*data;
