@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 11:37:56 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 12:28:31 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,14 @@ int	ft_generate_dirty_map_file(int fd, t_map *map, char *filename)
 int	ft_generate_map_grid(t_map *map)
 {
 	map->begin = ft_find_map_beginning(map->dirty_grid);
+	if(map->begin == 0)
+		return (1);
 	map->end = ft_find_map_end(map);
 	map->longest_str = ft_find_map_longest_str(map);
 	map->real_height = ft_find_map_height(map);
+	// printf("Map Begin: %d\n", map->begin);
+	// printf("Map End: %d\n", map->end);
+	// printf("Map Real Height: %d\n", map->real_height);
 	map->grid = malloc(sizeof(char *) * (map->real_height + 1));
 	if (!map->grid)
 		return (ft_message_error("Error during malloc for map->grid"));

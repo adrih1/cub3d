@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 11:18:11 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 12:34:01 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,24 @@ void	ft_free_data(t_data *data)
 	}
 }
 
-void	ft_free_texture(t_map *map, t_texture *texture)
+void	ft_free_texture(t_texture *texture, t_data *data)
 {
-	if (!texture)
-		return;
-	if (map->data)
-		mlx_destroy_image(map->data->mlx_ptr, texture->img);
-	texture->img = NULL;  // Met à jour à NULL après destruction de l'image
-	if (texture->filename)
+	if (texture)
+	{
+		if (data)
+			mlx_destroy_image(data->mlx_ptr, texture->img);
+		texture->img = NULL;
 		free(texture->filename);
-	free(texture);
+		free(texture);
+	}
 }
 
 void	ft_free_textures(t_map *map)
 {
-	ft_free_texture(map, map->north);
-	map->north = NULL;
-	ft_free_texture(map, map->east);
-	map->east = NULL;
-	ft_free_texture(map, map->south);
-	map->south = NULL;
-	ft_free_texture(map, map->west);
-	map->west = NULL;
+	ft_free_texture(map->north, map->data);
+	ft_free_texture(map->east, map->data);
+	ft_free_texture(map->south, map->data);
+	ft_free_texture(map->west, map->data);
 }
 
 void	ft_free_main_image(t_data *data, t_texture *main_image)
@@ -88,8 +84,7 @@ void	ft_clean(t_map *map)
 	if (map->grid)
 		if (free_char_array(map->grid))
 			printf("Could not free map grid\n");
-	if (map->textures_found == 1)
-		ft_free_textures(map);
+	ft_free_textures(map);
 	if (map->main_image)
 		ft_free_main_image(map->data, map->main_image);
 	if (map->player)

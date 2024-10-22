@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 13:18:38 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 18:13:20 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 12:44:01 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,14 @@ int ft_check_player_can_exit_map(t_map *map)
 		{
 			if(map->grid[i][j] == '0')
 			{
+				if (j == 0)
+					return (1); 
 				if(map->grid[i-1][j] == ' ')
 					return (1);
 				if(map->grid[i+1][j] == ' ')
 					return (1);
 				if(map->grid[i][j-1] == ' ')
-					return (1);
+					return (1);					
 				if(map->grid[i][j+1] == ' ')
 					return (1);
 			}

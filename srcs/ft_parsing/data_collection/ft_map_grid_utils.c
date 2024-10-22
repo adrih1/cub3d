@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:48:05 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 18:13:42 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 12:49:31 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int ft_check_is_grid_limit(char *str)
 			count_one++;
 			i++;
 		}
-		else if (str[i] == '\n' ||str[i] == ' ')	
+		else if (str[i] == '\n' || str[i] == ' ' || str[i] == '0')	
 			i++;
 		else 
 			return (0);
@@ -68,7 +68,6 @@ int	ft_find_map_beginning(char **dirty_grid)
 			return (i);
 		i++;
 	}
-	free(temp);
 	return (0);
 }
 
@@ -89,6 +88,5 @@ int	ft_find_map_end(t_map *map)
 			return (i);
 		i--;
 	}
-	free(temp);
 	return (0);
 }
