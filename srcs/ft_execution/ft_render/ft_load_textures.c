@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:10:03 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 16:16:25 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 11:16:59 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_load_north_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	
 	map->north->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
 	if (!map->north->img)
@@ -91,6 +90,7 @@ int	ft_load_textures(t_map *map)
 
 	width = 10000;
 	height = 10000;
+
 	if (map->north)
 	{
 		if(ft_load_north_texture(map, map->north, width, height))

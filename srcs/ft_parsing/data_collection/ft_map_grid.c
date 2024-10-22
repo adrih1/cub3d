@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 18:13:57 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 11:47:28 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,34 +79,19 @@ static int	ft_init_player(t_map *map, char *str, int y)
 			map->player->x = i;
 		i++;
 	}
+	
 	map->player->y = y;
 	return (0);
 }
 
-//Fonction d'affichage a supprimer plus tard
-void	ft_display_line(char *str)
-{
-	int i;
-
-	i = 0;
-	while(str[i])
-	{
-		if (str[i] == ' ')
-			printf("_");
-		else
-			printf("%c", str[i]);
-		i++;
-	}
-}
-
-char *ft_copy_line_util(char *dest, char *src, int longest_string)
+static char *ft_copy_line_util(char *dest, char *src, int longest_string)
 {
 	int i; 
 
 	i = 0;
-	while(src[i] && src[i] != '\n')
+	while(src[i] && src[i] != '\n' && i < longest_string)
 	{
-		dest[i] = src[i];
+		dest[i] = src[i]; 
 		i++;
 	}
 	while(i < longest_string)
@@ -119,16 +104,18 @@ char *ft_copy_line_util(char *dest, char *src, int longest_string)
 	return (dest);
 }
 
-static int	ft_grid_copy_lines(t_map *map, int start)
+int	ft_generate_map_grid_util(t_map *map)
 {
 	int	i;
 	int	total_height;
-
+	int start;
+	
 	i = 0;
+	start = map->begin;
 	total_height = start + map->real_height;
 	while (start < total_height && map->dirty_grid[start])
 	{
-		map->grid[i] = malloc(sizeof(char) * (map->longest_str + 2));
+		map->grid[i] = malloc(sizeof(char) * (map->longest_str + 3));
 		ft_copy_line_util(map->grid[i], map->dirty_grid[start], map->longest_str);
 		// ft_display_line(map->grid[i]);
 		if (ft_find_player(map->grid[i]))
@@ -140,12 +127,5 @@ static int	ft_grid_copy_lines(t_map *map, int start)
 		i++;
 	}
 	map->grid[i] = NULL;
-	return (0);
-}
-
-int	ft_generate_map_grid_util(t_map *map)
-{
-
-	ft_grid_copy_lines(map, map->begin);
 	return (0);
 }
