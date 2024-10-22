@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Dossier contenant les maps à tester
-MAP_DIR="maps/good"
+MAP_DIR="maps/bad"
 
 # Exécutable à tester
 EXEC="./cub3d"

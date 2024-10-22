@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:45:42 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 19:24:47 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	ft_generate_map_grid(t_map *map)
 	map->grid = malloc(sizeof(char *) * (map->real_height + 1));
 	if (!map->grid)
 		return (ft_message_error("Error during malloc for map->grid"));
-	ft_generate_map_grid_util(map);
+	if(ft_generate_map_grid_util(map))
+		return (1);
 	return (0);
 }
 

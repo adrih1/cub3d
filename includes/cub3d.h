@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 18:35:28 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 19:14:35 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ int					ft_generate_map_grid_util(t_map *map);
 int					ft_generate_map_grid(t_map *map);
 
 // Fith Step - Check Map Grid
+int					ft_map_has_one_player_is_valid(t_map *map);
 int					ft_check_unvalid_chars(char c);
 int					ft_check_player_can_exit_map(t_map *map);
 int					ft_check_has_only_walls_spaces(char *str);
