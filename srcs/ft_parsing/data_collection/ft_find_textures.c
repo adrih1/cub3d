@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/22 17:48:43 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 20:12:32 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,43 +34,41 @@ static void	ft_create_texture(t_texture *texture, t_texture_type id,
 	free(filename_cleaned);
 }
 
+static void	handle_texture_creation(t_texture *texture, int texture_type,
+		char *str)
+{
+	if (!texture->filename)
+		ft_create_texture(texture, texture_type, str);
+}
+
+static void	update_texture_info(int *texture_number, t_map *map, int info_found)
+{
+	ft_last_info_found(map, info_found);
+	(*texture_number)++;
+}
+
 static int	ft_attribute_texture(int *texture_number, t_map *map, char *str,
 		int info_found)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (ft_strncmp(str, "NO", 2) == 0)
 	{
-		if (str[i] == 'N' && str[i + 1] == 'O')
-		{
-			if (!map->north->filename)
-				ft_create_texture(map->north, NORTH_TEXTURE, str);
-			ft_last_info_found(map, info_found);
-			(*texture_number)++;
-		}
-		else if (str[i] == 'S' && str[i + 1] == 'O')
-		{
-			if (!map->south->filename)
-				ft_create_texture(map->south, SOUTH_TEXTURE, str);
-			ft_last_info_found(map, info_found);
-			(*texture_number)++;
-		}
-		else if (str[i] == 'E' && str[i + 1] == 'A')
-		{
-			if (!map->east->filename)
-				ft_create_texture(map->east, EAST_TEXTURE, str);
-			ft_last_info_found(map, info_found);
-			(*texture_number)++;
-		}
-		else if (str[i] == 'W' && str[i + 1] == 'E')
-		{
-			if (!map->west->filename)
-				ft_create_texture(map->west, WEST_TEXTURE, str);
-			ft_last_info_found(map, info_found);
-			(*texture_number)++;
-		}
-		i++;
+		handle_texture_creation(map->north, NORTH_TEXTURE, str + 2);
+		update_texture_info(texture_number, map, info_found);
+	}
+	else if (ft_strncmp(str, "SO", 2) == 0)
+	{
+		handle_texture_creation(map->south, SOUTH_TEXTURE, str + 2);
+		update_texture_info(texture_number, map, info_found);
+	}
+	else if (ft_strncmp(str, "EA", 2) == 0)
+	{
+		handle_texture_creation(map->east, EAST_TEXTURE, str + 2);
+		update_texture_info(texture_number, map, info_found);
+	}
+	else if (ft_strncmp(str, "WE", 2) == 0)
+	{
+		handle_texture_creation(map->west, WEST_TEXTURE, str + 2);
+		update_texture_info(texture_number, map, info_found);
 	}
 	return (0);
 }

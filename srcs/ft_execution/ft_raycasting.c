@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/22 18:34:32 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 20:20:03 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 
 static void	ft_calculate_step_and_side_dist(t_ray *ray, t_player *player)
 {
-	if (ray->rayDirX < 0)
+	if (ray->ray_dir_x < 0)
 	{
-		ray->stepX = -1;
-		ray->sideDistX = (player->x - ray->mapX) * ray->deltaDistX;
+		ray->step_x = -1;
+		ray->side_dist_x = (player->x - ray->map_x) * ray->delta_dist_x;
 	}
 	else
 	{
-		ray->stepX = 1;
-		ray->sideDistX = (ray->mapX + 1.0 - player->x) * ray->deltaDistX;
+		ray->step_x = 1;
+		ray->side_dist_x = (ray->map_x + 1.0 - player->x) * ray->delta_dist_x;
 	}
-	if (ray->rayDirY < 0)
+	if (ray->ray_dir_y < 0)
 	{
-		ray->stepY = -1;
-		ray->sideDistY = (player->y - ray->mapY) * ray->deltaDistY;
+		ray->step_y = -1;
+		ray->side_dist_y = (player->y - ray->map_y) * ray->delta_dist_y;
 	}
 	else
 	{
-		ray->stepY = 1;
-		ray->sideDistY = (ray->mapY + 1.0 - player->y) * ray->deltaDistY;
+		ray->step_y = 1;
+		ray->side_dist_y = (ray->map_y + 1.0 - player->y) * ray->delta_dist_y;
 	}
 }
 
@@ -41,19 +41,19 @@ static void	ft_perform_dda(t_ray *ray, t_map *map)
 {
 	while (ray->hit == 0)
 	{
-		if (ray->sideDistX < ray->sideDistY)
+		if (ray->side_dist_x < ray->side_dist_y)
 		{
-			ray->sideDistX += ray->deltaDistX;
-			ray->mapX += ray->stepX;
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
 			ray->side = 0;
 		}
 		else
 		{
-			ray->sideDistY += ray->deltaDistY;
-			ray->mapY += ray->stepY;
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (map->grid[ray->mapY][ray->mapX] == '1')
+		if (map->grid[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
 }
@@ -61,14 +61,16 @@ static void	ft_perform_dda(t_ray *ray, t_map *map)
 static double	ft_calculate_perp_wall_dist(t_ray *ray, t_player *player)
 {
 	if (ray->side == 0)
-		return ((ray->mapX - player->x + (1 - ray->stepX) / 2) / ray->rayDirX);
+		return ((ray->map_x - player->x + (1 - ray->step_x) / 2)
+			/ ray->ray_dir_x);
 	else
-		return ((ray->mapY - player->y + (1 - ray->stepY) / 2) / ray->rayDirY);
+		return ((ray->map_y - player->y + (1 - ray->step_y) / 2)
+			/ ray->ray_dir_y);
 }
 
-static int	ft_calculate_line_height(double perpWallDist, int screenHeight)
+static int	ft_calculate_line_height(double perp_wall_dist, int screenHeight)
 {
-	return ((int)(screenHeight / perpWallDist));
+	return ((int)(screenHeight / perp_wall_dist));
 }
 
 void	ft_raycasting(t_map *map, t_ray *ray, int x)
@@ -76,8 +78,8 @@ void	ft_raycasting(t_map *map, t_ray *ray, int x)
 	ft_init_ray(ray, map->player, x, map->data->win_width);
 	ft_calculate_step_and_side_dist(ray, map->player);
 	ft_perform_dda(ray, map);
-	ray->perpWallDist = ft_calculate_perp_wall_dist(ray, map->player);
-	ray->line_height = ft_calculate_line_height(ray->perpWallDist,
+	ray->perp_wall_dist = ft_calculate_perp_wall_dist(ray, map->player);
+	ray->line_height = ft_calculate_line_height(ray->perp_wall_dist,
 			map->data->win_height);
 	ray->draw_start = -ray->line_height / 2 + map->data->win_height / 2;
 	if (ray->draw_start < 0)

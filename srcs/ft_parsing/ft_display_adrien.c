@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:50:42 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:55:18 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 20:18:58 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	ft_display_player_info(t_player *player)
 	printf("PLAYER INFO\n");
 	printf("X: %f\n", player->x);
 	printf("Y: %f\n", player->y);
-	printf("DirX: %f\n", player->dirX);
-	printf("DirY: %f\n", player->dirY);
-	printf("PlaneX: %f\n", player->planeX);
-	printf("PlaneY: %f\n", player->planeY);
+	printf("dir_x: %f\n", player->dir_x);
+	printf("dir_y: %f\n", player->dir_y);
+	printf("plane_x: %f\n", player->plane_x);
+	printf("plane_y: %f\n", player->plane_y);
 }

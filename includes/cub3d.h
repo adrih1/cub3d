@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 19:46:02 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 20:19:35 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,19 @@ typedef struct s_texture
 // Structure qui represente un rayon
 typedef struct s_ray
 {
-	double			rayDirX;
-	double			rayDirY;
-	int				mapX;
-	int				mapY;
-	double			sideDistX;
-	double			sideDistY;
-	double			deltaDistX;
-	double			deltaDistY;
-	int				stepX;
-	int				stepY;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	int				step_x;
+	int				step_y;
 	int				hit;
 	int				side;
-	double			perpWallDist;
+	double			perp_wall_dist;
 	int				line_height;
 	int				draw_start;
 	int				draw_end;
@@ -96,10 +96,10 @@ typedef struct s_player
 {
 	double			x;
 	double			y;
-	double			dirX;
-	double			dirY;
-	double			planeX;
-	double			planeY;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 }					t_player;
 
 // Structure pour représenter la map
@@ -193,11 +193,6 @@ int					ft_map_grid_is_valid(t_map *map);
 int					ft_parsing(t_map *map, char *filename);
 
 /************ RENDER ************/
-// Fonction a supprimer plus tard - Dessine les murs de differentes couleurs
-int					ft_choose_wall_color(int side, int stepX, int stepY);
-void				ft_draw_vertical_line(t_texture *texture, int x,
-						int drawStart, int drawEnd, int color);
-
 // Init
 int					ft_init_mlx(t_data *data);
 int					ft_init_main_image(t_data *data, t_texture *texture);
