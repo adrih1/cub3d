@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:10:03 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:50:22 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 18:23:43 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,16 @@ int	ft_load_textures(t_map *map)
 	width = 10000;
 	height = 10000;
 	if (map->north)
-	{
 		if (ft_load_north_texture(map, map->north, width, height))
 			return (1);
-	}
 	if (map->east)
-	{
 		if (ft_load_east_texture(map, map->east, width, height))
 			return (1);
-	}
 	if (map->south)
-	{
 		if (ft_load_south_texture(map, map->south, width, height))
 			return (1);
-	}
 	if (map->west)
-	{
 		if (ft_load_west_texture(map, map->west, width, height))
 			return (1);
-	}
 	return (0);
 }

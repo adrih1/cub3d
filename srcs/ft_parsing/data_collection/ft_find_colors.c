@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:58:31 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/22 18:04:07 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 18:05:39 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static int	ft_find_f_color(char *str)
 	return (0);
 }
 
-static int	ft_handle_f_color(t_map *map, char *line, int *count, int index_found)
+static int	ft_handle_f_color(t_map *map, char *line, int *count,
+		int index_found)
 {
 	if (ft_find_f_color(line))
 	{
@@ -58,7 +59,8 @@ static int	ft_handle_f_color(t_map *map, char *line, int *count, int index_found
 	return (1);
 }
 
-static int	ft_handle_c_color(t_map *map, char *line, int *count, int index_found)
+static int	ft_handle_c_color(t_map *map, char *line, int *count,
+		int index_found)
 {
 	if (ft_find_c_color(line))
 	{
