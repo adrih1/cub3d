@@ -6,11 +6,21 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/22 12:03:47 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 14:30:51 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static	void ft_free_texture_parsing(t_texture *texture)
+{
+	if (texture)
+	{
+		free(texture->filename);
+		free(texture);
+		texture = NULL;
+	}
+}
 
 static t_texture	*ft_create_texture(t_texture_type id, char *filename)
 {
@@ -43,26 +53,29 @@ static int	ft_attribute_texture(int *texture_number, t_map *map, char *str)
 	int	i;
 
 	i = 0;
-
 	while (str[i])
 	{
 		if (str[i] == 'N' && str[i + 1] == 'O')
 		{
+			ft_free_texture_parsing(map->north);
 			map->north = ft_create_texture(NORTH_TEXTURE, str);
-			(*texture_number)++;			
+			(*texture_number)++;
 		}
 		else if (str[i] == 'S' && str[i + 1] == 'O')
 		{
+			ft_free_texture_parsing(map->south);
 			map->south = ft_create_texture(SOUTH_TEXTURE, str);
 			(*texture_number)++;
 		}
 		else if (str[i] == 'E' && str[i + 1] == 'A')
 		{
+			ft_free_texture_parsing(map->east);
 			map->east = ft_create_texture(EAST_TEXTURE, str);
 			(*texture_number)++;			
 		}
 		else if (str[i] == 'W' && str[i + 1] == 'E')
 		{
+			ft_free_texture_parsing(map->west);
 			map->west = ft_create_texture(WEST_TEXTURE, str);
 			(*texture_number)++;			
 		}
