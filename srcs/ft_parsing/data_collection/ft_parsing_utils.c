@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:46:23 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 14:59:48 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:48:32 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	ft_map_copy_lines(int fd, t_map *map)
 
 size_t	ft_my_str_len(char *str)
 {
-	int i;
-	size_t count;  
+	int		i;
+	size_t	count;
 
 	i = 0;
 	count = 0;
@@ -66,18 +66,18 @@ size_t	ft_my_str_len(char *str)
 		if (str[i] != ' ')
 			count++;
 		i++;
-	} 
+	}
 	return (count);
 }
 
 int	ft_find_map_longest_str(t_map *map)
 {
-	int i;
-	size_t max_string;
+	int		i;
+	size_t	max_string;
 
 	i = map->begin;
 	max_string = 0;
-	while(map->dirty_grid[i])
+	while (map->dirty_grid[i])
 	{
 		if (ft_my_str_len(map->dirty_grid[i]) > max_string)
 			max_string = ft_my_str_len(map->dirty_grid[i]);
@@ -86,7 +86,7 @@ int	ft_find_map_longest_str(t_map *map)
 	return (max_string);
 }
 
-void ft_last_info_found(t_map *map, int new_index_last_info)
+void	ft_last_info_found(t_map *map, int new_index_last_info)
 {
 	if (new_index_last_info > map->last_info_found)
 		map->last_info_found = new_index_last_info;

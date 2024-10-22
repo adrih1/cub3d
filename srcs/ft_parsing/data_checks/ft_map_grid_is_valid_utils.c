@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 13:18:38 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 12:44:01 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:46:12 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 int	ft_check_unvalid_chars(char c)
 {
-	
-	if (c == 'N' || c == 'E' || c == 'S' || c == 'W' || c == '0' || c == 'W' || c == '1'
-		|| c == ' ' || c == '\n')
-		return (0);		
+	if (c == 'N' || c == 'E' || c == 'S' || c == 'W' || c == '0' || c == 'W'
+		|| c == '1' || c == ' ' || c == '\n')
+		return (0);
 	else
 		printf("Use only valid chars\n");
 	return (1);
@@ -62,29 +61,28 @@ int	ft_check_ones_end_begin(char *str)
 	return (0);
 }
 
-int ft_check_player_can_exit_map(t_map *map)
+int	ft_check_player_can_exit_map(t_map *map)
 {
-	int i; 
-	int j; 
-	
+	int	i;
+	int	j;
 
 	i = 0;
-	while(map->grid[i])
+	while (map->grid[i])
 	{
 		j = 0;
-		while(map->grid[i][j])
+		while (map->grid[i][j])
 		{
-			if(map->grid[i][j] == '0')
+			if (map->grid[i][j] == '0')
 			{
 				if (j == 0)
-					return (1); 
-				if(map->grid[i-1][j] == ' ')
 					return (1);
-				if(map->grid[i+1][j] == ' ')
+				if (map->grid[i - 1][j] == ' ')
 					return (1);
-				if(map->grid[i][j-1] == ' ')
-					return (1);					
-				if(map->grid[i][j+1] == ' ')
+				if (map->grid[i + 1][j] == ' ')
+					return (1);
+				if (map->grid[i][j - 1] == ' ')
+					return (1);
+				if (map->grid[i][j + 1] == ' ')
 					return (1);
 			}
 			j++;

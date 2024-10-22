@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:27:22 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/18 17:54:38 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:46:50 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static int	ft_colors_is_valid(char **f_color, char **c_color)
 static int	ft_texture_is_valid(t_texture *texture)
 {
 	int	fd;
+
 	fd = open(texture->filename, O_RDONLY);
 	if (fd < 0)
 	{

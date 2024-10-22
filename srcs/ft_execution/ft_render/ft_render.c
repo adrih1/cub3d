@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:16:46 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 17:07:20 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:50:09 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_render_frame(t_map *map)
 	t_ray	ray;
 
 	ft_render_floor_ceiling(map);
-	
 	x = 0;
 	while (x < map->data->win_width)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_load_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebaillot <ebaillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:10:03 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 16:30:49 by ebaillot         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:50:22 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	ft_load_north_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_east_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	
 	map->east->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
 	if (!map->east->img)
@@ -49,7 +48,6 @@ int	ft_load_east_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_south_texture(t_map *map, t_texture *texture, int width, int height)
 {
-
 	map->south->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
 	if (!map->south->img)
@@ -84,30 +82,29 @@ int	ft_load_west_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_textures(t_map *map)
 {
-	int			width;
-	int			height;
+	int	width;
+	int	height;
 
 	width = 10000;
 	height = 10000;
-
 	if (map->north)
 	{
-		if(ft_load_north_texture(map, map->north, width, height))
-			return(1);
+		if (ft_load_north_texture(map, map->north, width, height))
+			return (1);
 	}
 	if (map->east)
-	{	
-		if(ft_load_east_texture(map, map->east, width, height))
+	{
+		if (ft_load_east_texture(map, map->east, width, height))
 			return (1);
 	}
 	if (map->south)
-	{	
-		if(ft_load_south_texture(map, map->south, width, height))
+	{
+		if (ft_load_south_texture(map, map->south, width, height))
 			return (1);
 	}
 	if (map->west)
-	{	
-		if(ft_load_west_texture(map, map->west, width, height))
+	{
+		if (ft_load_west_texture(map, map->west, width, height))
 			return (1);
 	}
 	return (0);

@@ -8,6 +8,7 @@ OBJ_DIR = obj
 MLX_DIR = ./mlx_lib/
 
 SRCS = 	main.c \
+		$(SRC_DIR)/ft_clean_utils.c \
 		$(SRC_DIR)/ft_clean.c \
 		$(SRC_DIR)/ft_execution/ft_render/ft_render.c \
 		$(SRC_DIR)/ft_execution/ft_render/ft_load_textures.c \

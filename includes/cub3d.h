@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 15:00:38 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:43:15 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,7 @@ void				ft_move_camera(int keynum, t_map *map);
 int					ft_executor(t_map *map);
 
 /************ CLEANING ************/
+int					free_char_array(char **array);
 void				ft_clean(t_map *map);
 int					ft_message_error(char *error);
 

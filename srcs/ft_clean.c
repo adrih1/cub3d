@@ -6,29 +6,11 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 16:51:21 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:42:43 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// Fonction pour libérer un tableau de chaînes de caractères
-int	free_char_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	if (!array)
-		return (1);
-	while (array[i])
-	{
-		if (array[i] != NULL)
-			free(array[i]);
-		i++;
-	}
-	free(array);
-	return (0);
-}
 
 void	ft_free_data(t_data *data)
 {
