@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 14:22:11 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 14:45:39 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_player
 // Structure pour représenter la map
 typedef struct s_map
 {
+	int				last_info_found;
 	int				nb_textures;
 	int				textures_found;
 	int				nb_players;

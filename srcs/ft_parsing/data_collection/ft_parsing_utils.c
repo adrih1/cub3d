@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:46:23 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 11:37:35 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 14:55:05 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,43 +52,6 @@ int	ft_map_copy_lines(int fd, t_map *map)
 	free(line);
 	close(fd);
 	return (0);
-}
-
-int	ft_str_has_char(char *str)
-{
-	size_t	i;
-	int		has_chars;
-
-	i = 0;
-	has_chars = 0;
-	while (i < ft_strlen(str))
-	{
-		if (ft_isalnum(str[i]))
-		{
-			has_chars = 1;
-			return (has_chars);
-		}
-		i++;
-	}
-	return (has_chars);
-}
-
-int	ft_find_map_height(t_map *map)
-{
-	int	i;
-	int	empty_lines;
-	int	map_real_height;
-
-	i = 0;
-	empty_lines = 0;
-	while (map->dirty_grid[i])
-	{
-		if (!ft_str_has_char(map->dirty_grid[i]))
-			empty_lines++;
-		i++;
-	}
-	map_real_height = map->m_height - 6 - empty_lines;
-	return (map_real_height);
 }
 
 size_t	ft_my_str_len(char *str)

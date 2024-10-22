@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Dossier contenant les maps à tester
-MAP_DIR="maps/bad"
+MAP_DIR="maps/good"
 
 # Exécutable à tester
 EXEC="./cub3d"
@@ -19,10 +19,11 @@ for map_file in "$MAP_DIR"/*.cub; do
 
     # Lire la sortie de Valgrind une fois l'exécutable terminé
     valgrind_output=$(cat valgrind_output.txt)
-    echo < valgrind_output.txt
-    # Vérifie si Valgrind retourne des erreurs ou fuites de mémoire
-    if echo "$valgrind_output" | grep -q "ERROR SUMMARY: 0 errors from 0 contexts"; then
-        echo "$map_file : Success"
+
+    # Vérifie si Valgrind retourne 0 erreurs ET que tous les blocs de mémoire sont libérés
+    if echo "$valgrind_output" | grep -q "ERROR SUMMARY: 0 errors from 0 contexts" && \
+       echo "$valgrind_output" | grep -q "All heap blocks were freed -- no leaks are possible"; then
+        echo "Success"
     else
         echo "$map_file : Error"
         echo "$valgrind_output"  # Optionnel, pour afficher les détails des erreurs Valgrind
