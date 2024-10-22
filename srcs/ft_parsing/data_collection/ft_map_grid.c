@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 19:21:46 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 19:47:06 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	ft_player_orientation(char c, t_player *player)
 	}
 }
 
-static int	ft_init_player(t_map *map, char *str, int y)
+int	ft_init_player(t_map *map, char *str, int y)
 {
 	int			i;
 
@@ -128,15 +128,7 @@ int	ft_generate_map_grid_util(t_map *map)
 	map->grid[i] = NULL;
 	if(ft_map_has_one_player_is_valid(map))
 		return (1);
-	i = 0;
-	while (map->grid[i])
-	{
-		if (ft_find_player(map->grid[i]))
-		{
-			if (ft_init_player(map, map->grid[i], i))
-				return (1);
-		}
-		i++;
-	}
+	if (ft_find_player(map))
+		return (1);
 	return (0);
 }

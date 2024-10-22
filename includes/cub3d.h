@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 19:14:35 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 19:46:02 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,8 @@ void				ft_last_info_found(t_map *map, int new_index_last_info);
 int					ft_find_map_beginning(char **dirty_grid);
 int					ft_find_map_end(t_map *map);
 int					ft_find_map_longest_str(t_map *map);
-char				*ft_find_player(char *str);
+int					ft_init_player(t_map *map, char *str, int y);
+int					ft_find_player(t_map *map);
 int					ft_generate_map_grid_util(t_map *map);
 int					ft_generate_map_grid(t_map *map);
 

@@ -6,24 +6,32 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:48:05 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:47:50 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 19:43:44 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*ft_find_player(char *str)
+int 	ft_find_player(t_map *map)
 {
 	int	i;
+	int j;
 
 	i = 0;
-	while (str[i])
+	while (map->grid[i])
 	{
-		if (str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'W')
-			return (str);
+		j = 0;
+		while (map->grid[i][j])
+		{
+			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'E' || map->grid[i][j] == 'S' || map->grid[i][j] == 'W')
+				if (ft_init_player(map, map->grid[i], i))
+					return (1);
+			j++;
+		}
+		
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
 
 int	ft_check_is_grid_limit(char *str)
