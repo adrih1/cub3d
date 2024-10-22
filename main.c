@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebaillot <ebaillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 16:30:41 by ebaillot         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:05:28 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 
-t_texture *init_texture(void) 
+t_texture *ft_init_texture(void) 
 {
     t_texture *texture = malloc(sizeof(t_texture));
     if (!texture)
@@ -26,6 +26,7 @@ t_texture *init_texture(void)
     texture->width = 0;
     texture->height = 0;
     texture->addr = NULL;
+	texture->texture_id = 0;
     return texture;
 }
 
@@ -66,10 +67,11 @@ int	ft_init_map(t_map **map)
 	(*map)->c_color = NULL;
 	(*map)->player = NULL;
 	(*map)->main_image = NULL;
-	(*map)->north = init_texture();
-	(*map)->east = init_texture();
-	(*map)->south = init_texture();
-	(*map)->west = init_texture();
+	(*map)->north = ft_init_texture();
+	(*map)->east = ft_init_texture();
+	(*map)->south = ft_init_texture();
+	(*map)->west = ft_init_texture();
+	(*map)->data = NULL;
 	return (0);
 }
 
