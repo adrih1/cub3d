@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:43:15 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 18:35:28 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,8 +219,13 @@ int					ft_load_textures(t_map *map);
 int					rgb_to_int(char **color);
 void				ft_render_floor_ceiling(t_map *map);
 
+// Utils for raycasting
+double				ft_fabs(double n);
+void				ft_init_ray(t_ray *ray, t_player *player, int x,
+						int screenWidth);
 // Main Functions
 void				ft_render_column(t_map *map, t_ray *ray, int x);
+
 void				ft_raycasting(t_map *map, t_ray *ray, int x);
 void				ft_render_frame(t_map *map);
 

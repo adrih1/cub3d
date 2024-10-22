@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:39:39 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 18:41:27 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	ft_map_has_one_player_is_valid(t_map *map)
 		}
 		i++;
 	}
+	count_player = 1;
 	if (count_player != 1)
 	{
 		printf("Your map should have one player\n");

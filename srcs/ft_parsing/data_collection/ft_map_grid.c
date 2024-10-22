@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:48:14 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 18:39:38 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ static void	ft_player_orientation(char c, t_player *player)
 
 static int	ft_init_player(t_map *map, char *str, int y)
 {
-	int	i;
+	int			i;
 
 	i = 0;
-	if (map->player)
+	if(map->player)
 		free(map->player);
 	map->player = malloc(sizeof(t_player));
 	if (!map->player)
@@ -75,27 +75,30 @@ static int	ft_init_player(t_map *map, char *str, int y)
 	}
 	while (str[i])
 	{
-		ft_player_orientation(str[i], map->player);
-		ft_player_plane(str[i], map->player);
 		if (str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'W')
-			map->player->x = i;
+		{
+			ft_player_orientation(str[i], map->player);
+			ft_player_plane(str[i], map->player);
+			map->player->x = i + 0.5;
+			map->player->y = y + 0.5;
+			map->grid[y][i] = '0';
+		}
 		i++;
 	}
-	map->player->y = y;
 	return (0);
 }
 
-static char	*ft_copy_line_util(char *dest, char *src, int longest_string)
+static char *ft_copy_line_util(char *dest, char *src, int longest_string)
 {
-	int	i;
+	int i; 
 
 	i = 0;
-	while (src[i] && src[i] != '\n' && i < longest_string)
+	while(src[i] && src[i] != '\n' && i < longest_string)
 	{
-		dest[i] = src[i];
+		dest[i] = src[i]; 
 		i++;
 	}
-	while (i < longest_string)
+	while(i < longest_string)
 	{
 		dest[i] = ' ';
 		i++;
@@ -105,20 +108,20 @@ static char	*ft_copy_line_util(char *dest, char *src, int longest_string)
 	return (dest);
 }
 
+
 int	ft_generate_map_grid_util(t_map *map)
 {
 	int	i;
 	int	total_height;
-	int	start;
-
+	int start;
+	
 	i = 0;
 	start = map->begin;
 	total_height = start + map->real_height;
 	while (start < total_height && map->dirty_grid[start])
 	{
 		map->grid[i] = malloc(sizeof(char) * (map->longest_str + 3));
-		ft_copy_line_util(map->grid[i], map->dirty_grid[start],
-			map->longest_str);
+		ft_copy_line_util(map->grid[i], map->dirty_grid[start], map->longest_str);
 		if (ft_find_player(map->grid[i]))
 		{
 			if (ft_init_player(map, map->grid[i], i))

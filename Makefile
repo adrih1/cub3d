@@ -17,6 +17,7 @@ SRCS = 	main.c \
 		$(SRC_DIR)/ft_execution/ft_movement/ft_move_player.c \
 		$(SRC_DIR)/ft_execution/ft_movement/ft_move_camera.c \
 		$(SRC_DIR)/ft_execution/ft_raycasting.c \
+		$(SRC_DIR)/ft_execution/ft_raycasting_utils.c \
 		$(SRC_DIR)/ft_execution/ft_init.c \
 		$(SRC_DIR)/ft_execution/ft_window.c \
 		$(SRC_DIR)/ft_execution/outils/outils.c \
