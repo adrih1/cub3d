@@ -1,0 +1,14 @@
+==2265538== Memcheck, a memory error detector
+==2265538== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2265538== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==2265538== Command: ./cub3d maps/good/sad_face.cub
+==2265538== 
+==2265538== 
+==2265538== HEAP SUMMARY:
+==2265538==     in use at exit: 0 bytes in 0 blocks
+==2265538==   total heap usage: 614 allocs, 614 frees, 131,286 bytes allocated
+==2265538== 
+==2265538== All heap blocks were freed -- no leaks are possible
+==2265538== 
+==2265538== For lists of detected and suppressed errors, rerun with: -s
+==2265538== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)

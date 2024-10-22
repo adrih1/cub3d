@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_load_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ebaillot <ebaillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:10:03 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 11:16:59 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 16:15:09 by ebaillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_load_north_texture(t_map *map, t_texture *texture, int width, int height)
 	map->north->addr = mlx_get_data_addr(map->north->img,
 			&map->north->bits_per_pixel, &map->north->line_length,
 			&map->north->endian);
-	printf("%s\n", map->north->addr);
 	map->north->width = width;
 	map->north->height = height;
 	return (0);

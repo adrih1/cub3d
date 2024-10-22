@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ebaillot <ebaillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:35:52 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 17:09:45 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 16:06:40 by ebaillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+
+
 
 int	ft_init_mlx(t_data *data)
 {

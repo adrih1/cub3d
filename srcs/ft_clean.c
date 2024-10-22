@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ebaillot <ebaillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 12:34:01 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 16:20:24 by ebaillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ void	ft_free_data(t_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 	}
+	free(data);
 }
 
 void	ft_free_texture(t_texture *texture, t_data *data)
 {
 	if (texture)
 	{
-		if (data)
+		if (data && texture->img)
 			mlx_destroy_image(data->mlx_ptr, texture->img);
 		texture->img = NULL;
 		free(texture->filename);
@@ -91,6 +92,7 @@ void	ft_clean(t_map *map)
 		free(map->player);
 	if (map->data)
 		ft_free_data(map->data);
+
 	free(map);
 	map = NULL;
 }
