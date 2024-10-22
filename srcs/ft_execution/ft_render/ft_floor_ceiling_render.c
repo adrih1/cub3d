@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:41:07 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:49:53 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 20:01:56 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,22 @@ char	*ft_get_image_data(void *img, int *bytes_per_pixel, int *size_line,
 
 int	ft_fill_image(t_map *map, void *img, int color_int)
 {
-	int		y;
+	int		i;
 	char	*data_addr;
 	int		bytes_per_pixel;
 	int		size_line;
 	int		endian;
-	int		x;
-	int		*dst;
 
-	y = 0;
 	data_addr = ft_get_image_data(img, &bytes_per_pixel, &size_line, &endian);
 	if (!data_addr)
 		return (ft_message_error("Error getting image data address\n"));
-	while (y < map->data->win_height / 2)
+	i = 0;
+	while (i < (map->data->win_width * (map->data->win_height / 2)))
 	{
-		x = 0;
-		while (x < map->data->win_width)
-		{
-			dst = (int *)(data_addr + (y * size_line) + (x * (bytes_per_pixel
-							/ 8)));
-			*dst = color_int;
-			x++;
-		}
-		y++;
+		*(int *)(data_addr + ((i / map->data->win_width) * size_line) + ((i
+						% map->data->win_width) * (bytes_per_pixel
+						/ 8))) = color_int;
+		i++;
 	}
 	return (0);
 }
@@ -75,28 +68,21 @@ void	ft_render_floor_ceiling(t_map *map)
 {
 	int	ceiling_color_int;
 	int	floor_color_int;
-	int	x;
 	int	y;
+	int	x;
 
 	ceiling_color_int = rgb_to_int(map->c_color);
 	floor_color_int = rgb_to_int(map->f_color);
 	y = 0;
-	while (y < map->data->win_height / 2)
-	{
-		x = 0;
-		while (x < map->data->win_width)
-		{
-			my_mlx_pixel_put(map->main_image, x, y, ceiling_color_int);
-			x++;
-		}
-		y++;
-	}
 	while (y < map->data->win_height)
 	{
 		x = 0;
 		while (x < map->data->win_width)
 		{
-			my_mlx_pixel_put(map->main_image, x, y, floor_color_int);
+			if (y < map->data->win_height / 2)
+				my_mlx_pixel_put(map->main_image, x, y, ceiling_color_int);
+			else
+				my_mlx_pixel_put(map->main_image, x, y, floor_color_int);
 			x++;
 		}
 		y++;
