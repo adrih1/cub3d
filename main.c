@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 18:03:33 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 10:36:40 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ft_init_map(t_map **map)
 	(*map)->east = NULL;
 	(*map)->south = NULL;
 	(*map)->west = NULL;
+	(*map)->data = NULL;
 	return (0);
 }
 

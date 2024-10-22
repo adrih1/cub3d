@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/18 18:08:45 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 10:34:52 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,37 @@ void	ft_free_textures(t_map *map)
 {
 	if (map->north)
 	{
-		mlx_destroy_image(map->data->mlx_ptr, map->north->img);
+		if (map->data)
+			mlx_destroy_image(map->data->mlx_ptr, map->north->img);
 		map->north->img = NULL;
 		free(map->north->filename);
 		free(map->north);
 	}
 	if (map->east)
 	{
-		mlx_destroy_image(map->data->mlx_ptr, map->east->img);
+		if (map->data)
+			mlx_destroy_image(map->data->mlx_ptr, map->east->img);
 		map->east->img = NULL;
 		free(map->east->filename);
 		free(map->east);
 	}
 	if (map->south)
 	{
-		mlx_destroy_image(map->data->mlx_ptr, map->south->img);
+		if (map->data)
+			mlx_destroy_image(map->data->mlx_ptr, map->south->img);
 		map->south->img = NULL;
 		free(map->south->filename);
 		free(map->south);
 	}
 	if (map->west)
 	{
-		mlx_destroy_image(map->data->mlx_ptr, map->west->img);
+		if (map->data)
+			mlx_destroy_image(map->data->mlx_ptr, map->west->img);
 		map->west->img = NULL;
 		free(map->west->filename);
 		free(map->west);
 	}
+	
 }
 
 void	ft_free_main_image(t_data *data, t_texture *main_image)
@@ -81,7 +86,7 @@ void	ft_free_main_image(t_data *data, t_texture *main_image)
 
 // Fonction pour libérer toute la structure t_map
 void	ft_clean(t_map *map)
-{
+{	
 	if (!map)
 		return ;
 	if (map->dirty_grid)
