@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 11:47:28 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 15:59:21 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static int	ft_init_player(t_map *map, char *str, int y)
 	int			i;
 
 	i = 0;
+	if(map->player)
+		free(map->player);
 	map->player = malloc(sizeof(t_player));
 	if (!map->player)
 	{
@@ -104,6 +106,7 @@ static char *ft_copy_line_util(char *dest, char *src, int longest_string)
 	return (dest);
 }
 
+
 int	ft_generate_map_grid_util(t_map *map)
 {
 	int	i;
@@ -117,7 +120,6 @@ int	ft_generate_map_grid_util(t_map *map)
 	{
 		map->grid[i] = malloc(sizeof(char) * (map->longest_str + 3));
 		ft_copy_line_util(map->grid[i], map->dirty_grid[start], map->longest_str);
-		// ft_display_line(map->grid[i]);
 		if (ft_find_player(map->grid[i]))
 		{
 			if (ft_init_player(map, map->grid[i], i))

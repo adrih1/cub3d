@@ -6,7 +6,7 @@
 /*   By: ebaillot <ebaillot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/22 16:11:14 by ebaillot         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:30:59 by ebaillot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_executor(t_map *map)
 		return (1);
 	}
 	if (ft_init_main_image(map->data, &main_image))
-		return (ft_message_error("Error: Could not initialize main image\n"));
+		return (ft_message_error("Error: Could not initialize main image\n"));		
 	map->main_image = &main_image;
 	ft_render_floor_ceiling(map);
 	ft_render_frame(map);
