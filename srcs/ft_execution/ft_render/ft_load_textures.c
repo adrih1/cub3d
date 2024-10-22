@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:10:03 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 16:22:46 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 18:23:43 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,11 @@
 
 int	ft_load_north_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->north = malloc(sizeof(t_texture));
-	if (!map->north)
-	{
-		printf("Failed to allocate memory for North texture\n");
-		return (1);
-	}
 	map->north->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
 	if (!map->north->img)
 	{
 		printf("Failed to load North texture: %s\n", texture->filename);
-		free(map->north);
 		return (1);
 	}
 	map->north->addr = mlx_get_data_addr(map->north->img,
@@ -38,18 +31,11 @@ int	ft_load_north_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_east_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->east = malloc(sizeof(t_texture));
-	if (!map->east)
-	{
-		printf("Failed to allocate memory for East texture\n");
-		return (1);
-	}
 	map->east->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
 	if (!map->east->img)
 	{
 		printf("Failed to load East texture: %s\n", texture->filename);
-		free(map->east);
 		return (1);
 	}
 	map->east->addr = mlx_get_data_addr(map->east->img,
@@ -62,18 +48,11 @@ int	ft_load_east_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_south_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->south = malloc(sizeof(t_texture));
-	if (!map->south)
-	{
-		printf("Failed to allocate memory for South texture\n");
-		return (1);
-	}
 	map->south->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
 	if (!map->south->img)
 	{
 		printf("Failed to load South texture: %s\n", texture->filename);
-		free(map->south);
 		return (1);
 	}
 	map->south->addr = mlx_get_data_addr(map->south->img,
@@ -86,18 +65,11 @@ int	ft_load_south_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_west_texture(t_map *map, t_texture *texture, int width, int height)
 {
-	map->west = malloc(sizeof(t_texture));
-	if (!map->west)
-	{
-		printf("Failed to allocate memory for West texture\n");
-		return (1);
-	}
 	map->west->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
 	if (!map->west->img)
 	{
 		printf("Failed to load West texture: %s\n", texture->filename);
-		free(map->west);
 		return (1);
 	}
 	map->west->addr = mlx_get_data_addr(map->west->img,
@@ -110,33 +82,22 @@ int	ft_load_west_texture(t_map *map, t_texture *texture, int width, int height)
 
 int	ft_load_textures(t_map *map)
 {
-	int			width;
-	int			height;
-	t_texture	*current_texture;
+	int	width;
+	int	height;
 
 	width = 10000;
 	height = 10000;
-	map->north = NULL;
-	map->east = NULL;
-	map->south = NULL;
-	map->west = NULL;
-	if (!map->textures)
-	{
-		printf("List of textures does not exists\n");
-		return (1);
-	}
-	current_texture = map->textures;
-	while (current_texture)
-	{
-		if (current_texture->texture_id == NORTH_TEXTURE)
-			ft_load_north_texture(map, current_texture, width, height);
-		else if (current_texture->texture_id == EAST_TEXTURE)
-			ft_load_east_texture(map, current_texture, width, height);
-		else if (current_texture->texture_id == SOUTH_TEXTURE)
-			ft_load_south_texture(map, current_texture, width, height);
-		else if (current_texture->texture_id == WEST_TEXTURE)
-			ft_load_west_texture(map, current_texture, width, height);
-		current_texture = current_texture->next;
-	}
+	if (map->north)
+		if (ft_load_north_texture(map, map->north, width, height))
+			return (1);
+	if (map->east)
+		if (ft_load_east_texture(map, map->east, width, height))
+			return (1);
+	if (map->south)
+		if (ft_load_south_texture(map, map->south, width, height))
+			return (1);
+	if (map->west)
+		if (ft_load_west_texture(map, map->west, width, height))
+			return (1);
 	return (0);
 }

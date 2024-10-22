@@ -6,33 +6,12 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:01:37 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/15 16:08:35 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 18:34:32 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <SDL2/SDL.h>
-
-static double	ft_fabs(double n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
-
-static void	ft_init_ray(t_ray *ray, t_player *player, int x, int screenWidth)
-{
-	double	camera_x;
-
-	camera_x = 2 * x / (double)screenWidth - 1;
-	ray->rayDirX = player->dirX + player->planeX * camera_x;
-	ray->rayDirY = player->dirY + player->planeY * camera_x;
-	ray->mapX = (int)player->x;
-	ray->mapY = (int)player->y;
-	ray->deltaDistX = ft_fabs(1 / ray->rayDirX);
-	ray->deltaDistY = ft_fabs(1 / ray->rayDirY);
-	ray->hit = 0;
-}
 
 static void	ft_calculate_step_and_side_dist(t_ray *ray, t_player *player)
 {

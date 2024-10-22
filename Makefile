@@ -8,6 +8,7 @@ OBJ_DIR = obj
 MLX_DIR = ./mlx_lib/
 
 SRCS = 	main.c \
+		$(SRC_DIR)/ft_clean_utils.c \
 		$(SRC_DIR)/ft_clean.c \
 		$(SRC_DIR)/ft_execution/ft_render/ft_render.c \
 		$(SRC_DIR)/ft_execution/ft_render/ft_load_textures.c \
@@ -16,6 +17,7 @@ SRCS = 	main.c \
 		$(SRC_DIR)/ft_execution/ft_movement/ft_move_player.c \
 		$(SRC_DIR)/ft_execution/ft_movement/ft_move_camera.c \
 		$(SRC_DIR)/ft_execution/ft_raycasting.c \
+		$(SRC_DIR)/ft_execution/ft_raycasting_utils.c \
 		$(SRC_DIR)/ft_execution/ft_init.c \
 		$(SRC_DIR)/ft_execution/ft_window.c \
 		$(SRC_DIR)/ft_execution/outils/outils.c \
@@ -31,6 +33,7 @@ SRCS = 	main.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_parsing_utils.c \
 		$(SRC_DIR)/ft_parsing/data_checks/ft_map_info_is_valid.c \
 		$(SRC_DIR)/ft_parsing/data_checks/ft_map_info_is_valid_utils.c \
+		$(SRC_DIR)/ft_parsing/data_checks/ft_map_grid_is_valid_utils.c \
 		$(SRC_DIR)/ft_parsing/data_checks/ft_map_grid_is_valid.c
 
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))

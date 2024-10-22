@@ -6,27 +6,11 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:46:23 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 14:59:42 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:48:32 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	ft_open_file(char *filename)
-{
-	int	fd;
-
-	if (!filename)
-		exit(1);
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Probleme pour pour ouvrir le fichier");
-		close(fd);
-		return (-1);
-	}
-	return (fd);
-}
 
 int	ft_find_file_height(int fd)
 {
@@ -70,39 +54,40 @@ int	ft_map_copy_lines(int fd, t_map *map)
 	return (0);
 }
 
-int	ft_str_has_char(char *str)
+size_t	ft_my_str_len(char *str)
 {
-	size_t	i;
-	int		has_chars;
+	int		i;
+	size_t	count;
 
 	i = 0;
-	has_chars = 0;
-	while (i < ft_strlen(str))
+	count = 0;
+	while (str[i])
 	{
-		if (ft_isalnum(str[i]))
-		{
-			has_chars = 1;
-			return (has_chars);
-		}
+		if (str[i] != ' ')
+			count++;
 		i++;
 	}
-	return (has_chars);
+	return (count);
 }
 
-int	ft_find_map_height(t_map *map)
+int	ft_find_map_longest_str(t_map *map)
 {
-	int	i;
-	int	empty_lines;
-	int	map_real_height;
+	int		i;
+	size_t	max_string;
 
-	i = 0;
-	empty_lines = 0;
+	i = map->begin;
+	max_string = 0;
 	while (map->dirty_grid[i])
 	{
-		if (!ft_str_has_char(map->dirty_grid[i]))
-			empty_lines++;
+		if (ft_my_str_len(map->dirty_grid[i]) > max_string)
+			max_string = ft_my_str_len(map->dirty_grid[i]);
 		i++;
 	}
-	map_real_height = map->m_height - 6 - empty_lines;
-	return (map_real_height);
+	return (max_string);
+}
+
+void	ft_last_info_found(t_map *map, int new_index_last_info)
+{
+	if (new_index_last_info > map->last_info_found)
+		map->last_info_found = new_index_last_info;
 }

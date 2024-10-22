@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:50:42 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/27 16:30:08 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:55:18 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,10 @@
 void	ft_display_grid(t_map *map, char *grid_name)
 {
 	int	i;
-	int	dirty;
-	int	clean;
 
 	i = 0;
-	dirty = ft_strcmp(grid_name, "dirty");
-	clean = ft_strcmp(grid_name, "clean");
-	if (dirty == 0)
+	if (ft_strcmp(grid_name, "dirty") == 0)
 	{
-		printf("***********************DIRTY GRID***********************\n\n");
 		while (i < map->m_height)
 		{
 			printf("%s", map->dirty_grid[i]);
@@ -31,9 +26,8 @@ void	ft_display_grid(t_map *map, char *grid_name)
 		}
 		printf("\n");
 	}
-	else if (clean == 0)
+	else if (ft_strcmp(grid_name, "clean") == 0)
 	{
-		printf("GRID\n");
 		while (i < map->real_height)
 		{
 			printf("%s", map->grid[i]);
@@ -58,24 +52,19 @@ void	ft_display_colors(t_map *map)
 	printf("Third RGB: %s\n", map->f_color[2]);
 }
 
-void	ft_display_textures(t_texture *map_texures)
+void	ft_display_textures(t_map *map)
 {
-	t_texture	*first_texture;
-
 	printf("**********Map Textures************\n");
-	first_texture = map_texures;
-	while (map_texures)
-	{
-		printf("%u: %s\n", map_texures->texture_id, map_texures->filename);
-		map_texures = map_texures->next;
-	}
-	map_texures = first_texture;
+	printf("%u: %s\n", map->north->texture_id, map->north->filename);
+	printf("%u: %s\n", map->east->texture_id, map->east->filename);
+	printf("%u: %s\n", map->south->texture_id, map->south->filename);
+	printf("%u: %s\n", map->west->texture_id, map->west->filename);
 }
 
 void	ft_display_map_info(t_map *map)
 {
 	ft_display_colors(map);
-	ft_display_textures(map->textures);
+	ft_display_textures(map);
 }
 
 void	ft_display_player_info(t_player *player)

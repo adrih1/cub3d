@@ -6,128 +6,98 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 17:50:33 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 19:49:10 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_check_unvalid_chars(char c)
+int	ft_map_height_is_valid(t_map *map)
 {
-	
-	if (c == 'N' || c == 'E' || c == 'S' || c == 'O' || c == '0' || c == '1'
-		|| c == ' ' || c == '\n')
-	{
-		return (0);		
-	}
-	else
-		printf("Use only valid chars\n");
-	return (1);
-}
-
-int	ft_check_has_only_walls_spaces(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '1' || str[i] == ' ' || str[i] == '\n')
-			i++;
-		else
-			return (1);
-	}
-	return (0);
-}
-
-int	ft_check_ones_end_begin(char *str)
-{
-	int		i;
-	char	last_char;
-
-	i = 0;
-	while (str[i] == ' ')
-		i++;
-	if (str[i] != '1')
-		return (1);
-	while (str[i])
-	{
-		if (ft_isdigit(str[i]))
-			last_char = str[i];
-		i++;
-	}
-	if (last_char != '1')
-	{
-		printf("Missing a wall somewhere\n");
-		return (1);
-	}
-	return (0);
-}
-
-// If strlen(curr_row) > strlen(row_on_top) && current col > strlen(row_on_top), current character should be '1'
-// If strlen(curr_row) > strlen(row_on_bottom) && current col > strlen(row_on_bottom), current character should be '1'
-int	ft_map_grid_is_valid(t_map *map, char **grid)
-{
-	int i;
-	int j;
-	int player_count;
-
-	i = 0;
-	player_count = 0;
-	if(map->real_height < 3)
+	if (map->real_height < 3)
 	{
 		printf("Map is too smal\n");
 		return (1);
 	}
-	while (grid[i])
+	return (0);
+}
+
+int	ft_map_walls_is_valid(t_map *map)
+{
+	if (ft_check_has_only_walls_spaces(map->grid[0])
+		|| ft_check_has_only_walls_spaces(map->grid[map->real_height - 1]))
 	{
-		if (ft_check_ones_end_begin(map->grid[i]))
-		{
-			printf("Each line must be enclosed by walls\n");
-			return (1);			
-		}
-		if (i == 0 || i == map->real_height - 1)
-		{
-			if (ft_check_has_only_walls_spaces(map->grid[i]))
-			{
-				printf("Something is wrong with the walls\n");
-				return (1);
-			}
-		}
+		printf("Your map must be enclosed by walls\n");
+		return (1);
+	}
+	if (ft_check_player_can_exit_map(map))
+	{
+		printf("Player should not be able to exit map\n");
+		return (1);
+	}
+	return (0);
+}
+
+int	ft_map_has_special_chars_is_valid(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map->grid[i])
+	{
 		j = 0;
-		while (grid[i][j])
+		while (map->grid[i][j])
 		{
-			if (ft_check_unvalid_chars(grid[i][j]))
+			if (ft_check_unvalid_chars(map->grid[i][j]))
 				return (1);
-			if (grid[i][j] == 'N' || grid[i][j] == 'E' || grid[i][j] == 'S' || grid[i][j] == 'O')
-				player_count++;
-			if (i >= 1 && i < map->real_height - 1)
-			{
-				if ((ft_strlen(grid[i]) > ft_strlen(grid[i - 1]))
-					&& ((size_t)j > ft_strlen(grid[i - 1])))
-					if (grid[i][j] != '1' && grid[i][j] != ' '
-						&& grid[i][j] != '\n')
-						{
-							printf("Player shoudl not be able to exit the map\n");
-							return (1);							
-						}
-				if ((ft_strlen(grid[i]) > ft_strlen(grid[i + 1]))
-					&& ((size_t)j > ft_strlen(grid[i + 1])))
-					if (grid[i][j] != '1' && grid[i][j] != ' '
-						&& grid[i][j] != '\n')
-						{
-							printf("Player shoudl not be able to exit the map\n");
-							return (1);							
-						}
-			}
 			j++;
 		}
 		i++;
 	}
-	if (player_count != 1)
+	return (0);
+}
+
+int	ft_map_has_one_player_is_valid(t_map *map)
+{
+	int	i;
+	int	j;
+	int	count_player;
+
+	i = 0;
+	count_player = 0;
+	while (map->grid[i])
 	{
-		printf("There must be exactly one player in the map\n");
+		j = 0;
+		while (map->grid[i][j])
+		{
+			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'E'
+				|| map->grid[i][j] == 'W' || map->grid[i][j] == 'S')
+				count_player++;
+			j++;
+		}
+		i++;
+	}
+	if (count_player != 1)
+	{
+		printf("Your map should have one player\n");
 		return (1);
 	}
+	return (0);
+}
+
+int	ft_map_grid_is_valid(t_map *map)
+{
+	if (map->last_info_found > map->begin)
+	{
+		printf("Your map should be at the end of the file\n");
+		return (1);
+	}
+	if (ft_map_height_is_valid(map))
+		return (1);
+	if (ft_map_walls_is_valid(map))
+		return (1);
+	if (ft_map_has_special_chars_is_valid(map))
+		return (1);
 	return (0);
 }

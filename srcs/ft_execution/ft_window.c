@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/10/15 16:58:06 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:49:16 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,16 @@ int	ft_check_error(int ret_value, const char *error_msg)
 
 int	ft_executor(t_map *map)
 {
-	t_data		data;
 	t_texture	main_image;
 
-	if (ft_init_mlx(&data))
+	map->data = malloc(sizeof(t_data));
+	if (ft_init_mlx(map->data))
 		return (ft_message_error("Error: initialize data in executor"));
-	map->data = &data;
 	if (ft_load_textures(map))
-		return (ft_message_error("Error with textures in ft_executor"));
+	{
+		printf("Error with textures in executor\n");
+		return (1);
+	}
 	if (ft_init_main_image(map->data, &main_image))
 		return (ft_message_error("Error: Could not initialize main image\n"));
 	map->main_image = &main_image;
@@ -56,8 +58,8 @@ int	ft_executor(t_map *map)
 	ft_render_frame(map);
 	mlx_put_image_to_window(map->data->mlx_ptr, map->data->win_ptr,
 		main_image.img, 0, 0);
-	mlx_hook(data.win_ptr, 2, 1L << 0, on_keypress, map);
-	mlx_hook(data.win_ptr, 17, 1L << 4, on_destroy, map);
-	mlx_loop(data.mlx_ptr);
+	mlx_hook(map->data->win_ptr, 2, 1L << 0, on_keypress, map);
+	mlx_hook(map->data->win_ptr, 17, 1L << 4, on_destroy, map);
+	mlx_loop(map->data->mlx_ptr);
 	return (0);
 }

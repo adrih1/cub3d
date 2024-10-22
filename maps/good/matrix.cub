@@ -1,7 +1,7 @@
-NO textures/matrix.xpm
-SO textures/matrix.xpm
-WE textures/matrix.xpm
-EA textures/matrix.xpm
+NO ./textures/wolfenstein/grey_stone.xpm   
+SO ./textures/wolfenstein/blue_stone.xpm
+WE ./textures/wolfenstein/eagle.xpm
+EA ./textures/wolfenstein/mossy.xpm
 
 F 0,0,0
 C 0,0,0

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:41:07 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 17:11:03 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:49:53 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,44 +71,15 @@ int	ft_create_and_fill_image(t_map *map, int color_int, void **img_ptr)
 	return (0);
 }
 
-// void	ft_render_floor_ceiling(t_map *map)
-// {
-// 	int ceiling_color_int;
-// 	int floor_color_int;
-// 	void *img_ceiling;
-// 	void *img_floor;
-
-// 	ceiling_color_int = rgb_to_int(map->c_color);
-// 	floor_color_int = rgb_to_int(map->f_color);
-
-// 	if (ft_create_and_fill_image(map, ceiling_color_int, &img_ceiling))
-// 	{
-// 		mlx_destroy_image(map->data->mlx_ptr, img_ceiling);
-// 		return ;
-// 	}
-// 	if (ft_create_and_fill_image(map, floor_color_int, &img_floor))
-// 	{
-// 		mlx_destroy_image(map->data->mlx_ptr, img_floor);
-// 		return ;
-// 	}
-// 	mlx_put_image_to_window(map->data->mlx_ptr, map->data->win_ptr, img_ceiling,
-// 		0, 0);
-// 	mlx_put_image_to_window(map->data->mlx_ptr, map->data->win_ptr, img_floor,
-// 		0, map->data->win_height / 2);
-
-// 	mlx_destroy_image(map->data->mlx_ptr, img_ceiling);
-// 	mlx_destroy_image(map->data->mlx_ptr, img_floor);
-// }
-
 void	ft_render_floor_ceiling(t_map *map)
 {
-	int ceiling_color_int;
-	int floor_color_int;
-	int x, y;
+	int	ceiling_color_int;
+	int	floor_color_int;
+	int	x;
+	int	y;
 
 	ceiling_color_int = rgb_to_int(map->c_color);
 	floor_color_int = rgb_to_int(map->f_color);
-
 	y = 0;
 	while (y < map->data->win_height / 2)
 	{
