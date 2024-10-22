@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 14:45:39 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 15:00:38 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ int					ft_len_of_chars_double_array(char **array);
 int					ft_color_has_no_numbers(char *str);
 int					ft_colors_has_no_numbers(char **colors);
 int					ft_map_info_is_valid(t_map *map);
+void				ft_last_info_found(t_map *map, int new_index_last_info);
 
 // Fourht Step - Building the actual map grid
 int					ft_find_map_beginning(char **dirty_grid);

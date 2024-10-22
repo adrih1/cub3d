@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 12:39:20 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 15:08:18 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,12 @@ int ft_map_has_one_player_is_valid(t_map *map)
 
 int	ft_map_grid_is_valid(t_map *map)
 {
-
+	//Check Map not in correct place
+	if(map->last_info_found > map->begin)
+	{
+		printf("Your map shoudl be at the end of the file");
+		return (1);			
+	}
 	//Check Map Too Small
 	if (ft_map_height_is_valid(map))
 		return (1);

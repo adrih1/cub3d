@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:58:31 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/09/27 15:47:04 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 15:06:42 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,15 @@ int	ft_find_colors(t_map *map)
 	while (map->dirty_grid[i])
 	{
 		if (ft_handle_f_color(map, map->dirty_grid[i], &count) == 0)
+		{
 			found_f = 1;
+			ft_last_info_found(map, i);
+		}
 		if (ft_handle_c_color(map, map->dirty_grid[i], &count) == 0)
+		{
 			found_c = 1;
+			ft_last_info_found(map, i);
+		}
 		if (found_c && found_f && !(count > 2) && i == (map->m_height - 1))
 			return (0);
 		i++;

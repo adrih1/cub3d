@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:46:23 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 14:55:05 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 14:59:48 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,10 @@ int	ft_find_map_longest_str(t_map *map)
 		i++;
 	}
 	return (max_string);
+}
+
+void ft_last_info_found(t_map *map, int new_index_last_info)
+{
+	if (new_index_last_info > map->last_info_found)
+		map->last_info_found = new_index_last_info;
 }

@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/22 14:30:51 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 15:05:18 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_texture	*ft_create_texture(t_texture_type id, char *filename)
 	return (new_texture);
 }
 
-static int	ft_attribute_texture(int *texture_number, t_map *map, char *str)
+static int	ft_attribute_texture(int *texture_number, t_map *map, char *str, int info_found)
 {
 	int	i;
 
@@ -59,24 +59,28 @@ static int	ft_attribute_texture(int *texture_number, t_map *map, char *str)
 		{
 			ft_free_texture_parsing(map->north);
 			map->north = ft_create_texture(NORTH_TEXTURE, str);
+			ft_last_info_found(map, info_found);
 			(*texture_number)++;
 		}
 		else if (str[i] == 'S' && str[i + 1] == 'O')
 		{
 			ft_free_texture_parsing(map->south);
 			map->south = ft_create_texture(SOUTH_TEXTURE, str);
+			ft_last_info_found(map, info_found);
 			(*texture_number)++;
 		}
 		else if (str[i] == 'E' && str[i + 1] == 'A')
 		{
 			ft_free_texture_parsing(map->east);
 			map->east = ft_create_texture(EAST_TEXTURE, str);
+			ft_last_info_found(map, info_found);
 			(*texture_number)++;			
 		}
 		else if (str[i] == 'W' && str[i + 1] == 'E')
 		{
 			ft_free_texture_parsing(map->west);
 			map->west = ft_create_texture(WEST_TEXTURE, str);
+			ft_last_info_found(map, info_found);
 			(*texture_number)++;			
 		}
 		i++;
@@ -91,7 +95,7 @@ int	ft_find_textures(t_map *map)
 	i = 0;
 	while (map->dirty_grid[i])
 	{
-		ft_attribute_texture(&map->nb_textures, map, map->dirty_grid[i]);
+		ft_attribute_texture(&map->nb_textures, map, map->dirty_grid[i], i);
 		i++;
 	}
 	if(map->nb_textures != 4)

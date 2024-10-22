@@ -6,6 +6,11 @@ MAP_DIR="maps/good"
 # Exécutable à tester
 EXEC="./cub3d"
 
+# Codes de couleur
+GREEN="\033[0;32m"  # Vert
+RED="\033[0;31m"    # Rouge
+RESET="\033[0m"     # Réinitialise la couleur
+
 # Parcourt tous les fichiers .cub dans le dossier maps/good
 for map_file in "$MAP_DIR"/*.cub; do
     echo "Testing: $map_file"
@@ -23,7 +28,7 @@ for map_file in "$MAP_DIR"/*.cub; do
     # Vérifie si Valgrind retourne 0 erreurs ET que tous les blocs de mémoire sont libérés
     if echo "$valgrind_output" | grep -q "ERROR SUMMARY: 0 errors from 0 contexts" && \
        echo "$valgrind_output" | grep -q "All heap blocks were freed -- no leaks are possible"; then
-        echo "Success"
+        echo -e "${GREEN}Success${RESET}"
     else
         echo "$map_file : Error"
         echo "$valgrind_output"  # Optionnel, pour afficher les détails des erreurs Valgrind
