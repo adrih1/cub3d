@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/22 16:52:48 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:35:17 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,29 @@ static int	ft_attribute_texture(int *texture_number, t_map *map, char *str, int 
 	{
 		if (str[i] == 'N' && str[i + 1] == 'O')
 		{
-			ft_create_texture(map->north, NORTH_TEXTURE, str);
+			if(!map->north->filename)
+				ft_create_texture(map->north, NORTH_TEXTURE, str);
 			ft_last_info_found(map, info_found);
 			(*texture_number)++;
 		}
 		else if (str[i] == 'S' && str[i + 1] == 'O')
 		{
-			ft_create_texture(map->south, SOUTH_TEXTURE, str);
+			if(!map->south->filename)
+				ft_create_texture(map->south, SOUTH_TEXTURE, str);
 			ft_last_info_found(map, info_found);
 			(*texture_number)++;
 		}
 		else if (str[i] == 'E' && str[i + 1] == 'A')
 		{
-			ft_create_texture(map->east, EAST_TEXTURE, str);
+			if(!map->east->filename)
+				ft_create_texture(map->east, EAST_TEXTURE, str);
 			ft_last_info_found(map, info_found);
 			(*texture_number)++;			
 		}
 		else if (str[i] == 'W' && str[i + 1] == 'E')
 		{
-			ft_create_texture(map->west, WEST_TEXTURE, str);
+			if(!map->west->filename)
+				ft_create_texture(map->west, WEST_TEXTURE, str);
 			ft_last_info_found(map, info_found);
 			(*texture_number)++;			
 		}
