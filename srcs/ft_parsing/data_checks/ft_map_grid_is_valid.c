@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:43:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 19:22:48 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 19:49:10 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,5 @@ int	ft_map_grid_is_valid(t_map *map)
 		return (1);
 	if (ft_map_has_special_chars_is_valid(map))
 		return (1);
-	// if (ft_map_has_one_player_is_valid(map))
-	// 	return (1);
 	return (0);
 }

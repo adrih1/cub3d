@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 19:47:06 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 19:49:21 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ static void	ft_player_orientation(char c, t_player *player)
 
 int	ft_init_player(t_map *map, char *str, int y)
 {
-	int			i;
+	int	i;
 
 	i = 0;
-	if(map->player)
+	if (map->player)
 		free(map->player);
 	map->player = malloc(sizeof(t_player));
 	if (!map->player)
@@ -88,17 +88,17 @@ int	ft_init_player(t_map *map, char *str, int y)
 	return (0);
 }
 
-static char *ft_copy_line_util(char *dest, char *src, int longest_string)
+static char	*ft_copy_line_util(char *dest, char *src, int longest_string)
 {
-	int i; 
+	int	i;
 
 	i = 0;
-	while(src[i] && src[i] != '\n' && i < longest_string)
+	while (src[i] && src[i] != '\n' && i < longest_string)
 	{
-		dest[i] = src[i]; 
+		dest[i] = src[i];
 		i++;
 	}
-	while(i < longest_string)
+	while (i < longest_string)
 	{
 		dest[i] = ' ';
 		i++;
@@ -108,25 +108,25 @@ static char *ft_copy_line_util(char *dest, char *src, int longest_string)
 	return (dest);
 }
 
-
 int	ft_generate_map_grid_util(t_map *map)
 {
 	int	i;
 	int	total_height;
-	int start;
-	
+	int	start;
+
 	i = 0;
 	start = map->begin;
 	total_height = start + map->real_height;
 	while (start < total_height && map->dirty_grid[start])
 	{
 		map->grid[i] = malloc(sizeof(char) * (map->longest_str + 2));
-		ft_copy_line_util(map->grid[i], map->dirty_grid[start], map->longest_str);
+		ft_copy_line_util(map->grid[i], map->dirty_grid[start],
+			map->longest_str);
 		start++;
 		i++;
 	}
 	map->grid[i] = NULL;
-	if(ft_map_has_one_player_is_valid(map))
+	if (ft_map_has_one_player_is_valid(map))
 		return (1);
 	if (ft_find_player(map))
 		return (1);

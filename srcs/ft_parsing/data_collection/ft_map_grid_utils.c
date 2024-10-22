@@ -6,16 +6,16 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:48:05 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 19:43:44 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 19:50:34 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int 	ft_find_player(t_map *map)
+int	ft_find_player(t_map *map)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (map->grid[i])
@@ -23,12 +23,12 @@ int 	ft_find_player(t_map *map)
 		j = 0;
 		while (map->grid[i][j])
 		{
-			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'E' || map->grid[i][j] == 'S' || map->grid[i][j] == 'W')
+			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'E'
+				|| map->grid[i][j] == 'S' || map->grid[i][j] == 'W')
 				if (ft_init_player(map, map->grid[i], i))
 					return (1);
 			j++;
 		}
-		
 		i++;
 	}
 	return (0);
