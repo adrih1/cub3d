@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:50:42 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:45:34 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:55:18 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	ft_display_grid(t_map *map, char *grid_name)
 {
 	int	i;
-	int	dirty;
-	int	clean;
 
 	i = 0;
 	if (ft_strcmp(grid_name, "dirty") == 0)
@@ -28,7 +26,7 @@ void	ft_display_grid(t_map *map, char *grid_name)
 		}
 		printf("\n");
 	}
-	else if (ft_strcmp(grid_name, "clean" == 0))
+	else if (ft_strcmp(grid_name, "clean") == 0)
 	{
 		while (i < map->real_height)
 		{

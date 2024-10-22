@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 13:18:38 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:46:12 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 17:56:15 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ int	ft_check_ones_end_begin(char *str)
 	return (0);
 }
 
+int ft_check_empty_next_to_space(char **grid, int i, int j)
+{
+	if (grid[i - 1][j] == ' ')
+		return (1);
+	if (grid[i + 1][j] == ' ')
+		return (1);
+	if (grid[i][j - 1] == ' ')
+		return (1);
+	if (grid[i][j + 1] == ' ')
+		return (1);
+	return(0);
+}
+
 int	ft_check_player_can_exit_map(t_map *map)
 {
 	int	i;
@@ -76,14 +89,8 @@ int	ft_check_player_can_exit_map(t_map *map)
 			{
 				if (j == 0)
 					return (1);
-				if (map->grid[i - 1][j] == ' ')
-					return (1);
-				if (map->grid[i + 1][j] == ' ')
-					return (1);
-				if (map->grid[i][j - 1] == ' ')
-					return (1);
-				if (map->grid[i][j + 1] == ' ')
-					return (1);
+				if(ft_check_empty_next_to_space(map->grid, i, j))
+					return(1);
 			}
 			j++;
 		}
