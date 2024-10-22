@@ -6,28 +6,29 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:05:28 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 20:14:06 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-
-t_texture *ft_init_texture(void) 
+t_texture	*ft_init_texture(void)
 {
-    t_texture *texture = malloc(sizeof(t_texture));
-    if (!texture)
-        return NULL;
-    texture->img = NULL;
-    texture->filename = NULL;
-    texture->bits_per_pixel = 0;
-    texture->line_length = 0;
-    texture->endian = 0;
-    texture->width = 0;
-    texture->height = 0;
-    texture->addr = NULL;
+	t_texture	*texture;
+
+	texture = malloc(sizeof(t_texture));
+	if (!texture)
+		return (NULL);
+	texture->img = NULL;
+	texture->filename = NULL;
+	texture->bits_per_pixel = 0;
+	texture->line_length = 0;
+	texture->endian = 0;
+	texture->width = 0;
+	texture->height = 0;
+	texture->addr = NULL;
 	texture->texture_id = 0;
-    return texture;
+	return (texture);
 }
 
 int	ft_open_file(char *filename)
@@ -116,7 +117,7 @@ int	main(int ac, char **av)
 	if (ft_executor(map))
 	{
 		ft_clean(map);
-		return (1);		
+		return (1);
 	}
 	ft_clean(map);
 	return (0);

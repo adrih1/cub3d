@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:48:15 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/15 16:22:33 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 20:18:12 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ t_texture	*ft_select_texture(t_map *map, t_ray *ray)
 {
 	if (ray->side == 0)
 	{
-		if (ray->rayDirX > 0)
+		if (ray->ray_dir_x > 0)
 			return (map->west);
 		else
 			return (map->east);
 	}
 	else
 	{
-		if (ray->rayDirY > 0)
+		if (ray->ray_dir_y > 0)
 			return (map->north);
 		else
 			return (map->south);
@@ -36,14 +36,14 @@ int	ft_calculate_texture_x(t_ray *ray, t_player *player, t_texture *texture)
 	int		tex_x;
 
 	if (ray->side == 0)
-		wall_x = player->y + ray->perpWallDist * ray->rayDirY;
+		wall_x = player->y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
-		wall_x = player->x + ray->perpWallDist * ray->rayDirX;
+		wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * (double)(texture->width));
-	if (ray->side == 0 && ray->rayDirX > 0)
+	if (ray->side == 0 && ray->ray_dir_x > 0)
 		tex_x = texture->width - tex_x - 1;
-	if (ray->side == 1 && ray->rayDirY < 0)
+	if (ray->side == 1 && ray->ray_dir_y < 0)
 		tex_x = texture->width - tex_x - 1;
 	return (tex_x);
 }
