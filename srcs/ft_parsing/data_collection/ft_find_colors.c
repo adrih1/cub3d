@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:58:31 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/22 17:46:57 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/22 18:04:07 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_find_f_color(char *str)
 	return (0);
 }
 
-static int	ft_handle_f_color(t_map *map, char *line, int *count)
+static int	ft_handle_f_color(t_map *map, char *line, int *count, int index_found)
 {
 	if (ft_find_f_color(line))
 	{
@@ -52,12 +52,13 @@ static int	ft_handle_f_color(t_map *map, char *line, int *count)
 			return (1);
 		}
 		(*count)++;
+		ft_last_info_found(map, index_found);
 		return (0);
 	}
 	return (1);
 }
 
-static int	ft_handle_c_color(t_map *map, char *line, int *count)
+static int	ft_handle_c_color(t_map *map, char *line, int *count, int index_found)
 {
 	if (ft_find_c_color(line))
 	{
@@ -69,6 +70,7 @@ static int	ft_handle_c_color(t_map *map, char *line, int *count)
 			return (1);
 		}
 		(*count)++;
+		ft_last_info_found(map, index_found);
 		return (0);
 	}
 	return (1);
@@ -87,16 +89,10 @@ int	ft_find_colors(t_map *map)
 	count = 0;
 	while (map->dirty_grid[i])
 	{
-		if (ft_handle_f_color(map, map->dirty_grid[i], &count) == 0)
-		{
+		if (ft_handle_f_color(map, map->dirty_grid[i], &count, i) == 0)
 			found_f = 1;
-			ft_last_info_found(map, i);
-		}
-		if (ft_handle_c_color(map, map->dirty_grid[i], &count) == 0)
-		{
+		if (ft_handle_c_color(map, map->dirty_grid[i], &count, i) == 0)
 			found_c = 1;
-			ft_last_info_found(map, i);
-		}
 		if (found_c && found_f && !(count > 2) && i == (map->m_height - 1))
 			return (0);
 		i++;
