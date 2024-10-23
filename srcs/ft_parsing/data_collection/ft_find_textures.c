@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/23 10:34:03 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 11:06:18 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static void	ft_handle_texture_creation(t_texture *texture, int texture_type,
 		ft_create_texture(texture, texture_type, str);
 }
 
-static void	ft_update_texture_info(int *texture_number, t_map *map, int info_found)
+static void	ft_update_texture_info(int *texture_number, t_map *map,
+		int info_found)
 {
 	ft_last_info_found(map, info_found);
 	(*texture_number)++;
@@ -50,6 +51,7 @@ static void	ft_update_texture_info(int *texture_number, t_map *map, int info_fou
 static int	ft_attribute_texture(int *texture_number, t_map *map, char *str,
 		int info_found)
 {
+	str = ft_skip_whitespaces(str);
 	if (ft_strncmp(str, "NO", 2) == 0 && str[2] == ' ')
 	{
 		ft_handle_texture_creation(map->north, NORTH_TEXTURE, str + 2);

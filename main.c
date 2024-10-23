@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/23 10:36:47 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 10:39:26 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ int	ft_verify_extension(char *str)
 	}
 	last_dot_found++;
 	if (str[last_dot_found] == 'c' && str[last_dot_found + 1] == 'u'
-		&& str[last_dot_found + 2] == 'b' && str[last_dot_found + 3] == ' ')
+		&& str[last_dot_found + 2] == 'b' && (str[last_dot_found + 3] == ' '
+			|| str[last_dot_found + 3] == '\0'))
 		return (0);
 	else
 		return (1);
