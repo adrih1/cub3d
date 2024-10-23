@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:35:52 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/23 11:15:58 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 12:50:59 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_init_mlx(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 	{
-		printf("Error initializing MLX\n");
+		printf("Error: Initializing MLX\n");
 		return (1);
 	}
 	data->win_width = 1700;

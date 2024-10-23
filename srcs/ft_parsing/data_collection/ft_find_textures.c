@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/23 11:06:18 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 12:54:32 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_find_textures(t_map *map)
 	}
 	if (map->nb_textures != 4)
 	{
-		printf("You should have 4 textures\n");
+		printf("Error: You should have 4 textures\n");
 		return (1);
 	}
 	map->textures_found = 1;

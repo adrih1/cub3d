@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 13:18:38 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:58:33 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 12:52:35 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_check_unvalid_chars(char c)
 		|| c == '1' || c == ' ' || c == '\n')
 		return (0);
 	else
-		printf("Use only valid chars\n");
+		printf("Error: Use only valid chars\n");
 	return (1);
 }
 
@@ -55,7 +55,7 @@ int	ft_check_ones_end_begin(char *str)
 	}
 	if (last_char != '1')
 	{
-		printf("Missing a wall somewhere\n");
+		printf("Error: Missing a wall somewhere\n");
 		return (1);
 	}
 	return (0);

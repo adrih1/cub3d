@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:10:03 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/23 11:27:44 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 12:51:39 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_load_north_texture(t_map *map, t_texture *texture, int width,
 			texture->filename, &width, &height);
 	if (!map->north->img)
 	{
-		printf("Failed to load North texture: %s\n", texture->filename);
+		printf("Error: Failed to load North texture: %s\n", texture->filename);
 		return (1);
 	}
 	map->north->addr = mlx_get_data_addr(map->north->img,
@@ -37,7 +37,7 @@ static int	ft_load_east_texture(t_map *map, t_texture *texture, int width,
 			texture->filename, &width, &height);
 	if (!map->east->img)
 	{
-		printf("Failed to load East texture: %s\n", texture->filename);
+		printf("Error: Failed to load East texture: %s\n", texture->filename);
 		return (1);
 	}
 	map->east->addr = mlx_get_data_addr(map->east->img,
@@ -55,7 +55,7 @@ static int	ft_load_south_texture(t_map *map, t_texture *texture, int width,
 			texture->filename, &width, &height);
 	if (!map->south->img)
 	{
-		printf("Failed to load South texture: %s\n", texture->filename);
+		printf("Error: Failed to load South texture: %s\n", texture->filename);
 		return (1);
 	}
 	map->south->addr = mlx_get_data_addr(map->south->img,
@@ -73,7 +73,7 @@ static int	ft_load_west_texture(t_map *map, t_texture *texture, int width,
 			texture->filename, &width, &height);
 	if (!map->west->img)
 	{
-		printf("Failed to load West texture: %s\n", texture->filename);
+		printf("Error: Failed to load West texture: %s\n", texture->filename);
 		return (1);
 	}
 	map->west->addr = mlx_get_data_addr(map->west->img,

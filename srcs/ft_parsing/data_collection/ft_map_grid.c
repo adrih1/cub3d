@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/23 11:09:16 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 12:54:41 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_init_player(t_map *map, char *str, int y)
 	map->player = malloc(sizeof(t_player));
 	if (!map->player)
 	{
-		printf("Error during malloc for player\n");
+		printf("Error: Malloc for player\n");
 		return (1);
 	}
 	while (str[i])

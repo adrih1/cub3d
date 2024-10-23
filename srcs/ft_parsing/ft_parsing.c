@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:10:01 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 19:48:58 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 12:52:20 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_generate_map_grid(t_map *map)
 	map->begin = ft_find_map_beginning(map->dirty_grid);
 	if (map->begin <= 5)
 	{
-		printf("Your map should be at the end of the file\n");
+		printf("Error: Your map should be at the end of the file\n");
 		return (1);
 	}
 	map->end = ft_find_map_end(map);
@@ -42,7 +42,7 @@ int	ft_generate_map_grid(t_map *map)
 	map->real_height = map->end - map->begin + 1;
 	map->grid = malloc(sizeof(char *) * (map->real_height + 1));
 	if (!map->grid)
-		return (ft_message_error("Error during malloc for map->grid"));
+		return (ft_message_error("Error :  Malloc for map->grid"));
 	if (ft_generate_map_grid_util(map))
 		return (1);
 	return (0);

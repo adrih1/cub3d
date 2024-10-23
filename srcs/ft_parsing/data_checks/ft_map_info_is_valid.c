@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:27:22 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/23 11:44:48 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 12:53:54 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_color_is_valid(char **color_array)
 	colors_array_len = ft_len_of_chars_double_array(color_array);
 	if (ft_colors_has_no_numbers(color_array) || colors_array_len != 3)
 	{
-		printf("Please make sure to type three colors for rgb to work\n");
+		printf("Error: Please make sure to type three colors for rgb to work\n");
 		return (1);
 	}
 	while (i < colors_array_len)
@@ -30,7 +30,7 @@ static int	ft_color_is_valid(char **color_array)
 		color_variable = ft_atoi(color_array[i]);
 		if (0 > color_variable || color_variable > 255)
 		{
-			printf("Use values between 0 and 255\n");
+			printf("Error: Use values between 0 and 255\n");
 			return (1);
 		}
 		i++;
@@ -42,12 +42,12 @@ static int	ft_colors_is_valid(char **f_color, char **c_color)
 {
 	if (ft_color_is_valid(f_color))
 	{
-		printf("There was an error in f_colors\n");
+		printf("Error: F_colors is not valid\n");
 		return (1);
 	}
 	if (ft_color_is_valid(c_color))
 	{
-		printf("There was an error in c_colors\n");
+		printf("Error: C_colors is not valid\n");
 		return (1);
 	}
 	return (0);
@@ -60,7 +60,7 @@ static int	ft_texture_is_valid(t_texture *texture)
 	fd = open(texture->filename, O_RDONLY);
 	if (fd < 0)
 	{
-		printf("Texture : %s was not found\n", texture->filename);
+		printf("Error: Texture : %s was not found\n", texture->filename);
 		close(fd);
 		return (1);
 	}

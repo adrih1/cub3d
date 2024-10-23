@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:20:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 15:55:29 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 12:55:08 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int	ft_map_find_info(t_map *map)
 {
 	if (ft_find_colors(map))
 	{
-		printf("There was an error with colors\n");
+		printf("Error: Colors \n");
 		return (1);
 	}
 	if (ft_find_textures(map))
 	{
-		printf("There was an error finding textures\n");
+		printf("Error: Textures\n");
 		return (1);
 	}
 	return (0);

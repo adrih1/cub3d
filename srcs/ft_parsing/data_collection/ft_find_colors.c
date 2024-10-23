@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:58:31 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/22 18:05:39 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 12:54:25 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	ft_handle_f_color(t_map *map, char *line, int *count,
 		map->f_color = ft_split(line, ',');
 		if (!map->f_color)
 		{
-			printf("There was an issue during malloc for map->f_color\n");
+			printf("Error: Malloc for map->f_color\n");
 			return (1);
 		}
 		(*count)++;
@@ -68,7 +68,7 @@ static int	ft_handle_c_color(t_map *map, char *line, int *count,
 		map->c_color = ft_split(line, ',');
 		if (!map->c_color)
 		{
-			printf("There was an issue during malloc for map->c_color\n");
+			printf("Error: Malloc for map->c_color\n");
 			return (1);
 		}
 		(*count)++;
@@ -100,8 +100,8 @@ int	ft_find_colors(t_map *map)
 		i++;
 	}
 	if (!found_c)
-		printf("Color C - Information not found \n");
+		printf("Error: Color C - Information not found \n");
 	if (!found_f)
-		printf("Color F - Information not found \n");
+		printf("Error: Color F - Information not found \n");
 	return (1);
 }
