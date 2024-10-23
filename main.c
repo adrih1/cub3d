@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:01:51 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/23 10:39:26 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 11:32:44 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_open_file(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		printf("Probleme pour pour ouvrir le fichier");
+		printf("Error\nProbleme pour pour ouvrir le fichier");
 		close(fd);
 		return (-1);
 	}

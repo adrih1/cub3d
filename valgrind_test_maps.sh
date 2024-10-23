@@ -28,8 +28,8 @@ test_maps_in_directory() {
         echo "Testing: $map_file"
         ((total_count++)) # Incrémente le compteur total
 
-        # Exécute valgrind en arrière-plan avec redirection de la sortie dans un fichier temporaire
-        valgrind --leak-check=full "$EXEC" "$map_file" 2> valgrind_output.txt &
+        # Exécute valgrind avec --track-fds=yes pour traquer les fuites de descripteurs de fichiers
+        valgrind --leak-check=full --track-fds=yes "$EXEC" "$map_file" 2> valgrind_output.txt &
         PID=$!
 
         # Attendre que l'utilisateur ferme l'application (par exemple, via Échap)
@@ -38,8 +38,12 @@ test_maps_in_directory() {
         # Lire la sortie de Valgrind une fois l'exécutable terminé
         valgrind_output=$(cat valgrind_output.txt)
 
+
+        # Vérifie si Valgrind détecte des descripteurs de fichiers ouverts
+        if echo "$valgrind_output" | grep -q "Open file descriptor"; then
+            echo -e "${RED}$map_file : Error - Open file descriptor detected${RESET}"
         # Vérifie si Valgrind retourne 0 erreurs ET que tous les blocs de mémoire sont libérés
-        if echo "$valgrind_output" | grep -q "ERROR SUMMARY: 0 errors from 0 contexts" && \
+        elif echo "$valgrind_output" | grep -q "ERROR SUMMARY: 0 errors from 0 contexts" && \
            echo "$valgrind_output" | grep -q "All heap blocks were freed -- no leaks are possible"; then
             echo -e "${GREEN}Success${RESET}"
             ((success_count++)) # Incrémente le compteur de succès
