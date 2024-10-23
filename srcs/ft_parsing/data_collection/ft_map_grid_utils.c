@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:48:05 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 19:50:34 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 11:26:00 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_check_is_grid_limit(char *str)
 		else
 			return (0);
 	}
-	if (count_one >= 3)
+	if (count_one >= 1)
 		return (1);
 	return (0);
 }

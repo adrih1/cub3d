@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:50:20 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 20:18:58 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 11:09:16 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int	ft_init_player(t_map *map, char *str, int y)
 		{
 			ft_player_orientation(str[i], map->player);
 			ft_player_plane(str[i], map->player);
-			map->player->x = i + 0.5;
-			map->player->y = y + 0.5;
+			map->player->x = i + 0.01;
+			map->player->y = y + 0.01;
 			map->grid[y][i] = '0';
 		}
 		i++;

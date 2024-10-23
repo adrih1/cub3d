@@ -6,13 +6,14 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:10:03 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 18:23:43 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 11:27:44 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_load_north_texture(t_map *map, t_texture *texture, int width, int height)
+static int	ft_load_north_texture(t_map *map, t_texture *texture, int width,
+		int height)
 {
 	map->north->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
@@ -29,7 +30,8 @@ int	ft_load_north_texture(t_map *map, t_texture *texture, int width, int height)
 	return (0);
 }
 
-int	ft_load_east_texture(t_map *map, t_texture *texture, int width, int height)
+static int	ft_load_east_texture(t_map *map, t_texture *texture, int width,
+		int height)
 {
 	map->east->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
@@ -46,7 +48,8 @@ int	ft_load_east_texture(t_map *map, t_texture *texture, int width, int height)
 	return (0);
 }
 
-int	ft_load_south_texture(t_map *map, t_texture *texture, int width, int height)
+static int	ft_load_south_texture(t_map *map, t_texture *texture, int width,
+		int height)
 {
 	map->south->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
@@ -63,7 +66,8 @@ int	ft_load_south_texture(t_map *map, t_texture *texture, int width, int height)
 	return (0);
 }
 
-int	ft_load_west_texture(t_map *map, t_texture *texture, int width, int height)
+static int	ft_load_west_texture(t_map *map, t_texture *texture, int width,
+		int height)
 {
 	map->west->img = mlx_xpm_file_to_image(map->data->mlx_ptr,
 			texture->filename, &width, &height);
