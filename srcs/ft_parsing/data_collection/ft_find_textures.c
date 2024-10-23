@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:10:26 by adrienhors        #+#    #+#             */
-/*   Updated: 2024/10/22 20:12:32 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/23 10:34:03 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ static void	ft_create_texture(t_texture *texture, t_texture_type id,
 	free(filename_cleaned);
 }
 
-static void	handle_texture_creation(t_texture *texture, int texture_type,
+static void	ft_handle_texture_creation(t_texture *texture, int texture_type,
 		char *str)
 {
 	if (!texture->filename)
 		ft_create_texture(texture, texture_type, str);
 }
 
-static void	update_texture_info(int *texture_number, t_map *map, int info_found)
+static void	ft_update_texture_info(int *texture_number, t_map *map, int info_found)
 {
 	ft_last_info_found(map, info_found);
 	(*texture_number)++;
@@ -50,25 +50,25 @@ static void	update_texture_info(int *texture_number, t_map *map, int info_found)
 static int	ft_attribute_texture(int *texture_number, t_map *map, char *str,
 		int info_found)
 {
-	if (ft_strncmp(str, "NO", 2) == 0)
+	if (ft_strncmp(str, "NO", 2) == 0 && str[2] == ' ')
 	{
-		handle_texture_creation(map->north, NORTH_TEXTURE, str + 2);
-		update_texture_info(texture_number, map, info_found);
+		ft_handle_texture_creation(map->north, NORTH_TEXTURE, str + 2);
+		ft_update_texture_info(texture_number, map, info_found);
 	}
-	else if (ft_strncmp(str, "SO", 2) == 0)
+	else if (ft_strncmp(str, "SO", 2) == 0 && str[2] == ' ')
 	{
-		handle_texture_creation(map->south, SOUTH_TEXTURE, str + 2);
-		update_texture_info(texture_number, map, info_found);
+		ft_handle_texture_creation(map->south, SOUTH_TEXTURE, str + 2);
+		ft_update_texture_info(texture_number, map, info_found);
 	}
-	else if (ft_strncmp(str, "EA", 2) == 0)
+	else if (ft_strncmp(str, "EA", 2) == 0 && str[2] == ' ')
 	{
-		handle_texture_creation(map->east, EAST_TEXTURE, str + 2);
-		update_texture_info(texture_number, map, info_found);
+		ft_handle_texture_creation(map->east, EAST_TEXTURE, str + 2);
+		ft_update_texture_info(texture_number, map, info_found);
 	}
-	else if (ft_strncmp(str, "WE", 2) == 0)
+	else if (ft_strncmp(str, "WE", 2) == 0 && str[2] == ' ')
 	{
-		handle_texture_creation(map->west, WEST_TEXTURE, str + 2);
-		update_texture_info(texture_number, map, info_found);
+		ft_handle_texture_creation(map->west, WEST_TEXTURE, str + 2);
+		ft_update_texture_info(texture_number, map, info_found);
 	}
 	return (0);
 }
