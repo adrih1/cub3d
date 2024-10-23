@@ -59,11 +59,13 @@ test_maps_in_directory() {
     done
 
     # Afficher le récapitulatif des succès
-    echo -e "\n${BOLD}$success_count/$total_count Success for $dir_label${RESET}\n"
+    echo -e "\n${BOLD}$success_count/$total_count Success for $dir_label maps${RESET}\n"
 }
 
 # Tester les maps dans le dossier "maps/bad"
 test_maps_in_directory "$MAP_DIR_BAD" "Bad"
+
+read -p "Appuyer sur Enter pour lancer les tests sur les maps valides..."
 
 # Tester les maps dans le dossier "maps/good"
 test_maps_in_directory "$MAP_DIR_GOOD" "Good"
