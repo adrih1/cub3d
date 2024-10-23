@@ -31,9 +31,8 @@ Pour cloner le projet et l'exécuter sur votre machine, suivez ces étapes :
    cd Cub3D
    make
    ./cub3D cub3.cub
-  ``
 
-##Utilisation
+## Utilisation
 
 - Utilisez les touches fléchées gauche et droite pour tourner la camera (angle de vue).
 - Utilisez les touches W,D,S, A pour vous deplacer.
