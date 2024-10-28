@@ -3,23 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: adrienhors <adrienhors@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:20:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/09/17 11:15:37 by ahors            ###   ########.fr       */
+/*   Updated: 2024/09/12 14:43:59 by adrienhors       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	ft_map_find_info(t_map *map)
+
+void    ft_display_grid(t_map *map, char *grid_name)
 {
-	// Find Colors
-	if (ft_find_colors(map))
-		ft_message_error("There was an error finding colors\n");
-	// ft_display_colors(map);
-	// Find Textures
-	if (ft_find_textures(map))
-		ft_message_error("There was an errrir finding textures\n");
-	return (0);
+    int i; 
+    int dirty; 
+    int clean; 
+
+    i = 0; 
+    dirty = ft_strcmp(grid_name, "dirty"); 
+    clean = ft_strcmp(grid_name, "clean"); 
+    if (dirty == 0)
+    {
+        printf("***********************DIRTY GRID***********************\n\n");
+        while (i < map->m_height)
+        {
+            printf("%s", map->dirty_grid[i]); 
+            i++;
+        }
+        printf("\n");
+    }
+    else if (clean == 0)
+    {
+        printf("GRID");
+        while (i < map->m_height)
+        {
+            printf("%s", map->grid[i]); 
+            i++;
+        }
+        printf("\n");
+    }
+    else
+        printf("Unknown grid name");
+    
 }

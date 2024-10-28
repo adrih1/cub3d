@@ -6,7 +6,7 @@
 /*   By: edouard <edouard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:07 by edouard           #+#    #+#             */
-/*   Updated: 2024/09/14 14:13:31 by edouard          ###   ########.fr       */
+/*   Updated: 2024/10/28 08:41:47 by edouard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int init_mlx(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		return (ft_message_error("Error initializing MLX\n"));
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 800, 600, "cub3D");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1200, 800, "cub3D");
 	if (!data->win_ptr)
 		return (ft_message_error("Error creating window\n"));
 	return (0);

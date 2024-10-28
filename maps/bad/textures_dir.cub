@@ -1,0 +1,21 @@
+NO ./textures/wolfenstein/grey_stone.xpm   
+SO ./textures/wolfenstein/grey_stone.xpm   
+WE textures/test/
+EA ./textures/wolfenstein/eagle.xpm
+
+F 20,20,20
+C 200,200,200
+
+11111
+10001
+10S01
+10001
+10001
+10001
+11001
+10001
+10001
+10001
+10001
+10001
+11111
