@@ -6,7 +6,7 @@
 /*   By: edouard <edouard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:05:18 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/28 08:42:23 by edouard          ###   ########.fr       */
+/*   Updated: 2024/10/28 09:52:23 by edouard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #define MOVE_SPEED 0.05
 
 #include "../mlx_lib/mlx.h"
-#include "../mlx_lib/mlx_int.h"
+// #include "../mlx_lib/mlx_int.h"
 
 /*
 -------------------------------------------------------------
@@ -71,24 +71,6 @@ typedef struct s_raycasting
 	double plane_y; // Direction de la camera
 } t_raycasting;
 
-typedef struct s_map
-{
-	int m_width;
-	int m_height;
-	char **dirty_grid;
-	char **grid;
-	int player_x;
-	int player_y;
-	void *north_textxure;
-	void *east_textxure;
-	void *south_textxure;
-	void *west_textxure;
-	char **f_color;
-	char **c_color;
-	t_data data;
-	t_window window;
-	t_raycasting raycasting;
-} t_map;
 // Structure pour stocker les infos des textures
 typedef struct s_texture
 {
@@ -259,6 +241,7 @@ void ft_render_column(t_map *map, t_ray *ray, int x);
 
 void ft_raycasting(t_map *map, t_ray *ray, int x);
 void ft_render_frame(t_map *map);
+void ft_render_minimap(t_map *map);
 
 /************ MOVEMENT ************/
 void ft_move_player(int keynum, t_map *map);

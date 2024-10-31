@@ -21,6 +21,7 @@ SRCS = 	main.c \
 		$(SRC_DIR)/ft_execution/ft_init.c \
 		$(SRC_DIR)/ft_execution/ft_window.c \
 		$(SRC_DIR)/ft_execution/outils/outils.c \
+		$(SRC_DIR)/ft_execution/ft_minimap/ft_minimap.c \
 		$(SRC_DIR)/ft_parsing/ft_parsing.c \
 		$(SRC_DIR)/ft_parsing/ft_display_adrien.c \
 		$(SRC_DIR)/ft_parsing/data_collection/ft_find_colors.c \

@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
+/*   By: edouard <edouard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:14:30 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 17:42:43 by ahors            ###   ########.fr       */
+/*   Updated: 2024/10/28 08:45:56 by edouard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_free_data(t_data *data)
+void ft_free_data(t_data *data)
 {
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)
 	{
-		mlx_destroy_display(data->mlx_ptr);
+		// mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 	}
 	free(data);
 }
 
-void	ft_free_texture(t_texture *texture, t_data *data)
+void ft_free_texture(t_texture *texture, t_data *data)
 {
 	if (texture)
 	{
@@ -36,7 +36,7 @@ void	ft_free_texture(t_texture *texture, t_data *data)
 	}
 }
 
-void	ft_free_textures(t_map *map)
+void ft_free_textures(t_map *map)
 {
 	ft_free_texture(map->north, map->data);
 	ft_free_texture(map->east, map->data);
@@ -44,17 +44,17 @@ void	ft_free_textures(t_map *map)
 	ft_free_texture(map->west, map->data);
 }
 
-void	ft_free_main_image(t_data *data, t_texture *main_image)
+void ft_free_main_image(t_data *data, t_texture *main_image)
 {
 	mlx_destroy_image(data->mlx_ptr, main_image->img);
 	main_image->img = NULL;
 }
 
 // Fonction pour libérer toute la structure t_map
-void	ft_clean(t_map *map)
-{	
+void ft_clean(t_map *map)
+{
 	if (!map)
-		return ;
+		return;
 	if (map->dirty_grid)
 		if (free_char_array(map->dirty_grid))
 			printf("Could not free map dirty grid\n");
