@@ -6,7 +6,7 @@
 /*   By: ahors <ahors@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:11:09 by ahors             #+#    #+#             */
-/*   Updated: 2024/10/22 20:18:58 by ahors            ###   ########.fr       */
+/*   Updated: 2024/11/07 13:11:13 by ahors            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ void	ft_move_player(int keynum, t_map *map)
 	t_player	*player;
 
 	player = map->player;
-	if (keynum == 13 || keynum == 119)
+	if (keynum == 13 || keynum == 119 || keynum == 65362)
 		ft_move_forward(player, map);
-	else if (keynum == 1 || keynum == 115)
+	else if (keynum == 1 || keynum == 115 || keynum == 65364)
 		ft_move_backward(player, map);
 	else if (keynum == 0 || keynum == 97)
 		ft_move_left(player, map);
