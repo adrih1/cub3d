@@ -4,8 +4,14 @@
 MAP_DIR_GOOD="maps/good"
 MAP_DIR_BAD="maps/bad"
 
-# Exécutable à tester
-EXEC="./cub3d"
+# Chercher dynamiquement l'exécutable dans le dossier parent
+EXEC=$(find .. -maxdepth 1 -type f -iname "cub3d*" | head -n 1)
+
+# Si aucun exécutable n'est trouvé
+if [ -z "$EXEC" ]; then
+  echo -e "Error: No executable named 'cub3d', 'Cub3D', or similar found in the parent directory."
+  exit 1
+fi
 
 # Codes de couleur
 GREEN="\033[0;32m"  # Vert
